@@ -1,0 +1,461 @@
+.ui-helper-hidden-accessible {
+	 display:none; /* Si no pones esto se agregan los textos de los tooltips debajo del footer y hace un efecto de zoom en el fondo que no es agradable */
+}
+
+.tooltip {
+	padding: 8px;
+	position: absolute;
+  z-index: 9999;
+	max-width: 300px;
+	-webkit-box-shadow: 0 0 5px #aaa;
+	box-shadow: 0 0 5px #aaa;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  border-radius: 5px;
+  font-size: 25px;
+}
+.tooltip::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  right: 48%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0,0,0,0.8) transparent;
+}
+
+body {
+  background-image: url('https://wallpaperplay.com/walls/full/5/6/9/124134.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  color: black;
+}
+
+
+header {
+  display: flex;
+  padding: 10px;
+  border: 10px solid black;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+}
+
+#logo {
+  text-align: left;
+  width: 100px;
+  height: auto;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#userImg{
+  display: inline-flex;
+  width: 50px;
+}
+
+#homeScreen{
+	display: none;
+}
+
+.side2 {
+  display: none;
+	overflow: auto;
+}
+
+.side1 {
+	overflow: auto;
+}
+
+.side1 h3{
+  margin: 10px;
+}
+
+.options {
+  display: flex;
+  border: 5px solid black;
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.options a:link, .options a:visited, .options a:hover , .information_opinions_and_preferences a:link, .information_opinions_and_preferences a:visited, .information_opinions_and_preferences a:hover {
+  color: black;
+  font-weight: bold;
+}
+
+header li {
+  display: inline;
+  vertical-align: middle;
+  margin: 2px;
+	overflow: auto;
+}
+
+a:link, .places a:link {
+  color: red;
+}
+
+a:visited, a:hover, .places a:visited, .places a:hover {
+  color: hotpink;
+}
+
+.preferences{
+  padding-left: 0px;
+}
+
+.content{
+  display: flex;
+}
+
+.dropbtn {
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+	display: block;
+}
+
+.show {
+  display: block;
+}
+
+section {
+	box-sizing: border-box;
+	border: 10px solid black;
+	padding: 10px;
+	flex: 1;
+	align-self: self-start; /* Con esto hacemos que las cajas no ocupen todo el espacio */
+	margin-top: 5px;
+	margin-right: 5px;
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 30px;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+}
+
+#plus {
+  display: inline;
+  float: right;
+  width:10px;
+  height: auto;
+  padding: 5px;
+}
+
+#preferences {
+  display: inline;
+}
+
+.preferences li {
+  display: inline-table;
+  border: 2px solid honeydew;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+
+.preferences img {
+  display:inline;
+  float: right;
+  width: 10px;
+  height: auto;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.stormtrooper_mode {
+  display: none;
+}
+
+.info {
+  display: none;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title img{
+    width: 30px;
+    height: 30px;
+}
+
+.caja {
+  padding: 10px;
+  border: 3px solid black;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+}
+
+.content_caja {
+    display: flex;
+    align-items: center;
+}
+
+.image_caja {
+  width: 100px;
+  height: 100px;
+  padding: 2px;
+  margin-bottom: 10px;
+  float: left;
+  object-fit: cover;
+  border-radius: 25%;
+}
+
+.buttons {
+  display: flex;
+}
+
+.commentButton, .likeButton, .shareButton{
+  width: 25px;
+  height: 25px;
+  margin: auto;
+  filter: invert(1);
+}
+
+.caja_date {
+  margin: auto;
+}
+
+.cross {
+  width: 10px;
+  height: 10px;
+  float: right;
+  filter: invert(1);
+}
+
+.caja_movil {
+  display: none;
+}
+
+.datos {
+  padding-left: 20px;
+  float: left;
+}
+
+.datos a{
+  align-self: center;
+  font-size: 20px;
+}
+
+.reseña{
+  float:left;
+}
+
+.load_more{
+  display: block;
+  text-align: center;
+}
+
+.load_more img{
+  width: 50px;
+  filter: invert(1);
+}
+
+input[type=text], input[type=password], input[type=date], input[type=email], select {
+  padding: 12px 20px;
+  margin: 8px auto;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.checkbox_box {
+	display: inline-flex;
+}
+
+.field-full {
+  width: 98%;
+}
+
+.field-divided {
+  width: 48.75%;
+}
+
+.form {
+  padding: 10px;
+  border: 3px solid black;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  margin-top: 10px;
+}
+
+.form h2 {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.checkbox {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  background: white;
+  max-width: 260px;
+  color: black;
+	overflow: auto;
+}
+
+.activity1, .activity2 {
+  display: inline-flex;
+}
+
+.activity {
+  text-align: center;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border-color: white;
+  border-style: solid;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: honeydew;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top: black;
+    border-top-style: solid;
+    border-top-width: thick;
+}
+
+
+.copyright {
+  text-align: center;
+}
+
+#Copyright {
+  display: inline;
+}
+
+.social {
+  display:flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.social img {
+  display: inline;
+  width: 25px;
+  height: auto;
+  padding: 2px;
+  align-items: flex-end;
+  vertical-align: middle;
+  border-left-color: black;
+  border-left: thin;
+  border-left-style: solid;
+}
+
+.mobile_footer {
+  display: none;
+}
+
+#commentBox {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#commentBoxContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 30px;
+}
+
+#commentBoxText {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+/* The Close Button */
+#closeCommentBox {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#closeCommentBox:hover,
+#closeCommentBox:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#commentBoxSocial {
+  display:flex;
+  justify-content: center;
+}
+
+#commentBoxSocial img {
+  display: inline;
+  width: 50px;
+  height: auto;
+  padding: 2px;
+  vertical-align: middle;
+  border-left-color: black;
+  border-left: thin;
+  border-left-style: solid;
+}
