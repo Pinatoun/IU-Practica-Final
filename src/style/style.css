@@ -124,9 +124,9 @@ a:visited, a:hover, .places a:visited, .places a:hover {
   display: flex;
 }
 
-.dropbtn {
-  border: none;
-  cursor: pointer;
+.fa-caret-square-down{
+  color: rgb(255,126,0);
+  width: 25px;
 }
 
 .dropdown {
