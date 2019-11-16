@@ -36,11 +36,15 @@ body {
 
 header {
   display: flex;
-  padding: 10px;
-  border: 10px solid black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /*padding: 10px;*/
+  /*border: 10px solid black;*/
   justify-content: space-between;
   align-items: center;
-  border-radius: 30px;
+  /*border-radius: 30px;*/
   background: rgba(255, 255, 255, 0.5);
 }
 
