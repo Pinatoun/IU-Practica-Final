@@ -32,6 +32,7 @@ body {
   background-position: top;
   color: black;
   margin: 0px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -48,9 +49,7 @@ header {
 
 .titulo {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 60%;
 }
 
 #logo {
