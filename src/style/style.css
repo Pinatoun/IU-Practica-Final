@@ -31,14 +31,12 @@ body {
   background-size: cover;
   background-position: top;
   color: black;
+  margin: 0px;
 }
 
 
 header {
   display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   /*padding: 10px;*/
   /*border: 10px solid black;*/
@@ -57,7 +55,7 @@ header {
 
 #logo {
   text-align: left;
-  width: 100px;
+  width: 50px;
   height: auto;
   padding: 10px;
   vertical-align: middle;
@@ -84,7 +82,8 @@ header {
 }
 
 .side1 {
-	overflow: auto;
+  overflow: auto;
+  display: flex;
 }
 
 .side1 h3{
@@ -161,7 +160,8 @@ a:visited, a:hover, .places a:visited, .places a:hover {
 section {
 	box-sizing: border-box;
 	border: 10px solid black;
-	padding: 10px;
+  padding: 10px;
+  margin: 10px;
 	flex: 1;
 	align-self: self-start; /* Con esto hacemos que las cajas no ocupen todo el espacio */
 	margin-top: 5px;
