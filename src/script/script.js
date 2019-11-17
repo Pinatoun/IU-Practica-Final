@@ -186,6 +186,26 @@ $(document).ready(function(){
     }
   });
 
+  $(".fa-star").click(function(){
+    /* Cambia el icono de la estrella que se clicka */
+    if($(this).hasClass("far")){
+      $(this).removeClass("far");
+      $(this).addClass("fa");
+    }else{
+      $(this).removeClass("fa");
+      $(this).addClass("far");
+    }
+
+    /* Cambia el icono de las estrellas anteriores */
+    $(this).prevAll().removeClass("far");
+    $(this).prevAll().addClass("fa");
+
+    
+    /* Cambia el icono de las estrellas posteriores */
+    $(this).nextAll().removeClass("fa");
+    $(this).nextAll().addClass("far");
+  });
+
   /*$(".cross").click(function(){
     if(confirm("¿De verdad quieres eliminar esta caja?")){
       $(this).parent().hide();

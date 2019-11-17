@@ -113,7 +113,7 @@ a:link, .places a:link {
 }
 
 a:visited, a:hover, .places a:visited, .places a:hover {
-  color: hotpink;
+  color: rgb(255,126,0);
 }
 
 .preferences{
