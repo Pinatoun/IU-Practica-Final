@@ -36,10 +36,10 @@ body {
 }
 
 
-header {
+header, footer {
   display: flex;
-  width: 100%;
-  /*padding: 10px;*/
+  /* width: 100%; */
+  padding: 0 10px 0 10px;
   /*border: 10px solid black;*/
   justify-content: space-between;
   align-items: center;
@@ -91,9 +91,9 @@ header {
 
 .options {
   display: flex;
-  border: 5px solid black;
+  /* border: 5px solid black; */
   padding: 10px;
-  border-radius: 50px;
+  /* border-radius: 50px; */
 }
 
 .options a:link, .options a:visited, .options a:hover , .information_opinions_and_preferences a:link, .information_opinions_and_preferences a:visited, .information_opinions_and_preferences a:hover {
@@ -109,7 +109,7 @@ header li {
 }
 
 a:link, .places a:link {
-  color: red;
+  color: rgb(255,126,0);
 }
 
 a:visited, a:hover, .places a:visited, .places a:hover {
@@ -127,6 +127,8 @@ a:visited, a:hover, .places a:visited, .places a:hover {
 .fa-caret-square-down{
   color: rgb(255,126,0);
   width: 25px;
+  font-size: 25px;
+  float: right;
 }
 
 .dropdown {
@@ -158,13 +160,11 @@ a:visited, a:hover, .places a:visited, .places a:hover {
 
 section {
 	box-sizing: border-box;
-	border: 10px solid black;
+	/* border: 10px solid black; */
   padding: 10px;
   margin: 10px;
 	flex: 1;
 	align-self: self-start; /* Con esto hacemos que las cajas no ocupen todo el espacio */
-	margin-top: 5px;
-	margin-right: 5px;
 	background: rgba(255, 255, 255, 0.5);
 	border-radius: 30px;
 }
@@ -224,11 +224,11 @@ section {
 
 .caja {
   padding: 10px;
-  border: 3px solid black;
+  /* border: 3px solid black; */
   border-radius: 20px;
   margin-bottom: 15px;
-  background: rgba(0,0,0,0.6);
-  color: white;
+  background: rgba(255,255,255,0.6);
+  color: black;
 }
 
 .content_caja {
@@ -237,6 +237,7 @@ section {
 }
 
 .image_caja {
+  display: none;
   width: 100px;
   height: 100px;
   padding: 2px;
@@ -246,8 +247,23 @@ section {
   border-radius: 25%;
 }
 
+.hashtags{
+  display: inline-flex;
+  margin-bottom: 5px;
+}
+
+.hashtags p{
+  margin: 0;
+  margin-right: 5px;
+}
+
+.fa-plus-square{
+  color: rgb(255,126,0);
+}
+
 .buttons {
   display: flex;
+  justify-content: space-between;
 }
 
 .commentButton, .likeButton, .shareButton{
@@ -261,24 +277,11 @@ section {
   margin: auto;
 }
 
-.cross {
-  width: 10px;
-  height: 10px;
-  float: right;
-  filter: invert(1);
-}
-
 .caja_movil {
   display: none;
 }
 
-.datos {
-  padding-left: 20px;
-  float: left;
-}
-
-.datos a{
-  align-self: center;
+.datos p{
   font-size: 20px;
 }
 
@@ -317,11 +320,22 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   width: 48.75%;
 }
 
-.form {
+
+#profileSection {
+  display: flex;
+  margin: 15px;
+  justify-content: space-between;
+}
+
+.innerProfileSection{
+  width: 60%;
+}
+
+.form, .information{
+  margin-bottom: auto;
   padding: 10px;
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 20px;
-  margin-bottom: 15px;
   background: rgba(0,0,0,0.6);
   color: white;
   margin-top: 10px;
@@ -331,6 +345,25 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   display: block;
   font-size: 1.5em;
   font-weight: bold;
+}
+
+.information {
+  display: flex;
+}
+
+
+.information p {
+  background-color: rgb(255,126,0);
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.information img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid rgb(255,126,0);
+  margin: 5px;
 }
 
 .checkbox {
@@ -359,7 +392,7 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   border-style: solid;
 }
 
-footer {
+/*footer {
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
@@ -370,7 +403,7 @@ footer {
     border-top: black;
     border-top-style: solid;
     border-top-width: thick;
-}
+}*/
 
 
 .copyright {
@@ -394,9 +427,6 @@ footer {
   padding: 2px;
   align-items: flex-end;
   vertical-align: middle;
-  border-left-color: black;
-  border-left: thin;
-  border-left-style: solid;
 }
 
 .mobile_footer {

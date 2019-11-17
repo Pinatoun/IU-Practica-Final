@@ -76,7 +76,7 @@ function loadLogIn(username) {
 }
 
 window.onclick = function(event) {
-  if(!event.target.matches('.dropbtn')) {
+  if(!event.target.matches('.fa-caret-square-down')) {
     $(".dropdown-content").slideUp("fast");
   }
   if (event.target.id=="commentBox") {
@@ -116,7 +116,9 @@ $( function() {
 
 $(document).ready(function(){
 
-  $(".form").hide();
+  $(".section").hide();
+
+  $(".profileSection").hide();
 
   $('.likeButton').tooltip({
     tooltipClass: "tooltip",
@@ -135,19 +137,19 @@ $(document).ready(function(){
 
 
   $("#homeScreen").click(function() {
-    $(".form").hide();
+    $(".section").hide();
     $(".content").show();
     $("#profile").show();
     $("#homeScreen").hide();
   });
 
   $("#startSesion").click(function() {
-    $(".form").hide();
+    $(".section").hide();
     $("#logIn").show();
   });
 
   $("#register").click(function() {
-    $(".form").hide();
+    $(".section").hide();
     $("#registerForm").show();
   });
 
@@ -174,7 +176,7 @@ $(document).ready(function(){
     }
   });
 
-  $(".dropbtn").click(function(){
+  $(".fa-caret-square-down").click(function(){
     var button = $(this).parent().find(".dropdown-content").first();
     $(".dropdown-content").slideUp("fast");
     if (button.css("display") == "none") {
@@ -184,13 +186,13 @@ $(document).ready(function(){
     }
   });
 
-  $(".cross").click(function(){
+  /*$(".cross").click(function(){
     if(confirm("¿De verdad quieres eliminar esta caja?")){
       $(this).parent().hide();
     }
-  });
+  });*/
 
-  $(".darth_mode").click(function(){
+  /*$(".darth_mode").click(function(){
     $("body").css({"background-image": "url(https://wallpaperplay.com/walls/full/b/3/3/84873.jpg)"});
     $(".darth_mode").hide();
     $(".stormtrooper_mode").show();
@@ -200,7 +202,7 @@ $(document).ready(function(){
     $("body").css({"background-image": "url('https://wallpaperplay.com/walls/full/5/6/9/124134.jpg')"});
     $(".stormtrooper_mode").hide();
     $(".darth_mode").show();
-  });
+  });*/
 
   $(".addElement").click(function(){
     var columna = $(this).parentsUntil(".content").last();
@@ -210,7 +212,7 @@ $(document).ready(function(){
       drop: function( event, ui ) {
         if($(ui.draggable).hasClass("caja")){
           $(ui.draggable).detach().insertAfter($(this));
-        }
+        }addEl
       }
     });
     if (caja.length == 0) { /* Controlamos que la columna no esté vacía y si lo está cogemos el primer elemento caja que encontremos. */
@@ -224,7 +226,8 @@ $(document).ready(function(){
         }
       });
     }
-    caja.find("a").text(prompt("Pon el nombre"));
+    caja.find("h3").text(prompt("Pon el nombre"));
+    caja.find("p").first().text(prompt("Pon la descripción"));
     caja.css({"display": "block"});
 
     /*volvemos a ponerlo todo porque si usamos clone(true) después el drag no lo hace bien (lo hace desde el que ha sido clonado)*/
@@ -252,15 +255,15 @@ $(document).ready(function(){
     $("#homeScreen").hide();
     $(".side1").hide();
     $(".side2").show();
-    $(".form").hide();
+    $(".section").hide();
   });
 
   $("#profile").click(function() {
-    $(".form").hide();
+    $(".section").hide();
     $(".content").hide();
     $("#profile").hide();
     $("#homeScreen").show();
-    $("#profileForm").show();
+    $("#profileSection").show();
     var val;
     var values = [],
         keys = Object.keys(localStorage),
