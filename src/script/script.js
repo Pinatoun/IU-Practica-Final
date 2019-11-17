@@ -135,6 +135,18 @@ $(document).ready(function(){
     position: { my: "top+20px", at: "top center" },
   });
 
+  $(".fa-plus-square").click(function() {
+    var text = prompt("Introduzca el hashtag que desea añadir");
+    /* Controlamos que no se haya dejado el campo en blanco */
+    if(text){
+      $("<p>#"+text+"</p>").insertBefore(this);
+    }
+  });
+
+  $(".fa-comment").click(function(){
+    $("#commentBox").fadeIn("slow");
+    $("#commentBoxText").text("¿Dónde quieres compartir el evento \""+$(this).parentsUntil("section").last().find("h3").first().text()+"\"?\n");
+  });
 
   $("#homeScreen").click(function() {
     $(".section").hide();
