@@ -76,7 +76,7 @@ function loadLogIn(username) {
 }
 
 window.onclick = function(event) {
-  if(!event.target.matches('.dropbtn')) {
+  if(!event.target.matches('.fa-caret-square-down')) {
     $(".dropdown-content").slideUp("fast");
   }
   if (event.target.id=="commentBox") {
@@ -116,7 +116,9 @@ $( function() {
 
 $(document).ready(function(){
 
-  $(".form").hide();
+  $(".section").hide();
+
+  $(".profileSection").hide();
 
   $('.likeButton').tooltip({
     tooltipClass: "tooltip",
@@ -133,21 +135,33 @@ $(document).ready(function(){
     position: { my: "top+20px", at: "top center" },
   });
 
+  $(".fa-plus-square").click(function() {
+    var text = prompt("Introduzca el hashtag que desea añadir");
+    /* Controlamos que no se haya dejado el campo en blanco */
+    if(text){
+      $("<p>#"+text+"</p>").insertBefore(this);
+    }
+  });
+
+  $(".fa-comment").click(function(){
+    $("#commentBox").fadeIn("slow");
+    $("#commentBoxText").text("¿Dónde quieres compartir el evento \""+$(this).parentsUntil("section").last().find("h3").first().text()+"\"?\n");
+  });
 
   $("#homeScreen").click(function() {
-    $(".form").hide();
+    $(".section").hide();
     $(".content").show();
     $("#profile").show();
     $("#homeScreen").hide();
   });
 
   $("#startSesion").click(function() {
-    $(".form").hide();
+    $(".section").hide();
     $("#logIn").show();
   });
 
   $("#register").click(function() {
-    $(".form").hide();
+    $(".section").hide();
     $("#registerForm").show();
   });
 
@@ -174,7 +188,7 @@ $(document).ready(function(){
     }
   });
 
-  $(".dropbtn").click(function(){
+  $(".fa-caret-square-down").click(function(){
     var button = $(this).parent().find(".dropdown-content").first();
     $(".dropdown-content").slideUp("fast");
     if (button.css("display") == "none") {
@@ -184,13 +198,33 @@ $(document).ready(function(){
     }
   });
 
-  $(".cross").click(function(){
+  $(".fa-star").click(function(){
+    /* Cambia el icono de la estrella que se clicka */
+    if($(this).hasClass("far")){
+      $(this).removeClass("far");
+      $(this).addClass("fa");
+    }else{
+      $(this).removeClass("fa");
+      $(this).addClass("far");
+    }
+
+    /* Cambia el icono de las estrellas anteriores */
+    $(this).prevAll().removeClass("far");
+    $(this).prevAll().addClass("fa");
+
+    
+    /* Cambia el icono de las estrellas posteriores */
+    $(this).nextAll().removeClass("fa");
+    $(this).nextAll().addClass("far");
+  });
+
+  /*$(".cross").click(function(){
     if(confirm("¿De verdad quieres eliminar esta caja?")){
       $(this).parent().hide();
     }
-  });
+  });*/
 
-  $(".darth_mode").click(function(){
+  /*$(".darth_mode").click(function(){
     $("body").css({"background-image": "url(https://wallpaperplay.com/walls/full/b/3/3/84873.jpg)"});
     $(".darth_mode").hide();
     $(".stormtrooper_mode").show();
@@ -200,7 +234,7 @@ $(document).ready(function(){
     $("body").css({"background-image": "url('https://wallpaperplay.com/walls/full/5/6/9/124134.jpg')"});
     $(".stormtrooper_mode").hide();
     $(".darth_mode").show();
-  });
+  });*/
 
   $(".addElement").click(function(){
     var columna = $(this).parentsUntil(".content").last();
@@ -210,7 +244,7 @@ $(document).ready(function(){
       drop: function( event, ui ) {
         if($(ui.draggable).hasClass("caja")){
           $(ui.draggable).detach().insertAfter($(this));
-        }
+        }addEl
       }
     });
     if (caja.length == 0) { /* Controlamos que la columna no esté vacía y si lo está cogemos el primer elemento caja que encontremos. */
@@ -224,7 +258,8 @@ $(document).ready(function(){
         }
       });
     }
-    caja.find("a").text(prompt("Pon el nombre"));
+    caja.find("h3").text(prompt("Pon el nombre"));
+    caja.find("p").first().text(prompt("Pon la descripción"));
     caja.css({"display": "block"});
 
     /*volvemos a ponerlo todo porque si usamos clone(true) después el drag no lo hace bien (lo hace desde el que ha sido clonado)*/
@@ -252,15 +287,15 @@ $(document).ready(function(){
     $("#homeScreen").hide();
     $(".side1").hide();
     $(".side2").show();
-    $(".form").hide();
+    $(".section").hide();
   });
 
   $("#profile").click(function() {
-    $(".form").hide();
+    $(".section").hide();
     $(".content").hide();
     $("#profile").hide();
     $("#homeScreen").show();
-    $("#profileForm").show();
+    $("#profileSection").show();
     var val;
     var values = [],
         keys = Object.keys(localStorage),

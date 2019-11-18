@@ -1,334 +1,461 @@
-<!DOCTYPE html>
-<html lang="es">
+  <!DOCTYPE html>
+  <html lang="es">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="script/script.js"></script>
-    <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/star-wars-3/154/droid-helmet-soldier-star-wars-512.png" type="image/png" sizes="16x16">
-    <title>Los Clones Imperiales</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-    <base target="_blank">
-  </head>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="script/script.js"></script>
+      <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/star-wars-3/154/droid-helmet-soldier-star-wars-512.png" type="image/png" sizes="16x16">
+      <title>Apptivity</title>
+      <link rel="stylesheet" type="text/css" href="style/style.css">
+      <base target="_blank">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
+      <script src="https://kit.fontawesome.com/500a17097a.js" crossorigin="anonymous"></script>
+    </head>
 
-  <body>
-
-      <header>
-        <div class="titulo">
-          <img id="logo"  src="https://vignette.wikia.nocookie.net/es.starwars/images/2/2e/Imperial_Emblem.svg/revision/latest/scale-to-width-down/350?cb=20080817111408" alt="Page logo" title="Logo"/>
-          <h1> Clones Imperiales </h1>
-        </div>
-        <div class="side1">
-          <div class="user">
-            <img id="userImg"  src="https://i.pinimg.com/originals/60/b7/30/60b73041000047d4e8737d4eee9c5a08.png" alt="User Img" title="User Image"/>
-            <h3>Best_soldier</h3>
+    <body>
+        <header>
+          <div class="titulo">
+            <img id="logo"  src="https://vignette.wikia.nocookie.net/es.starwars/images/2/2e/Imperial_Emblem.svg/revision/latest/scale-to-width-down/350?cb=20080817111408" alt="Page logo" title="Logo"/>
+            <h1>Apptivity</h1>
           </div>
-          <ul class="options">
-            <li><a id="profile" href="#" target="_self"> Perfil </a></li>
-            <li><a id="homeScreen" href="#" target="_self"> Página de Inicio </a></li>
-            <li><a id="closeSesion" href="#" target="_self"> Cerrar sesión </a></li>
-            <li><a class="darth_mode" href="#" target="_self"> Darth mode </a></li>
-            <li><a class="stormtrooper_mode" href="#" target="_self"> Stormtrooper mode </a></li>
-          </ul>
-        </div>
-        <div class="side2">
-          <ul class="options">
-            <li><a id="startSesion" href="#" target="_self"> Iniciar sesión </a></li>
-            <li><a id="register" href="#" target="_self"> Registrarse </a></li>
-            <li><a class="darth_mode" href="#" target="_self"> Darth mode </a></li>
-            <li><a class="stormtrooper_mode" href="#" target="_self"> Stormtrooper mode </a></li>
-          </ul>
-        </div>
-      </header>
+          <div class="side1">
+            <div class="user">
+              <img id="userImg"  src="https://i.pinimg.com/originals/60/b7/30/60b73041000047d4e8737d4eee9c5a08.png" alt="User Img" title="User Image"/>
+              <h3>Best_soldier</h3>
+            </div>
+            <div class="icons">
+              <i class="far fa-bell"></i>
+              
+            </div>
+            <ul class="options">
+              <li><a id="profile" href="#" target="_self"> Perfil </a></li>
+              <li><a id="homeScreen" href="#" target="_self"> Página de Inicio </a></li>
+              <li><a id="closeSesion" href="#" target="_self"> Cerrar sesión </a></li>
+            </ul>
+          </div>
+          <div class="side2">
+            <ul class="options">
+              <li><a id="startSesion" href="#" target="_self"> Iniciar sesión </a></li>
+              <li><a id="register" href="#" target="_self"> Registrarse </a></li>
+            </ul>
+          </div>
+        </header>
+        
 
-      <div class="content">
+        <div class="content">
 
-        <section>
-          <div class="title">
-            <h2>Restaurantes</h2>
-            <div class="dropdown">
-              <img class="dropbtn" src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-plain/435/06_menu_bullet-512.png" alt="">
-              <div class="dropdown-content">
-                <a class="addElement">Añadir elemento</a>
-                <a class="changeTitle">Cambiar título</a>
-                <a class="emptyColumn">Vaciar lista</a>
-                <a class="archivar">Archivar lista</a>
+          <section>
+            <div class="title">
+              <h2>Restaurantes</h2>
+              <div class="dropdown">
+                <i class="far fa-caret-square-down"></i>
+                <div class="dropdown-content">
+                  <a class="addElement">Añadir elemento</a>
+                  <a class="changeTitle">Cambiar título</a>
+                  <a class="emptyColumn">Vaciar lista</a>
+                  <a class="archivar">Archivar lista</a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="caja">
-            <img class="cross" src="https://image.flaticon.com/icons/png/512/53/53891.png" alt="">
-            <div class="content_caja">
-              <img class="image_caja" src="https://media-cdn.tripadvisor.com/media/photo-s/13/ff/4f/4d/photo0jpg.jpg" alt="Restaurant img" title="img"> <div class="datos">
-              <p><a href="https://myfuckingrestaurant.com/">My Fucking Restaurant</a></p> </div>
-            </div>
-            <div class="buttons">
-              <img class="likeButton" src="images/like.png" alt="" title="Me gusta">
-              <img class="commentButton" src="https://image.flaticon.com/icons/svg/25/25663.svg" alt="" title="Deja un comentario">
-              <img class="shareButton" src="https://freeiconshop.com/wp-content/uploads/edd/share-outline.png" alt="" title="Compártelo con tus amigos">
-              <p class="caja_date">23/04/2018 15:14</p>
-            </div>
-          </div>
-          <div class="caja">
-            <img class="cross" src="https://image.flaticon.com/icons/png/512/53/53891.png" alt="">
-            <div class="content_caja">
-              <img class="image_caja" src="https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/630/354/75/dam/disneyland/destinations/disneyland/star-wars-galaxys-edge/photography/ogas-cantina-16x9.jpg?1567053941294" alt="Restaurant img" title="img"> <div class="datos">
-              <p><a href="https://disneyworld.disney.go.com/en-eu/dining/hollywood-studios/ogas-cantina/">Oga's Cantina</a></p> </div>
-            </div>
-            <div class="buttons">
-              <img class="likeButton" src="images/like.png" alt="" title="Me gusta">
-              <img class="commentButton" src="https://image.flaticon.com/icons/svg/25/25663.svg" alt="" title="Deja un comentario">
-              <img class="shareButton" src="https://freeiconshop.com/wp-content/uploads/edd/share-outline.png" alt="" title="Compártelo con tus amigos">
-              <p class="caja_date">20/10/2017 15:00</p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div class="title">
-            <h2>Planetas</h2>
-            <div class="dropdown">
-              <img class="dropbtn" src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-plain/435/06_menu_bullet-512.png" alt="">
-              <div class="dropdown-content">
-                <a class="addElement">Añadir elemento</a>
-                <a class="changeTitle">Cambiar título</a>
-                <a class="emptyColumn">Vaciar lista</a>
-                <a class="archivar">Archivar lista</a>
+            <div class="caja">
+                <i class="far fa-caret-square-down" aria-hidden="true"></i>
+                <div class="dropdown-content">
+                  <a class="addCajaElement">Añadir elemento</a>
+                  <a class="changeCajaTitle">Cambiar título</a>
+                  <a class="emptyCaja">Vaciar lista</a>
+                  <a class="archivarCaja">Archivar lista</a>
+                </div>
+              <div class="content_caja">
+                <div class="datos">
+                  <h3>My Fucking Restaurant</h3>
+                  <p>Descripción del evento</p>
+                </div>
+              </div>
+              <div class="hashtags">
+                <p>hashtag</p>
+                <i class="far fa-plus-square"></i>
+              </div>
+              <div class="buttons">
+                <div class="stars">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <i class="far fa-comment"></i>
               </div>
             </div>
-          </div>
-          <div class="caja">
-            <img class="cross" src="https://image.flaticon.com/icons/png/512/53/53891.png" alt="">
-            <div class="content_caja">
-              <img class="image_caja" src="https://vignette.wikia.nocookie.net/es.starwars/images/b/b0/Tatooine_TPM.png/revision/latest?cb=20131214162357" alt="Tatooine" title="img"> <div class="datos">
-              <p><a href="https://es.wikipedia.org/wiki/Tatooine_(Star_Wars)">Tatooine: El planeta desértico</a></p> </div>
-            </div>
-            <div class="buttons">
-              <img class="likeButton" src="images/like.png" alt="" title="Me gusta">
-              <img class="commentButton" src="https://image.flaticon.com/icons/svg/25/25663.svg" alt="" title="Deja un comentario">
-              <img class="shareButton" src="https://freeiconshop.com/wp-content/uploads/edd/share-outline.png" alt="" title="Compártelo con tus amigos">
-              <p class="caja_date">23/04/2019 16:24</p>
-            </div>
-          </div>
-          <div class="caja">
-            <img class="cross" src="https://image.flaticon.com/icons/png/512/53/53891.png" alt="">
-            <div class="content_caja">
-              <img class="image_caja" src="https://vignette.wikia.nocookie.net/es.starwars/images/d/d4/Yavin-4-SWCT.png/revision/latest?cb=20170924222729" alt="Yavin IV" title="img"> <div class="datos">
-              <p><a href="https://starwars.fandom.com/es/wiki/Yavin_4">Yavin IV: La jungla</a></p> </div>
-            </div>
-            <div class="buttons">
-              <img class="likeButton" src="images/like.png" alt="" title="Me gusta">
-              <img class="commentButton" src="https://image.flaticon.com/icons/svg/25/25663.svg" alt="" title="Deja un comentario">
-              <img class="shareButton" src="https://freeiconshop.com/wp-content/uploads/edd/share-outline.png" alt="" title="Compártelo con tus amigos">
-              <p class="caja_date">23/04/2019 18:34</p>
-            </div>
-          </div>
-          <div class="caja">
-            <img class="cross" src="https://image.flaticon.com/icons/png/512/53/53891.png" alt="">
-            <div class="content_caja">
-              <img class="image_caja" src="https://vignette.wikia.nocookie.net/es.starwars/images/f/f0/Naboo_planet.png/revision/latest/scale-to-width-down/350?cb=20190928214307" alt="Naboo" title="img"> <div class="datos">
-              <p><a href="https://starwars.fandom.com/es/wiki/Naboo">Naboo: Hogar de la especie gungan</a></p> </div>
-            </div>
-            <div class="buttons">
-              <img class="likeButton" src="images/like.png" alt="" title="Me gusta">
-              <img class="commentButton" src="https://image.flaticon.com/icons/svg/25/25663.svg" alt="" title="Deja un comentario">
-              <img class="shareButton" src="https://freeiconshop.com/wp-content/uploads/edd/share-outline.png" alt="" title="Compártelo con tus amigos">
-              <p class="caja_date">22/01/2019 10:14</p>
-            </div>
-          </div>
-          <div class="caja">
-            <img class="cross" src="https://image.flaticon.com/icons/png/512/53/53891.png" alt="">
-            <div class="content_caja">
-              <img class="image_caja" src="https://vignette.wikia.nocookie.net/es.starwars/images/1/17/Coruscant-AoTCW.jpg/revision/latest/scale-to-width-down/350?cb=20100213220520" alt="Coruscant" title="img"> <div class="datos">
-              <p><a href="https://starwars.fandom.com/es/wiki/Coruscant">Coruscant: Centro Imperial</a></p> </div>
-            </div>
-            <div class="buttons">
-              <img class="likeButton" src="images/like.png" alt="" title="Me gusta">
-              <img class="commentButton" src="https://image.flaticon.com/icons/svg/25/25663.svg" alt="" title="Deja un comentario">
-              <img class="shareButton" src="https://freeiconshop.com/wp-content/uploads/edd/share-outline.png" alt="" title="Compártelo con tus amigos">
-              <p class="caja_date">20/04/2018 15:14</p>
-            </div>
-          </div>
-        </section>
-        <section id="last_section">
-          <div class="title">
-            <h2>Hoteles</h2>
-            <div class="dropdown">
-              <img class="dropbtn" src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-plain/435/06_menu_bullet-512.png" alt="">
+            <div class="caja">
+              <i class="far fa-caret-square-down" aria-hidden="true"></i>
               <div class="dropdown-content">
-                <a class="addElement">Añadir elemento</a>
-                <a class="changeTitle">Cambiar título</a>
-                <a class="emptyColumn">Vaciar lista</a>
-                <a class="archivar">Archivar lista</a>
+                <a class="addCajaElement">Añadir elemento</a>
+                <a class="changeCajaTitle">Cambiar título</a>
+                <a class="emptyCaja">Vaciar lista</a>
+                <a class="archivarCaja">Archivar lista</a>
+              </div>
+              <div class="content_caja">
+                <div class="datos">
+                  <h3>Oga's Cantina</h3>
+                  <p>Descripción del evento</p> 
+                </div>
+              </div>
+              <div class="hashtags">
+                  <p>hashtag</p>
+                  <i class="far fa-plus-square"></i>
+                </div>
+              <div class="buttons">
+                <div class="stars">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <i class="far fa-comment"></i>
               </div>
             </div>
-          </div>
-          <div class="caja">
-            <img class="cross" src="https://image.flaticon.com/icons/png/512/53/53891.png" alt="">
-            <div class="content_caja">
-              <img class="image_caja" src="https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2019/06/04/15596469873949.jpg" alt="Restaurant img" title="img"> <div class="datos">
-              <p><a href="https://www.optimirooms.com/">Optimi Rooms: El hotel cápsula</a></p> </div>
-            </div>
-            <div class="buttons">
-              <img class="likeButton" src="images/like.png" alt="" title="Me gusta">
-              <img class="commentButton" src="https://image.flaticon.com/icons/svg/25/25663.svg" alt="" title="Deja un comentario">
-              <img class="shareButton" src="https://freeiconshop.com/wp-content/uploads/edd/share-outline.png" alt="" title="Compártelo con tus amigos">
-              <p class="caja_date">23/04/2019 15:14</p>
-            </div>
-          </div>
-        </section>
-      </div>
+          </section>
 
-      <div id="registerForm" class="form">
-        <form id="regForm" action="#" method="post" onsubmit="submitRegister('#regForm');  return false;"> <!-- Con el return false no recarga la página al hacer submit-->
-          <h2>Cuenta</h2>
-          <input type="text" name="username" placeholder="Username" class="field-divided" required>
-          <br>
-          <input type="password" name="password" placeholder="Password" class="field-divided" required>
-          <br>
-          <hr>
-          <h2>Informacion personal</h2>
-          <input type="text" name="firstname" placeholder="Name" class="field-divided" required>
-          <input type="text" name="lastname" placeholder="Surname" class="field-divided" required>
-          <br>
-          <input type="email" name="email" placeholder="Email" class="field-full"   required>
-          <br>
-          <input type="text" onfocus="(this.type='date')" name="birthday" placeholder="Birthday" class="field-full" required>
-          <input type="text" name="uso" placeholder="Uso de la web (opcional)">
-          <hr>
-          <h2>Intereses personales</h2>
-          <div class="checkbox">
-            <div class="checkbox_box">
-              <input type="checkbox" name="int_pl" value="Planets" class="field-list"> Planetas
+          <section>
+            <div class="title">
+              <h2>Planetas</h2>
+              <div class="dropdown">
+                <i class="far fa-caret-square-down"></i>
+                <div class="dropdown-content">
+                  <a class="addElement">Añadir elemento</a>
+                  <a class="changeTitle">Cambiar título</a>
+                  <a class="emptyColumn">Vaciar lista</a>
+                  <a class="archivar">Archivar lista</a>
+                </div>
+              </div>
             </div>
-            <div class="checkbox_box">
-              <input type="checkbox" name="int_ho" value="Hotels" class="field-list"> Hoteles
+            <div class="caja">
+              <i class="far fa-caret-square-down" aria-hidden="true"></i>
+              <div class="dropdown-content">
+                <a class="addCajaElement">Añadir elemento</a>
+                <a class="changeCajaTitle">Cambiar título</a>
+                <a class="emptyCaja">Vaciar lista</a>
+                <a class="archivarCaja">Archivar lista</a>
+              </div>
+              <div class="content_caja">
+                <div class="datos">
+                  <h3>Tatooine: El planeta desértico</h3>
+                  <p>Descripción del evento</p> 
+                </div>
+              </div>
+              <div class="hashtags">
+                  <p>hashtag</p>
+                  <i class="far fa-plus-square"></i>
+                </div>
+              <div class="buttons">
+                <div class="stars">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <i class="far fa-comment"></i>
+              </div>
             </div>
-            <div class="checkbox_box">
-              <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Restauantes
+            <div class="caja">
+              <i class="far fa-caret-square-down" aria-hidden="true"></i>
+              <div class="dropdown-content">
+                <a class="addCajaElement">Añadir elemento</a>
+                <a class="changeCajaTitle">Cambiar título</a>
+                <a class="emptyCaja">Vaciar lista</a>
+                <a class="archivarCaja">Archivar lista</a>
+              </div>
+              <div class="content_caja">
+                <div class="datos">
+                  <h3>Yavin IV: La jungla</h3>
+                  <p>Descripción del evento</p>
+                </div>
+              </div>
+              <div class="hashtags">
+                <p>hashtag</p>
+                <i class="far fa-plus-square"></i>
+              </div>
+              <div class="buttons">
+                <div class="stars">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <i class="far fa-comment"></i>
+              </div>
+            </div>
+            <div class="caja">
+              <i class="far fa-caret-square-down" aria-hidden="true"></i>
+              <div class="dropdown-content">
+                <a class="addCajaElement">Añadir elemento</a>
+                <a class="changeCajaTitle">Cambiar título</a>
+                <a class="emptyCaja">Vaciar lista</a>
+                <a class="archivarCaja">Archivar lista</a>
+              </div>
+              <div class="content_caja">
+                <div class="datos">
+                  <h3>Naboo: Hogar de la especie gungan</h3>
+                  <p>Descripción del evento</p>
+                </div>
+              </div>
+              <div class="hashtags">
+                <p>hashtag</p>
+                <i class="far fa-plus-square"></i>
+              </div>
+              <div class="buttons">
+                <div class="stars">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <i class="far fa-comment"></i>
+              </div>
+            </div>
+            <div class="caja">
+              <i class="far fa-caret-square-down" aria-hidden="true"></i>
+              <div class="dropdown-content">
+                <a class="addCajaElement">Añadir elemento</a>
+                <a class="changeCajaTitle">Cambiar título</a>
+                <a class="emptyCaja">Vaciar lista</a>
+                <a class="archivarCaja">Archivar lista</a>
+              </div>
+              <div class="content_caja">
+                <div class="datos">
+                  <h3>Coruscant: Centro Imperial</h3>
+                  <p>Descripción del evento</p>
+                </div>
+              </div>
+              <div class="hashtags">
+                <p>hashtag</p>
+                <i class="far fa-plus-square"></i>
+              </div>
+              <div class="buttons">
+                <div class="stars">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <i class="far fa-comment"></i>
+              </div>
+            </div>
+          </section>
+          <section id="last_section">
+            <div class="title">
+              <h2>Hoteles</h2>
+              <div class="dropdown">
+                <i class="far fa-caret-square-down"></i>
+                <div class="dropdown-content">
+                  <a class="addElement">Añadir elemento</a>
+                  <a class="changeTitle">Cambiar título</a>
+                  <a class="emptyColumn">Vaciar lista</a>
+                  <a class="archivar">Archivar lista</a>
+                </div>
+              </div>
+            </div>
+            <div class="caja">
+              <i class="far fa-caret-square-down" aria-hidden="true"></i>
+              <div class="dropdown-content">
+                <a class="addCajaElement">Añadir elemento</a>
+                <a class="changeCajaTitle">Cambiar título</a>
+                <a class="emptyCaja">Vaciar lista</a>
+                <a class="archivarCaja">Archivar lista</a>
+              </div>
+              <div class="content_caja">
+                <div class="datos">
+                  <h3>Optimi Rooms: El hotel cápsula</h3>
+                  <p>Descripción del evento</p>
+                </div>
+              </div>
+              <div class="hashtags">
+                <p>hashtag</p>
+                <i class="far fa-plus-square"></i>
+              </div>
+              <div class="buttons">
+                <div class="stars">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <i class="far fa-comment"></i>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div id="registerForm" class="form section">
+          <form id="regForm" action="#" method="post" onsubmit="submitRegister('#regForm');  return false;"> <!-- Con el return false no recarga la página al hacer submit-->
+            <h2>Cuenta</h2>
+            <input type="text" name="username" placeholder="Username" class="field-divided" required>
+            <br>
+            <input type="password" name="password" placeholder="Password" class="field-divided" required>
+            <br>
+            <hr>
+            <h2>Informacion personal</h2>
+            <input type="text" name="firstname" placeholder="Name" class="field-divided" required>
+            <input type="text" name="lastname" placeholder="Surname" class="field-divided" required>
+            <br>
+            <input type="email" name="email" placeholder="Email" class="field-full"   required>
+            <br>
+            <input type="text" onfocus="(this.type='date')" name="birthday" placeholder="Birthday" class="field-full" required>
+            <input type="text" name="uso" placeholder="Uso de la web (opcional)">
+            <hr>
+            <h2>Intereses personales</h2>
+            <div class="checkbox">
+              <div class="checkbox_box">
+                <input type="checkbox" name="int_pl" value="Planets" class="field-list"> Planetas
+              </div>
+              <div class="checkbox_box">
+                <input type="checkbox" name="int_ho" value="Hotels" class="field-list"> Hoteles
+              </div>
+              <div class="checkbox_box">
+                <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Restauantes
+              </div>
+            </div>
+            <hr>
+            <h2>Idiomas</h2>
+            <div class="checkbox">
+              <div class="checkbox_box">
+                <input type="checkbox" name="lang_es" value="Spanish" class="field-list"> Español
+              </div>
+              <div class="checkbox_box">
+                <input type="checkbox" name="lang_en" value="English" class="field-list"> Inglés
+              </div>
+              <div class="checkbox_box">
+                <input type="checkbox" name="leng_ja" value="Japanese" class="field-list"> Japonés
+              </div>
+            </div>
+            <hr>
+            <br>
+            <br>
+            <input type="checkbox" name="conditions" value="accepted" class="field-list" required> He leído y acepto las Condiciones de uso
+            <br>
+            <br>
+            <input type="submit" value="Guardar">
+            <button type="button" value="Borrar" onclick="clearForm()">Borrar</button>
+          </form>
+        </div>
+
+        <div id="logIn" class="form section">
+          <form action="#" method="post" onsubmit="logIn(); return false;">
+            <h2>Cuenta</h2>
+            <input type="email" name="emailLogIn" placeholder="email" class="field-divided"  required>
+            <br>
+            <input type="password" name="passwordLogIn" placeholder="Password" class="field-divided" required>
+            <br>
+            <input type="submit" value="Iniciar Sesión">
+          </form>
+        </div>
+
+        <div id="profileSection" class="section">
+          <div class="innerProfileSection">
+            <h2>Información personal</h2>
+            <div id="profileForm" class="form">
+              <form action="#" method="post" onsubmit="submitRegister('#profileForm'); return false;">
+                <h2>Cuenta</h2>
+                <input type="text" name="username" placeholder="Username" class="field-divided" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" class="field-divided" required>
+                <br>
+                <hr>
+                <h2>Informacion personal</h2>
+                <input type="text" name="firstname" placeholder="Name" class="field-divided" required>
+                <input type="text" name="lastname" placeholder="Surname" class="field-divided" required>
+                <br>
+                <input type="email" name="email" placeholder="Email" class="field-full"   required>
+                <br>
+                <input type="date" name="birthday" placeholder="Birthday" class="field-full" required>
+                <input type="text" name="uso" placeholder="Uso de la web (opcional)">
+                <hr>
+                <h2>Intereses personales</h2>
+                <div class="checkbox">
+                  <div class="checkbox_box">
+                    <input type="checkbox" name="int_pl" value="Planets" class="field-list"> Planetas
+                  </div>
+                  <div class="checkbox_box">
+                    <input type="checkbox" name="int_ho" value="Hotels" class="field-list"> Hoteles
+                  </div>
+                  <div class="checkbox_box">
+                    <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Restauantes
+                  </div>
+                </div>
+                <hr>
+                <h2>Idiomas</h2>
+                <div class="checkbox">
+                  <div class="checkbox_box">
+                    <input type="checkbox" name="lang_es" value="Spanish" class="field-list"> Español
+                  </div>
+                  <div class="checkbox_box">
+                    <input type="checkbox" name="lang_en" value="English" class="field-list"> Inglés
+                  </div>
+                  <div class="checkbox_box">
+                    <input type="checkbox" name="leng_ja" value="Japanese" class="field-list"> Japonés
+                  </div>
+                </div>
+                <hr>
+                <br>
+                <input type="submit" value="Guardar">
+                <button type="button" value="Borrar" onclick="clearForm()">Borrar</button>
+              </form>
             </div>
           </div>
-          <hr>
-          <h2>Idiomas</h2>
-          <div class="checkbox">
-            <div class="checkbox_box">
-              <input type="checkbox" name="lang_es" value="Spanish" class="field-list"> Español
+          <div class="information">
+            <div class="informationText">
+              <p>Paco</p>
+              <p>17 eventos pendientes</p>
+              <p>Se unió el 27/07/2019</p>
             </div>
-            <div class="checkbox_box">
-              <input type="checkbox" name="lang_en" value="English" class="field-list"> Inglés
-            </div>
-            <div class="checkbox_box">
-              <input type="checkbox" name="leng_ja" value="Japanese" class="field-list"> Japonés
-            </div>
-          </div>
-          <hr>
-          <br>
-          <br>
-          <input type="checkbox" name="conditions" value="accepted" class="field-list" required> He leído y acepto las Condiciones de uso
-          <br>
-          <br>
-          <input type="submit" value="Guardar">
-          <button type="button" value="Borrar" onclick="clearForm()">Borrar</button>
-        </form>
-      </div>
-
-      <div id="logIn" class="form">
-        <form action="#" method="post" onsubmit="logIn(); return false;">
-          <h2>Cuenta</h2>
-          <input type="email" name="emailLogIn" placeholder="email" class="field-divided"  required>
-          <br>
-          <input type="password" name="passwordLogIn" placeholder="Password" class="field-divided" required>
-          <br>
-          <input type="submit" value="Iniciar Sesión">
-        </form>
-      </div>
-
-      <div id="profileForm" class="form">
-        <form action="#" method="post" onsubmit="submitRegister('#profileForm'); return false;">
-          <h2>Cuenta</h2>
-          <input type="text" name="username" placeholder="Username" class="field-divided" required>
-          <br>
-          <input type="password" name="password" placeholder="Password" class="field-divided" required>
-          <br>
-          <hr>
-          <h2>Informacion personal</h2>
-          <input type="text" name="firstname" placeholder="Name" class="field-divided" required>
-          <input type="text" name="lastname" placeholder="Surname" class="field-divided" required>
-          <br>
-          <input type="email" name="email" placeholder="Email" class="field-full"   required>
-          <br>
-          <input type="date" name="birthday" placeholder="Birthday" class="field-full" required>
-          <input type="text" name="uso" placeholder="Uso de la web (opcional)">
-          <hr>
-          <h2>Intereses personales</h2>
-          <div class="checkbox">
-            <div class="checkbox_box">
-              <input type="checkbox" name="int_pl" value="Planets" class="field-list"> Planetas
-            </div>
-            <div class="checkbox_box">
-              <input type="checkbox" name="int_ho" value="Hotels" class="field-list"> Hoteles
-            </div>
-            <div class="checkbox_box">
-              <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Restauantes
-            </div>
-          </div>
-          <hr>
-          <h2>Idiomas</h2>
-          <div class="checkbox">
-            <div class="checkbox_box">
-              <input type="checkbox" name="lang_es" value="Spanish" class="field-list"> Español
-            </div>
-            <div class="checkbox_box">
-              <input type="checkbox" name="lang_en" value="English" class="field-list"> Inglés
-            </div>
-            <div class="checkbox_box">
-              <input type="checkbox" name="leng_ja" value="Japanese" class="field-list"> Japonés
-            </div>
-          </div>
-          <hr>
-          <br>
-          <input type="submit" value="Guardar">
-          <button type="button" value="Borrar" onclick="clearForm()">Borrar</button>
-        </form>
-      </div>
-
-      <div id="commentBox" class="modal">
-
-        <div id="commentBoxContent">
-          <span id="closeCommentBox" onclick="document.getElementById('commentBox').style.display = 'none';">&times;</span>
-          <p id="commentBoxText"></p>
-          <div id="commentBoxSocial">
-            <a href="https://www.twitter.com"><img src="https://shkspr.mobi/blog/wp-content/uploads/2017/10/Twitter-Logo.png" alt="Twitter logo" title="Twitter"/></a>
-            <a href="https://www.instagram.com"><img src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="Instagram logo" title="Instagram"/></a>
-            <a href="https://www.linkedin.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/1200px-Linkedin.svg.png" alt="Linkedin logo" title="Linkedin"/></a>
+            <img src="https://i.pinimg.com/originals/60/b7/30/60b73041000047d4e8737d4eee9c5a08.png" alt="User Img" title="User Image"/>
           </div>
         </div>
 
-      </div>
+        <div id="commentBox" class="modal">
 
-      <footer>
-        <div class="about_us">
-          <h5><a href="https://www.google.es">About us</a></h5>
+          <div id="commentBoxContent">
+            <span id="closeCommentBox" onclick="document.getElementById('commentBox').style.display = 'none';">&times;</span>
+            <p id="commentBoxText"></p>
+            <div id="commentBoxSocial">
+              <a href="https://www.twitter.com"><img src="https://shkspr.mobi/blog/wp-content/uploads/2017/10/Twitter-Logo.png" alt="Twitter logo" title="Twitter"/></a>
+              <a href="https://www.instagram.com"><img src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="Instagram logo" title="Instagram"/></a>
+              <a href="https://www.linkedin.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/1200px-Linkedin.svg.png" alt="Linkedin logo" title="Linkedin"/></a>
+            </div>
+          </div>
+
         </div>
-        <div class="copyright">
-          <h5 id="copyright"><a href="https://www.google.es">Copyright</a></h5>
+
+        <footer>
+          <div class="about_us">
+            <h5><a href="https://www.google.es">About us</a></h5>
+          </div>
+          <div class="copyright">
+            <h5 id="copyright"><a href="https://www.google.es">Copyright</a></h5>
+          </div>
+          <div class="social">
+            <a href="https://www.twitter.com"><img id="twitter_logo"  src="https://shkspr.mobi/blog/wp-content/uploads/2017/10/Twitter-Logo.png" alt="Twitter logo" title="Twitter"/></a>
+            <a href="https://www.instagram.com"><img id="instagram_logo"  src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="Instagram logo" title="Instagram"/></a>
+            <a href="https://www.linkedin.com"><img id="linkedin_logo"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/1200px-Linkedin.svg.png" alt="Linkedin logo" title="Linkedin"/></a>
+          </div>
+        </footer>
+
+        <div class="mobile_footer">
+          <a href="#"><img id="personal_logo"  src="https://icon-library.net/images/icon-person/icon-person-0.jpg" alt="Personal" title="Personal information"/><p>Personal</p></a>
+          <a href="#"><img id="opinions_logo"  src="https://static.thenounproject.com/png/92641-200.png" alt="Opinions" title="Opinions"/><p>Opinions</p></a>
+          <a href="#"><img id="preferences_logo"  src="https://cdn1.iconfinder.com/data/icons/streamline-settings/60/cell-16-0-480.png" alt="Preferences" title="Preferences"/><p>Preferences</p></a>
         </div>
-        <div class="social">
-          <a href="https://www.twitter.com"><img id="twitter_logo"  src="https://shkspr.mobi/blog/wp-content/uploads/2017/10/Twitter-Logo.png" alt="Twitter logo" title="Twitter"/></a>
-          <a href="https://www.instagram.com"><img id="instagram_logo"  src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="Instagram logo" title="Instagram"/></a>
-          <a href="https://www.linkedin.com"><img id="linkedin_logo"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/1200px-Linkedin.svg.png" alt="Linkedin logo" title="Linkedin"/></a>
-        </div>
-      </footer>
-
-      <div class="mobile_footer">
-        <a href="#"><img id="personal_logo"  src="https://icon-library.net/images/icon-person/icon-person-0.jpg" alt="Personal" title="Personal information"/><p>Personal</p></a>
-        <a href="#"><img id="opinions_logo"  src="https://static.thenounproject.com/png/92641-200.png" alt="Opinions" title="Opinions"/><p>Opinions</p></a>
-        <a href="#"><img id="preferences_logo"  src="https://cdn1.iconfinder.com/data/icons/streamline-settings/60/cell-16-0-480.png" alt="Preferences" title="Preferences"/><p>Preferences</p></a>
-      </div>
 
 
-  </body>
+    </body>
 
-</html>
+  </html>
