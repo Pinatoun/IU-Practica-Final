@@ -176,16 +176,16 @@ section {
 	box-sizing: border-box;
 	/* border: 10px solid black; */
   padding: 10px;
-  margin: 10px 10px 70px 10px;
+  margin: 10px;
   flex: 1;
 	align-self: self-start; /* Con esto hacemos que las cajas no ocupen todo el espacio */
 	background: rgba(255, 255, 255, 0.5);
 	border-radius: 30px;
 }
 
-.section{
+/* .section{
   margin: 10px 10px 70px 10px;
-}
+} */
 
 .name {
   display: flex;
