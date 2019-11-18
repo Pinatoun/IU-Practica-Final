@@ -18,8 +18,8 @@
     <body>
         <header>
           <div class="titulo">
-            <img id="logo"  src="https://vignette.wikia.nocookie.net/es.starwars/images/2/2e/Imperial_Emblem.svg/revision/latest/scale-to-width-down/350?cb=20080817111408" alt="Page logo" title="Logo"/>
-            <h1>Apptivity</h1>
+              <i class="fab fa-jedi-order" id="logo"></i>
+              <h1>Apptivity</h1>
           </div>
           <div class="side1">
             <div class="user">
@@ -28,6 +28,13 @@
             </div>
             <div class="icons">
               <i class="far fa-bell"></i>
+              <div class="dropdown">
+                <i class="fas fa-plus-square"></i>
+                <div class="dropdown-content">
+                    <a class="addCategory">Añadir Categoría</a>
+                    <a class="addElement">Añadir Actividad</a>
+                </div>
+              </div>
               
             </div>
             <ul class="options">
@@ -44,8 +51,12 @@
           </div>
         </header>
         
+        <div class="nonRegisteredHomepage section">
+          <h2>Una página para aquellos que quieren organizar actividades y eventos con otras personas</h2>
+          <iframe width="840" height="473" src="https://www.youtube.com/embed/PzrGGyPMfoo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
 
-        <div class="content">
+        <div class="content section">
 
           <section>
             <div class="title">
@@ -293,6 +304,17 @@
               </div>
             </div>
           </section>
+
+          <section>
+            <div class="title">
+              <h2>Explorar con el mapa</h2>
+            </div>
+            <div class="mapouter">
+              <div class="gmap_canvas">
+                <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=carlos%20iii%20colmenarejo&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+              </div>
+            </div>
+          </section>
         </div>
 
         <div id="registerForm" class="form section">
@@ -312,16 +334,36 @@
             <input type="text" onfocus="(this.type='date')" name="birthday" placeholder="Birthday" class="field-full" required>
             <input type="text" name="uso" placeholder="Uso de la web (opcional)">
             <hr>
-            <h2>Intereses personales</h2>
-            <div class="checkbox">
-              <div class="checkbox_box">
-                <input type="checkbox" name="int_pl" value="Planets" class="field-list"> Planetas
+            <div class="2forms">
+              <div class="1form">
+                <h2>Hobbies</h2>
+                <select>
+                      <option value="futbol">Fútbol</option>
+                      <option value="tenis">Tenis</option>
+                      <option value="tecnologia">Tecnología</option>
+                      <option value="moda">Moda</option>
+                    </select>
               </div>
-              <div class="checkbox_box">
-                <input type="checkbox" name="int_ho" value="Hotels" class="field-list"> Hoteles
-              </div>
-              <div class="checkbox_box">
-                <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Restauantes
+              <div class="1form">
+                <h2>Intereses personales</h2>
+                <div class="checkboxes">
+                  <div class="checkbox">
+                    <div class="checkbox_box">
+                      <input type="checkbox" name="int_quedadas" value="Quedadas" class="field-list"> Quedadas
+                    </div>
+                    <div class="checkbox_box">
+                      <input type="checkbox" name="int_viajes" value="Viajes" class="field-list"> Viajes
+                    </div>
+                  </div>
+                  <div class="checkbox">
+                    <div class="checkbox_box">
+                      <input type="checkbox" name="int_deporte" value="Deportes" class="field-list"> Deportes
+                    </div>
+                    <div class="checkbox_box">
+                      <input type="checkbox" name="int_otros" value="Otros" class="field-list"> Otros
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <hr>
@@ -351,9 +393,9 @@
         <div id="logIn" class="form section">
           <form action="#" method="post" onsubmit="logIn(); return false;">
             <h2>Cuenta</h2>
-            <input type="email" name="emailLogIn" placeholder="email" class="field-divided"  required>
+            <input type="email" name="emailLogIn" placeholder="email" class="field-full"  required>
             <br>
-            <input type="password" name="passwordLogIn" placeholder="Password" class="field-divided" required>
+            <input type="password" name="passwordLogIn" placeholder="Password" class="field-full" required>
             <br>
             <input type="submit" value="Iniciar Sesión">
           </form>
@@ -377,18 +419,20 @@
                 <input type="email" name="email" placeholder="Email" class="field-full"   required>
                 <br>
                 <input type="date" name="birthday" placeholder="Birthday" class="field-full" required>
-                <input type="text" name="uso" placeholder="Uso de la web (opcional)">
                 <hr>
                 <h2>Intereses personales</h2>
                 <div class="checkbox">
                   <div class="checkbox_box">
-                    <input type="checkbox" name="int_pl" value="Planets" class="field-list"> Planetas
+                    <input type="checkbox" name="int_pl" value="Planets" class="field-list"> Quedadas
                   </div>
                   <div class="checkbox_box">
-                    <input type="checkbox" name="int_ho" value="Hotels" class="field-list"> Hoteles
+                    <input type="checkbox" name="int_ho" value="Hotels" class="field-list"> Viajes
                   </div>
                   <div class="checkbox_box">
-                    <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Restauantes
+                    <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Deportes
+                  </div>
+                  <div class="checkbox_box">
+                    <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Otros
                   </div>
                 </div>
                 <hr>

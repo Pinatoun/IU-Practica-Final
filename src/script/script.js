@@ -76,7 +76,7 @@ function loadLogIn(username) {
 }
 
 window.onclick = function(event) {
-  if(!event.target.matches('.fa-caret-square-down')) {
+  if(!event.target.matches('.fa-caret-square-down') && !event.target.matches(".icons .fa-plus-square")) {
     $(".dropdown-content").slideUp("fast");
   }
   if (event.target.id=="commentBox") {
@@ -84,7 +84,9 @@ window.onclick = function(event) {
   }
 }
 
-$( function() {
+
+$(document).ready(function(){
+  function dragDrop() {
     $( "section" ).draggable({
       revert: true
     });
@@ -112,15 +114,15 @@ $( function() {
         }
       }
     });
-  } );
+  }
 
-$(document).ready(function(){
-
+  dragDrop();
+  
   $(".section").hide();
-
+  $(".nonRegisteredHomepage").show();
   $(".profileSection").hide();
 
-  $('.likeButton').tooltip({
+  /*$('.likeButton').tooltip({
     tooltipClass: "tooltip",
     position: { my: "top+20px", at: "top center" },
   });
@@ -133,9 +135,20 @@ $(document).ready(function(){
   $('.commentButton').tooltip({
     tooltipClass: "tooltip",
     position: { my: "top+20px", at: "top center" },
+  });*/
+
+  $(".icons .fa-plus-square").click(function() {
+    var button = $(this).parent().find(".dropdown-content").first();
+    $(".dropdown-content").slideUp("fast");
+    if (button.css("display") == "none") {
+      button.slideDown("fast");
+    }else {
+      button.slideUp("fast");
+    }
   });
 
-  $(".fa-plus-square").click(function() {
+  /* Añadir hashtag */
+  $(".hashtags .fa-plus-square").click(function() {
     var text = prompt("Introduzca el hashtag que desea añadir");
     /* Controlamos que no se haya dejado el campo en blanco */
     if(text){
@@ -188,15 +201,7 @@ $(document).ready(function(){
     }
   });
 
-  $(".fa-caret-square-down").click(function(){
-    var button = $(this).parent().find(".dropdown-content").first();
-    $(".dropdown-content").slideUp("fast");
-    if (button.css("display") == "none") {
-      button.slideDown("fast");
-    }else {
-      button.slideUp("fast");
-    }
-  });
+  dropdownContent();
 
   $(".fa-star").click(function(){
     /* Cambia el icono de la estrella que se clicka */
@@ -236,28 +241,35 @@ $(document).ready(function(){
     $(".darth_mode").show();
   });*/
 
-  $(".addElement").click(function(){
+  $(".addCategory").click(function(){
+    var newCategory = $(".content section:last-child").before("<section><div class='title'><h2>Restaurantes</h2><div class='dropdown'><i class='far fa-caret-square-down'></i><div class='dropdown-content'><a class='addElement'>Añadir elemento</a><a class='changeTitle'>Cambiar título</a><a class='emptyColumn'>Vaciar lista</a><a class='archivar'>Archivar lista</a></div></div></section>")
+    dropdownContent(newCategory);
+    dragDrop();
+  });
+
+  $(".addCajaElement").click(function(){
     var columna = $(this).parentsUntil(".content").last();
     var caja = columna.find(".caja").first().droppable("destroy").draggable("destroy").clone(true);
-    columna.find(".caja").first().draggable({revert: true});
+    /*columna.find(".caja").first().draggable({revert: true});
     columna.find(".caja").first().droppable({
       drop: function( event, ui ) {
         if($(ui.draggable).hasClass("caja")){
           $(ui.draggable).detach().insertAfter($(this));
-        }addEl
+        }
       }
-    });
+    });*/
     if (caja.length == 0) { /* Controlamos que la columna no esté vacía y si lo está cogemos el primer elemento caja que encontremos. */
       caja = $(".caja").first().droppable("destroy").draggable("destroy").clone(true);
-      $(".caja").first().draggable({revert: true});
+      /*$(".caja").first().draggable({revert: true});
       $(".caja").first().droppable({
         drop: function( event, ui ) {
           if($(ui.draggable).hasClass("caja")){
             $(ui.draggable).detach().insertAfter($(this));
           }
         }
-      });
+      });*/
     }
+    dragDrop();
     caja.find("h3").text(prompt("Pon el nombre"));
     caja.find("p").first().text(prompt("Pon la descripción"));
     caja.css({"display": "block"});
@@ -273,7 +285,7 @@ $(document).ready(function(){
     });
 
     /* Hacemos que aunque le haya dado a like al primero, el que creemos no esté dado */
-    caja.find(".likeButton").attr("src", "images/like.png");
+    caja.find(".fa").addClass("far").removeClass("fa");
 
     caja.appendTo(columna);
 
@@ -288,6 +300,7 @@ $(document).ready(function(){
     $(".side1").hide();
     $(".side2").show();
     $(".section").hide();
+    $(".nonRegisteredHomepage").show();
   });
 
   $("#profile").click(function() {
@@ -316,4 +329,27 @@ $(document).ready(function(){
 
   });
 
+  
+  function dropdownContent(cat) {
+    cat.find(".fa-caret-square-down").click(function(){
+      var button = $(this).parent().find(".dropdown-content").first();
+      $(".dropdown-content").slideUp("fast");
+      if (button.css("display") == "none") {
+        button.slideDown("fast");
+      }else {
+        button.slideUp("fast");
+      }
+    });
+  }
+  function dropdownContent() {
+    $(".fa-caret-square-down").click(function(){
+      var button = $(this).parent().find(".dropdown-content").first();
+      $(".dropdown-content").slideUp("fast");
+      if (button.css("display") == "none") {
+        button.slideDown("fast");
+      }else {
+        button.slideUp("fast");
+      }
+    });
+  }
 });
