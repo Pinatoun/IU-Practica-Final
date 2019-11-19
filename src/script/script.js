@@ -293,7 +293,7 @@ $(document).ready(function(){
   
     $(".addCajaElement").click(function(){
       var columna = $(this).parentsUntil(".content").last();
-      var caja = columna.find(".caja").first().droppable("destroy").draggable("destroy").clone(true);
+      /*var caja = columna.find(".caja").first().droppable("destroy").draggable("destroy").clone(true);
       /*columna.find(".caja").first().draggable({revert: true});
       columna.find(".caja").first().droppable({
         drop: function( event, ui ) {
@@ -302,8 +302,8 @@ $(document).ready(function(){
           }
         }
       });*/
-      if (caja.length == 0) { /* Controlamos que la columna no esté vacía y si lo está cogemos el primer elemento caja que encontremos. */
-        caja = $(".caja").first().droppable("destroy").draggable("destroy").clone(true);
+      /*if (caja.length == 0) { /* Controlamos que la columna no esté vacía y si lo está cogemos el primer elemento caja que encontremos. */
+        caja = $(".caja:first").droppable("destroy").draggable("destroy").clone(true);
         /*$(".caja").first().draggable({revert: true});
         $(".caja").first().droppable({
           drop: function( event, ui ) {
@@ -312,7 +312,7 @@ $(document).ready(function(){
             }
           }
         });*/
-      }
+      /*}*/
       dragDrop();
       caja.find("h3").text(prompt("Pon el nombre"));
       caja.find("p").first().text(prompt("Pon la descripción"));

@@ -34,12 +34,19 @@ body {
   margin: 0px;
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
+  min-width: 100vh;
+  position: relative;
+}
+
+.ayuda{
+  display: flex;
 }
 
 footer{
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
   z-index: 99;
 }
 
@@ -231,7 +238,7 @@ section, .mapa {
 }
 
 .section{
-  margin: 80px 10px 70px 10px;
+  margin-bottom: 60px;
 }
 
 .name {
@@ -388,7 +395,7 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
 
 #profileSection {
   display: flex;
-  margin: 15px;
+  margin: 15px 15px 70px 15px;
   justify-content: space-between;
 }
 
@@ -411,11 +418,26 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   font-weight: bold;
 }
 
+#logIn{
+  margin: 10% 35%;
+}
+
 .information {
   margin-top: 70px;
   display: flex;
+  margin-bottom: auto;
+  color: black;
 }
 
+.profileSide h3 {
+  text-align: center;
+  height: 70px;
+  background-color: rgb(255,126,0);
+  border-radius: 10px;
+  border: 2px solid
+  black;
+  padding: 10% 0 0% 0;
+}
 
 .information p {
   background-color: rgb(255,126,0);
