@@ -56,12 +56,13 @@ function logIn() {
   var username=localStorage.getItem("username");
   var email=localStorage.getItem("email");
   var password=localStorage.getItem("password");
-  if (!$("input[name='emailLogIn']").val().match("\\w+@\\w+\\.\\w+$")){
+  var name=localStorage.getItem("firstname");
+  /*if (!$("input[name='emailLogIn']").val().match("\\w+@\\w+\\.\\w+$")){
     alert("El formato del email no es el correcto (nombre@dominio.extensión)");
     return;
-  }
-  if ($("input[name='emailLogIn']").val() == email && $("input[name='passwordLogIn']").val() == password) {
-    loadLogIn(username);
+  }*/
+  if (($("input[name='emailLogIn']").val() == email || $("input[name='emailLogIn']").val() == username) && $("input[name='passwordLogIn']").val() == password) {
+    loadLogIn(name);
   }else{
     alert("Usuario o contraseña no válida")
   }
@@ -121,6 +122,7 @@ $(document).ready(function(){
   $(".section").hide();
   $(".nonRegisteredHomepage").show();
   $(".profileSection").hide();
+  $(".side1").hide();
 
   /*$('.likeButton').tooltip({
     tooltipClass: "tooltip",
@@ -197,7 +199,7 @@ $(document).ready(function(){
 
   $(".archivar").click(function(){
     if (confirm("¿De verdad quieres eliminar esta columna?")) {
-      $(this).parentsUntil(".content").fadeOut();
+      $(this).parentsUntil(".content").last().fadeOut();
     }
   });
 
@@ -241,58 +243,7 @@ $(document).ready(function(){
     $(".darth_mode").show();
   });*/
 
-  $(".addCategory").click(function(){
-    var newCategory = $(".content section:last-child").before("<section><div class='title'><h2>Restaurantes</h2><div class='dropdown'><i class='far fa-caret-square-down'></i><div class='dropdown-content'><a class='addElement'>Añadir elemento</a><a class='changeTitle'>Cambiar título</a><a class='emptyColumn'>Vaciar lista</a><a class='archivar'>Archivar lista</a></div></div></section>")
-    dropdownContent(newCategory);
-    dragDrop();
-  });
-
-  $(".addCajaElement").click(function(){
-    var columna = $(this).parentsUntil(".content").last();
-    var caja = columna.find(".caja").first().droppable("destroy").draggable("destroy").clone(true);
-    /*columna.find(".caja").first().draggable({revert: true});
-    columna.find(".caja").first().droppable({
-      drop: function( event, ui ) {
-        if($(ui.draggable).hasClass("caja")){
-          $(ui.draggable).detach().insertAfter($(this));
-        }
-      }
-    });*/
-    if (caja.length == 0) { /* Controlamos que la columna no esté vacía y si lo está cogemos el primer elemento caja que encontremos. */
-      caja = $(".caja").first().droppable("destroy").draggable("destroy").clone(true);
-      /*$(".caja").first().draggable({revert: true});
-      $(".caja").first().droppable({
-        drop: function( event, ui ) {
-          if($(ui.draggable).hasClass("caja")){
-            $(ui.draggable).detach().insertAfter($(this));
-          }
-        }
-      });*/
-    }
-    dragDrop();
-    caja.find("h3").text(prompt("Pon el nombre"));
-    caja.find("p").first().text(prompt("Pon la descripción"));
-    caja.css({"display": "block"});
-
-    /*volvemos a ponerlo todo porque si usamos clone(true) después el drag no lo hace bien (lo hace desde el que ha sido clonado)*/
-    caja.draggable({revert: true});
-    caja.droppable({
-      drop: function( event, ui ) {
-        if($(ui.draggable).hasClass("caja")){
-          $(ui.draggable).detach().insertAfter($(this));
-        }
-      }
-    });
-
-    /* Hacemos que aunque le haya dado a like al primero, el que creemos no esté dado */
-    caja.find(".fa").addClass("far").removeClass("fa");
-
-    caja.appendTo(columna);
-
-  });
-  $(".changeTitle").click(function(){
-    $(this).closest("section").find("h2").text(prompt("¿Qué título le quieres poner a esta sección?"));
-  });
+  
   $("#closeSesion").click(function(){
     $(".content").hide();
     $("#profile").show();
@@ -329,9 +280,66 @@ $(document).ready(function(){
 
   });
 
+  function dropdownContentElements(params) {
+    $(".addCategory").click(function(){
+      //$(".mapa").before("<section><div class='title'><h2>"+prompt("Nombre de la categoría")+"</h2><div class='dropdown'><i class='far fa-caret-square-down'></i><div class='dropdown-content'><a class='addCajaElement'>Añadir elemento</a><a class='changeTitle'>Cambiar título</a><a class='emptyColumn'>Vaciar lista</a><a class='archivar'>Archivar lista</a></div></div></section>")
+      var clon = $(".content section:first").droppable("destroy").draggable("destroy").clone(true);
+      clon.find(".caja").hide();
+      clon.find("h2").text(prompt("Nombre de la categoría"));
+      clon.show();
+      clon.insertBefore(".mapa");
+      dragDrop();
+    });
   
-  function dropdownContent(cat) {
-    cat.find(".fa-caret-square-down").click(function(){
+    $(".addCajaElement").click(function(){
+      var columna = $(this).parentsUntil(".content").last();
+      var caja = columna.find(".caja").first().droppable("destroy").draggable("destroy").clone(true);
+      /*columna.find(".caja").first().draggable({revert: true});
+      columna.find(".caja").first().droppable({
+        drop: function( event, ui ) {
+          if($(ui.draggable).hasClass("caja")){
+            $(ui.draggable).detach().insertAfter($(this));
+          }
+        }
+      });*/
+      if (caja.length == 0) { /* Controlamos que la columna no esté vacía y si lo está cogemos el primer elemento caja que encontremos. */
+        caja = $(".caja").first().droppable("destroy").draggable("destroy").clone(true);
+        /*$(".caja").first().draggable({revert: true});
+        $(".caja").first().droppable({
+          drop: function( event, ui ) {
+            if($(ui.draggable).hasClass("caja")){
+              $(ui.draggable).detach().insertAfter($(this));
+            }
+          }
+        });*/
+      }
+      dragDrop();
+      caja.find("h3").text(prompt("Pon el nombre"));
+      caja.find("p").first().text(prompt("Pon la descripción"));
+      caja.css({"display": "block"});
+  
+      /*volvemos a ponerlo todo porque si usamos clone(true) después el drag no lo hace bien (lo hace desde el que ha sido clonado)*/
+      caja.draggable({revert: true});
+      caja.droppable({
+        drop: function( event, ui ) {
+          if($(ui.draggable).hasClass("caja")){
+            $(ui.draggable).detach().insertAfter($(this));
+          }
+        }
+      });
+  
+      /* Hacemos que aunque le haya dado a like al primero, el que creemos no esté dado */
+      caja.find(".fa").addClass("far").removeClass("fa");
+  
+      caja.appendTo(columna);
+  
+    });
+    $(".changeTitle").click(function(){
+      $(this).closest("section").find("h2").text(prompt("¿Qué título le quieres poner a esta sección?"));
+    });
+  }
+  function dropdownContentLast() {
+    $(".content section:last").find(".fa-caret-square-down").click(function(){
       var button = $(this).parent().find(".dropdown-content").first();
       $(".dropdown-content").slideUp("fast");
       if (button.css("display") == "none") {
@@ -340,7 +348,9 @@ $(document).ready(function(){
         button.slideUp("fast");
       }
     });
+    dropdownContentElementsLast();
   }
+  
   function dropdownContent() {
     $(".fa-caret-square-down").click(function(){
       var button = $(this).parent().find(".dropdown-content").first();
@@ -351,5 +361,6 @@ $(document).ready(function(){
         button.slideUp("fast");
       }
     });
+    dropdownContentElements();
   }
 });

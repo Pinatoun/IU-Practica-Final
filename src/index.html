@@ -64,7 +64,7 @@
               <div class="dropdown">
                 <i class="far fa-caret-square-down"></i>
                 <div class="dropdown-content">
-                  <a class="addElement">Añadir elemento</a>
+                  <a class="addCajaElement">Añadir elemento</a>
                   <a class="changeTitle">Cambiar título</a>
                   <a class="emptyColumn">Vaciar lista</a>
                   <a class="archivar">Archivar lista</a>
@@ -137,7 +137,7 @@
               <div class="dropdown">
                 <i class="far fa-caret-square-down"></i>
                 <div class="dropdown-content">
-                  <a class="addElement">Añadir elemento</a>
+                  <a class="addCajaElement">Añadir elemento</a>
                   <a class="changeTitle">Cambiar título</a>
                   <a class="emptyColumn">Vaciar lista</a>
                   <a class="archivar">Archivar lista</a>
@@ -261,13 +261,13 @@
               </div>
             </div>
           </section>
-          <section id="last_section">
+          <section>
             <div class="title">
               <h2>Hoteles</h2>
               <div class="dropdown">
                 <i class="far fa-caret-square-down"></i>
                 <div class="dropdown-content">
-                  <a class="addElement">Añadir elemento</a>
+                  <a class="addCajaElement">Añadir elemento</a>
                   <a class="changeTitle">Cambiar título</a>
                   <a class="emptyColumn">Vaciar lista</a>
                   <a class="archivar">Archivar lista</a>
@@ -305,7 +305,7 @@
             </div>
           </section>
 
-          <section>
+          <div class="mapa">
             <div class="title">
               <h2>Explorar con el mapa</h2>
             </div>
@@ -314,7 +314,7 @@
                 <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=carlos%20iii%20colmenarejo&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
               </div>
             </div>
-          </section>
+          </div>
         </div>
 
         <div id="registerForm" class="form section">
@@ -393,9 +393,9 @@
         <div id="logIn" class="form section">
           <form action="#" method="post" onsubmit="logIn(); return false;">
             <h2>Cuenta</h2>
-            <input type="email" name="emailLogIn" placeholder="email" class="field-full"  required>
+            <input type="text" name="emailLogIn" placeholder="Email o usuario" class="field-full"  required>
             <br>
-            <input type="password" name="passwordLogIn" placeholder="Password" class="field-full" required>
+            <input type="password" name="passwordLogIn" placeholder="Contraseña" class="field-full" required>
             <br>
             <input type="submit" value="Iniciar Sesión">
           </form>

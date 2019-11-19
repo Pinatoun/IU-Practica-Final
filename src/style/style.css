@@ -41,8 +41,14 @@ footer{
   bottom: 0;
   width: 100%;
   z-index: 99;
-  margin-top: -70px;
 }
+
+/*header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}*/
 
 header, footer {
   display: flex;
@@ -100,6 +106,7 @@ header, footer {
 
 .nonRegisteredHomepage h2{
   margin: 5vh;
+  font-style: italic;
 }
 
 .nonRegisteredHomepage iframe{
@@ -109,16 +116,16 @@ header, footer {
 	display: none;
 }
 
-.side2 {
-  display: none;
-}
-
 .side1 {
   display: flex;
 }
 
 .side1 h3{
   margin: 10px;
+}
+
+.side2 {
+  display: flex;
 }
 
 .options {
@@ -171,27 +178,32 @@ a:visited, a:hover, .places a:visited, .places a:hover {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: black;
+  color: rgb(255,126,0);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   right: 0;
   margin-top: 25px;
+  border-radius: 10px;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
   padding: 12px 16px;
   text-decoration: none;
-	display: block;
+  display: block;
+  border: 1px solid rgb(255,126,0);
+  border-radius: 10px;
+  margin: 5px;
+  min-width: 160px;
 }
 
 .show {
   display: block;
 }
 
-section {
+section, .mapa {
 	box-sizing: border-box;
 	/* border: 10px solid black; */
   padding: 10px;
@@ -219,7 +231,7 @@ section {
 }
 
 .section{
-  margin: 10px 10px 70px 10px;
+  margin: 80px 10px 70px 10px;
 }
 
 .name {
@@ -385,7 +397,6 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
 }
 
 .form, .information{
-  margin-bottom: auto;
   padding: 10px;
   border: 2px solid black;
   border-radius: 20px;
