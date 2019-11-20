@@ -334,33 +334,39 @@
             <input type="text" onfocus="(this.type='date')" name="birthday" placeholder="Birthday" class="field-full" required>
             <input type="text" name="uso" placeholder="Uso de la web (opcional)">
             <hr>
-            <div class="2forms">
-              <div class="1form">
-                <h2>Hobbies</h2>
-                <select>
-                      <option value="futbol">Fútbol</option>
-                      <option value="tenis">Tenis</option>
-                      <option value="tecnologia">Tecnología</option>
-                      <option value="moda">Moda</option>
-                    </select>
+            <div class="twoFormSection">
+              <div class="about_me">
+                <h2>Sobre mí</h2>
+                <textarea rows="10" cols="50" name="about_me" placeholder="Intereses personales, aficiones, películas favoritas, objetivos, etc. (Opcional)"></textarea>
               </div>
-              <div class="1form">
-                <h2>Intereses personales</h2>
-                <div class="checkboxes">
-                  <div class="checkbox">
-                    <div class="checkbox_box">
-                      <input type="checkbox" name="int_quedadas" value="Quedadas" class="field-list"> Quedadas
+              <div class="twoForms">
+                <div class="oneForm">
+                  <h2>Hobbies</h2>
+                  <select>
+                        <option value="futbol">Fútbol</option>
+                        <option value="tenis">Tenis</option>
+                        <option value="tecnologia">Tecnología</option>
+                        <option value="moda">Moda</option>
+                      </select>
+                </div>
+                <div class="oneForm">
+                  <h2>Intereses personales</h2>
+                  <div class="checkboxes">
+                    <div class="checkbox">
+                      <div class="checkbox_box">
+                        <input type="checkbox" name="int_quedadas" value="Quedadas" class="field-list"> Quedadas
+                      </div>
+                      <div class="checkbox_box">
+                        <input type="checkbox" name="int_viajes" value="Viajes" class="field-list"> Viajes
+                      </div>
                     </div>
-                    <div class="checkbox_box">
-                      <input type="checkbox" name="int_viajes" value="Viajes" class="field-list"> Viajes
-                    </div>
-                  </div>
-                  <div class="checkbox">
-                    <div class="checkbox_box">
-                      <input type="checkbox" name="int_deporte" value="Deportes" class="field-list"> Deportes
-                    </div>
-                    <div class="checkbox_box">
-                      <input type="checkbox" name="int_otros" value="Otros" class="field-list"> Otros
+                    <div class="checkbox">
+                      <div class="checkbox_box">
+                        <input type="checkbox" name="int_deporte" value="Deportes" class="field-list"> Deportes
+                      </div>
+                      <div class="checkbox_box">
+                        <input type="checkbox" name="int_otros" value="Otros" class="field-list"> Otros
+                      </div>
                     </div>
                   </div>
                 </div>

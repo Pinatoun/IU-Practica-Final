@@ -238,7 +238,26 @@ section, .mapa {
 }
 
 .section{
-  margin-bottom: 60px;
+  margin-bottom: 70px;
+}
+
+.twoFormSection{
+  display: inline-flex;
+  /*justify-content: space-between;*/
+  width: 100%;
+}
+
+.about_me{
+  width: 50%;
+  margin: 0 10px;
+}
+
+.twoForms{
+  margin: 0 10px;
+}
+
+textarea[name="about_me"]{
+  font-family: 'Montserrat', sans-serif;
 }
 
 .name {
@@ -419,7 +438,18 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
 }
 
 #logIn{
-  margin: 10% 35%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 500px;
+}
+
+#registerForm{
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .information {
