@@ -47,7 +47,6 @@ footer{
   bottom: 0;
   width: -moz-available;
   width: -webkit-fill-available;
-  z-index: 99;
 }
 
 /*header{
@@ -210,6 +209,10 @@ a:visited, a:hover, .places a:visited, .places a:hover {
   display: block;
 }
 
+section{
+  display: none;
+}
+
 section, .mapa {
 	box-sizing: border-box;
 	/* border: 10px solid black; */
@@ -219,6 +222,11 @@ section, .mapa {
 	align-self: self-start; /* Con esto hacemos que las cajas no ocupen todo el espacio */
 	background: rgba(255, 255, 255, 0.5);
 	border-radius: 30px;
+}
+
+.sections{
+  display: flex;
+  width: 75%;
 }
 
 .mapouter{
@@ -258,6 +266,7 @@ section, .mapa {
 
 textarea[name="about_me"]{
   font-family: 'Montserrat', sans-serif;
+  width: 100%;
 }
 
 .name {
@@ -346,6 +355,7 @@ textarea[name="about_me"]{
 .hashtags p{
   margin: 0;
   margin-right: 5px;
+  display: inline-flex;
 }
 
 .fa-plus-square{
@@ -397,6 +407,27 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+input[value="Guardar"]{
+  border-radius: 10px;
+  color: white;
+  background-color:rgb(2,125,180);
+  border: 2px solid black;
+  font-size: large;
+  padding: 10px;
+  width: 90px;
+}
+
+button[value="Borrar"]{
+  border-radius: 10px;
+  color: white;
+  background-color:rgb(217,0,27);
+  border: 2px solid black;
+  font-size: large;
+  padding: 10px;
+  margin-left: 10px;
+  width: 90px;
 }
 
 .checkboxes {
