@@ -15,7 +15,33 @@ function getCookie(value){
 }
 
 function setCookie(name, value){
-  document.cookie = name+"="+value;
+  document.cookie = name+"="+value+"; expires=Thu, 01 Jan 2100 00:00:00 UTC;";
+}
+
+function deleteCookie(name){
+  document.cookie = name+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+}
+
+function removeFromCookie(name, value){
+  var cookie = getCookie(name);
+  document.cookie = name+"="+cookie.replace(value, "");
+}
+
+function getCajasCategory(category){
+  var name = "category-"+category+"-activity-";
+  var cajas = [];
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0 && c.includes("hashtags")) {
+      cajas.push(c.substring(name.length, c.length).split("-")[0]);
+    }
+  }
+  return cajas;
 }
 
 function submitRegister(subButon) {
@@ -59,6 +85,11 @@ function submitRegister(subButon) {
         setCookie(email+":"+username+":"+array[i].attr("name"), array[i].val());
     }
   }
+
+  //añade también el textarea y select
+  setCookie(email+":"+username+":"+$(subButon + " textarea").attr("name"), $(subButon + " textarea").val());
+  setCookie(email+":"+username+":"+$(subButon + " select").attr("name"), $(subButon + " select").val());
+
   if (subButon == "#regForm" ) {
     $("#startSesion").click();
   }
@@ -74,6 +105,13 @@ function clearForm() {
   $(':checkbox').each(function(){ //iterate all listed checkbox items
 		this.checked = false; //change ".checkbox" checked status
 	});
+}
+
+function addComment(){
+  var message = getCookie("name")+": "+$("#commentBoxInput").val();
+  $("<p class=comment>"+message+"</p>").insertBefore("#commentBoxInput");
+  setCookie(getCookie("activeComment")+"-comments", getCookie(getCookie("activeComment")+"-comments")+"---"+message)
+  $("#commentBoxInput").val("");
 }
 
 function logIn() {
@@ -111,6 +149,7 @@ function validateLogIn(){
     if (pass != undefined && (nameLogIn == email || nameLogIn == name) && password == pass) {
       console.log(name);
       setCookie("name", name);
+      setCookie("email", email);
       return true;
       //console.log(c.split("---")[1]);
       //console.log(c.substring(name.length, c.length).split("---"));
@@ -131,29 +170,102 @@ function loadLogIn(username) {
   $(".user h3").text(username);
   var categories = getCookie("categories-"+username).split(":");
   for (let i = 1; i < categories.length; i++) {
-    addCategory(categories[i]); 
+    addCategoryLogIn(categories[i]);
+    addCajasCategory(categories[i]);
+  }
+}
+
+function addCajasCategory(category){
+  var cajas = getCajasCategory(category);
+  var columna = $(".title:contains("+ category+")").closest("section");
+  var result = "";
+  for (const caja of cajas) {
+    result = addCajaLogIn(columna, caja, getCookie("category-"+category+"-activity-"+caja+"-description"));
+    addHashtags(result.find(".fa-plus-square"));
+    addStars(result);
+  }
+}
+
+function addStars(caja){
+  var cookie = "category-"+caja.closest("section").find(".title h2").text()+"-activity-"+caja.find("h3").text()+"-stars";
+  var star = caja.find(".fa-star");
+  console.log("las estrellas: "+getCookie(cookie));
+  for (let i = 0; i <= getCookie(cookie); i++) {
+    $(star[i]).addClass("fa");
+    $(star[i]).removeClass("far");
+  }
+}
+
+/* Añadir hashtag */
+function addHashtag(object, text) {
+  /* Controlamos que no se haya dejado el campo en blanco */
+  if(text){
+    var aux = $("<div class=hashtag><p>"+text+"</p></div>");
+    aux.click(function() {
+      if(confirm("Seguro que quiere eliminar el hashtag "+$(this).find("p").text()+"?"))
+        $(this).hide();
+        removeFromCookie("category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".hashtags").prev().find("h3").text()+"-hashtags", $(this).find("p").text());
+    });
+    aux.insertBefore(object); 
+  }
+}
+
+function addHashtags(button){
+  var category = button.closest("section").find(".title h2").text();
+  var activity = button.closest(".hashtags").prev().find("h3").text();
+  var hashtags = getCookie("category-"+category+"-activity-"+activity+"-hashtags").split("#");
+  for (const hashtag of hashtags) {
+    if(hashtag != "")
+      addHashtag(button, "#"+hashtag);
   }
 }
 
 function addCategory(title){
+  if(decodeURIComponent(document.cookie).replace(/;/g, '=').replace(/ /g, '').split("=").includes("category-"+title)){
+    alert("La categoría " + title + " ya existe");
+    return;
+  }else{
+    setCookie("category-"+title, "");
+    setCookie("categories-"+$(".user h3").text(), getCookie("categories-"+$(".user h3").text())+":"+title);
+  }
+  addCategoryLogIn(title);
+}
+
+function addCategoryLogIn(title){
   //$(".mapa").before("<section><div class='title'><h2>"+prompt("Nombre de la categoría")+"</h2><div class='dropdown'><i class='far fa-caret-square-down'></i><div class='dropdown-content'><a class='addCajaElement'>Añadir elemento</a><a class='changeTitle'>Cambiar título</a><a class='emptyColumn'>Vaciar lista</a><a class='archivar'>Archivar lista</a></div></div></section>")
+  //Controlamos que el título no esté ya añadido
+  if ($(".title h2").text().includes("title")) {
+    return;
+  }
   var clon = $(".content section:first").droppable("destroy").draggable("destroy").clone(true);
   clon.find(".caja").hide();
   clon.find("h2").text(title);
   clon.css({"display":"block"});
   $(".sections").append(clon);
   dragDrop();
-  if(!decodeURIComponent(document.cookie).replace(/;/g, '').replace(/ /g, '').split("=").includes("category-"+title)){
-    console.log("category-"+title, "");
-    setCookie("category-"+title, "");
-    setCookie("categories-"+$(".user h3").text(), getCookie("categories-"+$(".user h3").text())+":"+title);
-  }else{
-    //TODO: Añadir cada una de las cajas de cada categoría
-  }
   return clon;
 }
 
 function addCaja(columna, title, description){
+  if (!getCajasCategory(columna.find(".title h2").text()).includes(title)) {
+    addCajaCommon(columna, title, description);
+    setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-description", description);
+    setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-hashtags", "");
+    setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-stars", "-1");
+    setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-comments", "");
+  }else{
+    alert("La categoría "+columna.find(".title h2").text()+" ya tiene la actividad "+title);
+  }
+}
+
+function addCajaLogIn(columna, title, description){
+  var caja = addCajaCommon(columna, title, description);
+  getCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-stars");
+  getCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-comments");
+  return caja;
+}
+
+function addCajaCommon(columna, title, description){
   var caja = $(".caja:first").droppable("destroy").draggable("destroy").clone(true);
   dragDrop();
   caja.find("h3").text(title);
@@ -174,7 +286,8 @@ function addCaja(columna, title, description){
   console.log(columna);
   caja.css({"display":"block"});
   columna.append(caja);
-  
+
+  return caja;
 }
 
 function dragDrop() {
@@ -258,28 +371,34 @@ $(document).ready(function(){
     }
   });
 
-  /* Añadir hashtag */
-  $(".hashtags .fa-plus-square").click(function() {
-    var text = prompt("Introduzca el hashtag que desea añadir");
-    /* Controlamos que no se haya dejado el campo en blanco */
-    if(text){
-      var aux = $("<div class=hashtag><p>#"+text+"</p></div>");
-      aux.click(function() {
-        if(confirm("Seguro que quiere eliminar el hashtag "+$(this).find("p").text()+"?"))
-          $(this).hide();
-      });
-      aux.insertBefore(this);
+  $(".hashtags .fa-plus-square").click(function(){
+    var text = "#" + prompt("Introduzca el hashtag que desea añadir");
+    if(text != "#" && text != "#null"){
+      var cookie = "category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".hashtags").prev().find("h3").text()+"-hashtags";
+      addHashtag($(this), text);
+      setCookie(cookie, getCookie(cookie) + text);
     }
   });
 
   $(".hashtag").click(function() {
-    if(confirm("Seguro que quiere eliminar el hashtag "+$(this).find("p")+"?"))
+    if(confirm("Seguro que quiere eliminar el hashtag "+$(this).find("p")+"?")){
       $(this).hide();
+      removeFromCookie("category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".hashtags").prev().find("h3").text()+"-hashtags", $(this).find("p").text());
+    }
   });
 
   $(".fa-comment").click(function(){
     $("#commentBox").fadeIn("slow");
-    $("#commentBoxText").text("¿Dónde quieres compartir el evento \""+$(this).parentsUntil("section").last().find("h3").first().text()+"\"?\n");
+    $("#commentBoxTitle").text("Comentarios de la actividad \""+$(this).parentsUntil("section").last().find("h3").first().text()+"\"\n");
+    setCookie("activeComment", "category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".caja").find("h3").text());
+    var comments = getCookie("category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".caja").find("h3").text()+"-comments").split("---");
+    $(".comment").hide();
+    for (const comment of comments) {
+      if (comment != "") {
+        $("<p class=comment>"+comment+"</p>").insertBefore("#commentBoxInput");  
+      }
+    }
+
   });
 
   $("#homeScreen").click(function() {
@@ -309,16 +428,19 @@ $(document).ready(function(){
 
   $(".shareButton").click(function(){
     $("#commentBox").fadeIn("slow");
-    $("#commentBoxText").text("¿Dónde quieres compartir el evento \""+$(this).parentsUntil("section").last().find("p").first().text()+"\"?\n");
+    $("#commentBoxTitle").text("Comentarios de la actividad \""+$(this).parentsUntil("section").last().find("p").first().text()+"\"\n");
   });
 
   $(".emptyColumn").click(function(){
-    $(this).parentsUntil(".content").last().children(".caja").fadeOut();
+    if (confirm("¿De verdad quieres eliminar todas las actividades de esta categoría?")) {
+      $(this).parentsUntil(".content").last().children(".caja").fadeOut();
+    }
   });
 
   $(".archivar").click(function(){
     if (confirm("¿De verdad quieres eliminar esta columna?")) {
-      $(this).parentsUntil(".content").last().fadeOut();
+      $(this).parents("section").fadeOut();
+      removeFromCookie("categories-"+getCookie("name"), ":"+$(this).parents("section").find("h2").text())
     }
   });
 
@@ -326,19 +448,23 @@ $(document).ready(function(){
 
   $(".fa-star").click(function(){
     /* Cambia el icono de la estrella que se clicka */
-    if($(this).hasClass("far")){
-      $(this).removeClass("far");
-      $(this).addClass("fa");
-    }else{
+    var cookie = "category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".caja").find("h3").text()+"-stars";
+    if($(this).hasClass("fa") && !$(this).next().hasClass("fa")){
       $(this).removeClass("fa");
       $(this).addClass("far");
+      setCookie(cookie, ($(this).prevAll().length-1));
+      console.log("Se ha puesto las estrellas a " +($(this).prevAll().length-1));
+    }else{
+      $(this).removeClass("far");
+      $(this).addClass("fa");
+      console.log("Se ha puesto las estrellas a " +$(this).prevAll().length);
+      setCookie(cookie, $(this).prevAll().length);
     }
 
     /* Cambia el icono de las estrellas anteriores */
     $(this).prevAll().removeClass("far");
     $(this).prevAll().addClass("fa");
 
-    
     /* Cambia el icono de las estrellas posteriores */
     $(this).nextAll().removeClass("fa");
     $(this).nextAll().addClass("far");
@@ -380,12 +506,24 @@ $(document).ready(function(){
     $("#profile").hide();
     $("#homeScreen").show();
     $("#profileSection").show();
-    var val;
-    var values = [],
-        keys = Object.keys(localStorage),
-        i = keys.length;
+    var inputs = $("#profileForm input");
 
-    while ( i-- ) {
+    for(input of inputs){
+      if ($(input).attr("type")=="checkbox") {
+        if(getCookie(getCookie("email")+":"+getCookie("name")+":"+$(input).attr("name")) == "true"){
+          $(input).prop("checked", true);
+        }else {
+          $(input).prop("checked", false);
+        }
+      }else if ($(input).attr("type")!="submit"){
+        $(input).val(getCookie(getCookie("email")+":"+getCookie("name")+":"+$(input).attr("name")));
+      }
+    }
+
+    $("#profileForm textArea").val(getCookie(getCookie("email")+":"+getCookie("name")+":"+$("#profileForm textArea").attr("name")));
+    $("#profileForm select").val(getCookie(getCookie("email")+":"+getCookie("name")+":"+$("#profileForm select").attr("name")));
+
+    /*while ( i-- ) {
         val = $("#profileForm input[name="+keys[i]+"]")
         if (val.attr("type")=="checkbox") {
           if(getCookie(keys[i]) == "true"){
@@ -394,9 +532,9 @@ $(document).ready(function(){
             val.prop("checked", false);
           }
         }else{
-          val.val(getCookie(keys[i]));
+          val.val(getCookie(getCookie("email")+":"+getCookie("name")+keys[i]));
         }
-    }
+    }*/
 
   });
 
@@ -406,10 +544,33 @@ $(document).ready(function(){
     });
   
     $(".addCajaElement").click(function(){
-      addCaja($(this).closest("section"), prompt("Pon el título"), prompt("Pon la descripción"));
+      var title = prompt("Pon el título");
+      var description = prompt("Pon la descripción");
+      if (title != "" && title != undefined && description != "" && description != undefined) {
+        addCaja($(this).closest("section"), title, description);
+      }
     });
     $(".changeTitle").click(function(){
-      $(this).closest("section").find("h2").text(prompt("¿Qué título le quieres poner a esta sección?"));
+      var title = prompt("¿Qué título le quieres poner a esta sección?");
+      var titleOld = $(this).closest("section").find("h2").text();
+      if(title != ""){
+        var titleCajas= getCajasCategory(titleOld);
+        for (let i = 0; i < titleCajas.length; i++) {
+          setCookie("category-"+title+"-activity-"+titleCajas[i]+"-description", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description");
+          setCookie("category-"+title+"-activity-"+titleCajas[i]+"-hashtags", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags");
+          setCookie("category-"+title+"-activity-"+titleCajas[i]+"-stars", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars");
+          setCookie("category-"+title+"-activity-"+titleCajas[i]+"-comments", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments");
+          const element = titleCajas[i];
+        }
+        setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name")).replace(":"+titleOld, ":"+title));
+
+        $(this).closest("section").find("h2").text(title);
+      }
+      
     });
   }
   function dropdownContentLast() {

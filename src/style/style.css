@@ -603,10 +603,25 @@ button[value="Borrar"]{
   border-radius: 30px;
 }
 
-#commentBoxText {
+#commentBoxTitle {
   text-align: center;
   font-weight: bold;
   font-size: 30px;
+}
+
+.comment{
+  background:aliceblue;
+  padding: 10px;
+  margin: 7px;
+  border-radius: 15px;
+  border: 1px solid gray;
+}
+
+#commentBoxInput{
+  margin: 7px;
+  padding: 10px;
+  width: -moz-available;
+  width: -webkit-fill-available;
 }
 
 /* The Close Button */
