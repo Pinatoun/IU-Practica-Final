@@ -211,8 +211,8 @@ function addHashtags(button){
 }
 
 function addCategory(title){
-  if(decodeURIComponent(document.cookie).replace(/;/g, '=').replace(/ /g, '').split("=").includes("category-"+title)){
-    alert("La categoría " + title + " ya existe");
+  if(getCookie("categories-"+getCookie("name")).split(":").includes(title)){
+    alert("La categoría " + title + " ya existe, por favor introduzca un nombre diferente");
     return;
   }else{
     setCookie("category-"+title, "");
@@ -280,6 +280,18 @@ function dragDrop() {
         var cont = $(this).children().detach();
         $(ui.draggable).children().detach().appendTo($(this));
         cont.appendTo($(ui.draggable));
+        var categories = getCookie("categories-"+getCookie("name")).split(":");
+        for (let i = 0; i < categories.length; i++) {
+          if(categories[i] == $(this).find("h2").text()){
+            var thisTitle = i;
+          }else if(categories[i] == $(ui.draggable).find("h2").text()){
+            var dragTitle = i;
+          }
+        }
+        var aux = categories[thisTitle];
+        categories[thisTitle] = categories[dragTitle];
+        categories[dragTitle] = aux;
+        setCookie("categories-"+getCookie("name"), categories.join(":"));
       }else if($(ui.draggable).hasClass("caja")){
         var category = $(this).find(".title h2").text();
         var pos = ui.draggable.position();
@@ -355,6 +367,12 @@ function restoreArchivedCategory(cat) {
   addCajasCategory($(cat).text());
 }
 
+function inviteToCategory(element){
+  var title = $(element).closest("section").find("h2").text();
+  var username = $(element).text();
+  setCookie("notifications-"+username, getCookie("notifications-"+username)+":"+title);
+}
+
 function acceptInvite(invitation) {
   removeFromCookie("notifications-"+getCookie("name"), ":"+$(invitation).text());
   setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name"))+":"+$(invitation).text());
@@ -363,7 +381,8 @@ function acceptInvite(invitation) {
 }
 
 window.onclick = function(event) {
-  if(!event.target.matches('.fa-caret-square-down') && !event.target.matches(".icons .fa-plus-square") && !event.target.matches(".icons .fa-bell") && !event.target.matches(".icons .fa-archive")) {
+  if(!event.target.matches('.fa-caret-square-down') && !event.target.matches(".icons .fa-plus-square") && !event.target.matches(".icons .fa-bell") && !event.target.matches(".icons .fa-archive") && !event.target.matches(".shareCategory")) {
+    console.log(event.target);
     $(".dropdown-content").slideUp("fast");
   }
   if (event.target.id=="commentBox") {
@@ -421,6 +440,7 @@ $(document).ready(function(){
     if (archivedCategories == "") {
       $(this).next().append("<a> No hay ninguna categoría archivada </a>");
     }else{
+      $(this).next().append("<h4> Elementos archivados: </h4>");
       for (const category of archivedCategories) {
         if(category != ""){
           $(this).next().append("<a onclick='restoreArchivedCategory(this)'>"+category+"</a>");
@@ -434,7 +454,7 @@ $(document).ready(function(){
     var notifications = getCookie("notifications-"+getCookie("name")).split(":");
     $(this).next().empty();
     if (notifications == "") {
-      $(this).next().append("<a> No hay ninguna categoría archivada </a>");
+      $(this).next().append("<a> No hay ninguna notificación pendiente </a>");
     }else{
       for (const notification of notifications) {
         if(notification != ""){
@@ -523,16 +543,22 @@ $(document).ready(function(){
 
   $(".shareCategory").click(function(){
     var users = getCookie("users").split(":");
+    $(this).next().empty();
     if (users=="") {
       $(this).next().append("<a> No hay ningún otro usuario registrado </a>");
     }else{
       for (const user of users) {
-        if(user != ""){
+        if(user != "" && user != getCookie("name")){
           $(this).next().append("<a onclick='inviteToCategory(this)'>"+user+"</a>");
         }
       }
     }
-    showDropDown(this);
+    var button = $(this).parent().find(".dropdown-content").first();
+    if (button.css("display") == "none") {
+      button.slideDown("fast");
+    }else {
+      button.slideUp("fast");
+    }
   });
 
   
@@ -653,8 +679,8 @@ $(document).ready(function(){
     });
     $(".changeTitle").click(function(){
       var title = prompt("¿Qué título le quieres poner a esta sección?");
-      if(decodeURIComponent(document.cookie).replace(/;/g, '=').replace(/ /g, '').split("=").includes("category-"+title)){
-        alert("La categoría " + title + " ya existe");
+      if(getCookie("categories-"+getCookie("name")).split(":").includes(title)){
+        alert("La categoría " + title + " ya existe, por favor introduzca un nombre diferente");
         return;
       }
       var titleOld = $(this).closest("section").find("h2").text();
@@ -682,7 +708,7 @@ $(document).ready(function(){
       if(!getCajasCategory(category).includes(newTitle)){
 
       }else{
-        alert("La actividad "+activity+" ya existe en la categoría "+category);
+        alert("La actividad "+activity+" ya existe en la categoría "+category+". Por favor, escoja otro nombre");
       }
     });
   }
