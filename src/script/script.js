@@ -28,20 +28,7 @@ function removeFromCookie(name, value){
 }
 
 function getCajasCategory(category){
-  var name = "category-"+category+"-activity-";
-  var cajas = [];
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0 && c.includes("hashtags")) {
-      cajas.push(c.substring(name.length, c.length).split("-")[0]);
-    }
-  }
-  return cajas;
+  return getCookie("category-"+category).split(":");
 }
 
 function submitRegister(subButon) {
@@ -101,7 +88,7 @@ function submitRegister(subButon) {
 }
 
 function clearForm() {
-  $(":input").not(":submit").val("");
+  $(":input").not(":submit").not(document.getElementById("Borrar")).val("");
   $(':checkbox').each(function(){ //iterate all listed checkbox items
 		this.checked = false; //change ".checkbox" checked status
 	});
@@ -180,9 +167,11 @@ function addCajasCategory(category){
   var columna = $(".title:contains("+ category+")").closest("section");
   var result = "";
   for (const caja of cajas) {
-    result = addCajaLogIn(columna, caja, getCookie("category-"+category+"-activity-"+caja+"-description"));
-    addHashtags(result.find(".fa-plus-square"));
-    addStars(result);
+    if(caja != ""){
+      result = addCajaLogIn(columna, caja, getCookie("category-"+category+"-activity-"+caja+"-description"));
+      addHashtags(result.find(".fa-plus-square"));
+      addStars(result);
+    }
   }
 }
 
@@ -249,6 +238,7 @@ function addCategoryLogIn(title){
 function addCaja(columna, title, description){
   if (!getCajasCategory(columna.find(".title h2").text()).includes(title)) {
     addCajaCommon(columna, title, description);
+    setCookie("category-"+columna.find(".title h2").text(), getCookie("category-"+columna.find(".title h2").text())+":"+title);
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-description", description);
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-hashtags", "");
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-stars", "-1");
@@ -267,25 +257,14 @@ function addCajaLogIn(columna, title, description){
 
 function addCajaCommon(columna, title, description){
   var caja = $(".caja:first").droppable("destroy").draggable("destroy").clone(true);
-  dragDrop();
   caja.find("h3").text(title);
   caja.find("p").first().text(description);
-
-  /*volvemos a ponerlo todo porque si usamos clone(true) después el drag no lo hace bien (lo hace desde el que ha sido clonado)*/
-  caja.draggable({revert: true});
-  caja.droppable({
-    drop: function( event, ui ) {
-      if($(ui.draggable).hasClass("caja")){
-        $(ui.draggable).detach().insertAfter($(this));
-      }
-    }
-  });
-
   /* Hacemos que aunque le haya dado a like al primero, el que creemos no esté dado */
   caja.find(".fa").addClass("far").removeClass("fa");
   console.log(columna);
   caja.css({"display":"block"});
   columna.append(caja);
+  dragDrop();
 
   return caja;
 }
@@ -301,20 +280,65 @@ function dragDrop() {
         $(ui.draggable).children().detach().appendTo($(this));
         cont.appendTo($(ui.draggable));
       }else if($(ui.draggable).hasClass("caja")){
+        var category = $(this).find(".title h2").text();
         var pos = ui.draggable.position();
-        if (pos.top < 0) {
+        var titleCaja = $(ui.draggable).find("h3").text();
+        if (pos.top < 0 && !getCajasCategory(category).includes(titleDroppedCaja)) {
           $(ui.draggable).detach().insertAfter($(this).find(".title"));
+          var title = $(this).find("h2").text();
+          var titleOld = getCookie("titleOld");
+          setCookie("category-"+title, getCookie("category-"+title)+":"+titleCaja);
+          alert(title);
+          alert(getCookie("category-"+title));
+          setCookie("category-"+title+"-activity-"+titleCaja+"-description", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-description"));
+          setCookie("category-"+title+"-activity-"+titleCaja+"-hashtags", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-hashtags"));
+          setCookie("category-"+title+"-activity-"+titleCaja+"-stars", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-stars"));
+          setCookie("category-"+title+"-activity-"+titleCaja+"-comments", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-comments"));
+          removeFromCookie("category-"+titleOld, ":"+titleCaja)
+          deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-description");
+          deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-hashtags");
+          deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-stars");
+          deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-comments");
         }
       }
     }
   });
   $( ".caja" ).draggable({
+    start: function() {
+      var title = $(this).parent("section").find("h2").text();
+      setCookie("titleOld", title);
+    },
     revert: true
   });
   $( ".caja" ).droppable({
     drop: function( event, ui ) {
       if($(ui.draggable).hasClass("caja")){
-        $(ui.draggable).detach().insertAfter($(this));
+        var category = $(this).closest("section").find(".title h2").text();
+        var titleCaja = $(ui.draggable).find("h3").text();
+        var titleOld = getCookie("titleOld");
+        if(!getCajasCategory(category).includes(titleCaja) || category == titleOld){
+          var title = $(this).parent("section").find("h2").text();
+          var titleDroppedCaja = $(this).find("h3").text();
+          $(ui.draggable).detach().insertAfter($(this));
+          removeFromCookie("category-"+titleOld, ":"+titleCaja)
+          /*var splitted = getCookie("category-"+title).split(":");
+          for (let i = 0; i < splitted.length; i++) {
+            if(splitted[i] == titleDroppedCaja)
+              splitted.splice(i, 0, titleCaja);
+          }
+          setCookie("category-"+title, splitted.join(":"));*/
+          alert(getCookie("category-"+title));
+          setCookie("category-"+title+"-activity-"+titleCaja+"-description", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-description"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-description");
+          setCookie("category-"+title+"-activity-"+titleCaja+"-hashtags", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-hashtags"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-hashtags");
+          setCookie("category-"+title+"-activity-"+titleCaja+"-stars", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-stars"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-stars");
+          setCookie("category-"+title+"-activity-"+titleCaja+"-comments", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-comments"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-comments");
+        }
+        else  
+          alert("Esa actividad ya está presente en la categoría a la que la quieres mover");
       }
     }
   });
@@ -433,14 +457,25 @@ $(document).ready(function(){
 
   $(".emptyColumn").click(function(){
     if (confirm("¿De verdad quieres eliminar todas las actividades de esta categoría?")) {
-      $(this).parentsUntil(".content").last().children(".caja").fadeOut();
+      var cajas = $(this).parents("section").children(".caja");
+      var title = $(this).parents("section").find(".title h2").text();
+      for (let i = 0; i < cajas.length; i++) {
+        const caja = cajas[i];
+        console.log("category-"+title+"-activity-"+$(caja).find("h3").text()+"-description");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-description");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-hashtags");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-stars");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-comments");
+      }
+      cajas.fadeOut();
     }
   });
 
   $(".archivar").click(function(){
-    if (confirm("¿De verdad quieres eliminar esta columna?")) {
+    if (confirm("¿De verdad quieres archivar esta columna?")) {
       $(this).parents("section").fadeOut();
       removeFromCookie("categories-"+getCookie("name"), ":"+$(this).parents("section").find("h2").text())
+      setCookie("archived-"+getCookie("name"), ":"+$(this).parents("section").find("h2").text());
     }
   });
 
@@ -552,19 +587,22 @@ $(document).ready(function(){
     });
     $(".changeTitle").click(function(){
       var title = prompt("¿Qué título le quieres poner a esta sección?");
+      if(decodeURIComponent(document.cookie).replace(/;/g, '=').replace(/ /g, '').split("=").includes("category-"+title)){
+        alert("La categoría " + title + " ya existe");
+        return;
+      }
       var titleOld = $(this).closest("section").find("h2").text();
       if(title != ""){
         var titleCajas= getCajasCategory(titleOld);
         for (let i = 0; i < titleCajas.length; i++) {
           setCookie("category-"+title+"-activity-"+titleCajas[i]+"-description", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description"));
-          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description");
           setCookie("category-"+title+"-activity-"+titleCajas[i]+"-hashtags", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags"));
-          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags");
           setCookie("category-"+title+"-activity-"+titleCajas[i]+"-stars", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars"));
-          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars");
           setCookie("category-"+title+"-activity-"+titleCajas[i]+"-comments", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments"));
+          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description");
+          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags");
+          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars");
           deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments");
-          const element = titleCajas[i];
         }
         setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name")).replace(":"+titleOld, ":"+title));
 

@@ -27,6 +27,7 @@
               <h3>Paco López</h3>
             </div>
             <div class="icons">
+              <i class="fas fa-archive"></i>
               <i class="far fa-bell"></i>
               <div class="dropdown">
                 <i class="fas fa-plus-square"></i>
@@ -74,10 +75,8 @@
               <div class="caja">
                   <i class="far fa-caret-square-down" aria-hidden="true"></i>
                   <div class="dropdown-content">
-                    <a class="addCajaElement">Añadir elemento</a>
                     <a class="changeCajaTitle">Cambiar título</a>
-                    <a class="emptyCaja">Vaciar lista</a>
-                    <a class="archivarCaja">Archivar lista</a>
+                    <a class="emptyCaja">Eliminar Actividad</a>
                   </div>
                 <div class="content_caja">
                   <div class="datos">
@@ -189,7 +188,7 @@
             <br>
             <br>
             <input type="submit" value="Guardar">
-            <button type="button" value="Borrar" onclick="clearForm()">Borrar</button>
+            <button type="button" value="Borrar" id="Borrar" onclick="clearForm()">Borrar</button>
           </form>
         </div>
 

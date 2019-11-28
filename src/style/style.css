@@ -98,6 +98,10 @@ header, footer {
   place-self: center;
 }
 
+.fa-bell{
+  margin: 0px 5px;
+}
+
 .icons i{
   font-size: 35px;
 }
