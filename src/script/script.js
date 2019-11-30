@@ -381,7 +381,7 @@ function acceptInvite(invitation) {
 }
 
 window.onclick = function(event) {
-  if(!event.target.matches('.fa-caret-square-down') && !event.target.matches(".icons .fa-plus-square") && !event.target.matches(".icons .fa-bell") && !event.target.matches(".icons .fa-archive") && !event.target.matches(".shareCategory")) {
+  if(!event.target.matches('.fa-caret-square-down') && !event.target.matches(".icons .fa-plus-square") && !event.target.matches(".icons .fa-bell") && !event.target.matches(".icons .fa-archive") && !event.target.matches(".shareCategory") && !event.target.matches(".addElement")) {
     console.log(event.target);
     $(".dropdown-content").slideUp("fast");
   }
@@ -438,7 +438,7 @@ $(document).ready(function(){
     var archivedCategories = getCookie("archived-"+getCookie("name")).split(":");
     $(this).next().empty();
     if (archivedCategories == "") {
-      $(this).next().append("<a> No hay ninguna categoría archivada </a>");
+      $(this).next().append("<p> No hay ninguna categoría archivada </p>");
     }else{
       $(this).next().append("<h4> Elementos archivados: </h4>");
       for (const category of archivedCategories) {
@@ -454,7 +454,7 @@ $(document).ready(function(){
     var notifications = getCookie("notifications-"+getCookie("name")).split(":");
     $(this).next().empty();
     if (notifications == "") {
-      $(this).next().append("<a> No hay ninguna notificación pendiente </a>");
+      $(this).next().append("<p> No hay ninguna notificación pendiente </p>");
     }else{
       for (const notification of notifications) {
         if(notification != ""){
@@ -543,15 +543,16 @@ $(document).ready(function(){
 
   $(".shareCategory").click(function(){
     var users = getCookie("users").split(":");
+    var added = false
     $(this).next().empty();
-    if (users=="") {
-      $(this).next().append("<a> No hay ningún otro usuario registrado </a>");
-    }else{
-      for (const user of users) {
-        if(user != "" && user != getCookie("name")){
-          $(this).next().append("<a onclick='inviteToCategory(this)'>"+user+"</a>");
-        }
+    for (const user of users) {
+      if(user != "" && !getCookie("categories-"+user).split(":").includes($(this).closest("section").find("h2").text())){
+        $(this).next().append("<a onclick='inviteToCategory(this)'>"+user+"</a>");
+        added = true;
       }
+    }
+    if(!added){
+      $(this).next().append("<a> No hay ningún otro usuario registrado al que puedas invitar </a>");
     }
     var button = $(this).parent().find(".dropdown-content").first();
     if (button.css("display") == "none") {
@@ -665,9 +666,51 @@ $(document).ready(function(){
 
   });
 
+  function addToCategory(element){
+    var categoryName = $(element).text();
+    var titles = $(".title h2");
+    for (const title of titles) {
+      if(title.text() == categoryName){
+        var newTitle = prompt("Pon el título");
+        var description = prompt("Pon la descripción");
+        if (newTitle != "" && newTitle != undefined && description != "" && description != undefined) {
+          addCaja(title.closest("section"), newTitle, description);
+        }else{
+          alert("No puedes dejar el título ni la descripción en blanco");
+        }
+      }
+    }
+  }
   function dropdownContentElements(params) {
     $(".addCategory").click(function(){
-      addCategory(prompt("Nombre de la categoría"))
+      var title = prompt("Nombre de la categoría");
+      if(title != ""){
+        addCategory(title);
+      }else{
+        alert("No puedes dejar el título en blanco");
+      }
+    });
+
+    $(".addElement").click(function(){
+      var categories = getCookie("categories-"+getCookie("name")).split(":");
+      var added = false
+      $(this).next().empty();
+      for (const category of categories) {
+        if(category != ""){
+          $(this).next().append("<a onclick='addToCategory(this)'>"+category+"</a>");
+          added = true;
+        }
+      }
+      if(!added){
+        $(this).next().append("<a> No tienes ninguna categoría añadida </a>");
+      }
+      var button = $(this).parent().find(".dropdown-content").first();
+      if (button.css("display") == "none") {
+        button.slideDown("fast");
+      }else {
+        button.slideUp("fast");
+      }
+    
     });
   
     $(".addCajaElement").click(function(){
@@ -675,6 +718,8 @@ $(document).ready(function(){
       var description = prompt("Pon la descripción");
       if (title != "" && title != undefined && description != "" && description != undefined) {
         addCaja($(this).closest("section"), title, description);
+      }else{
+        alert("No puedes dejar el título ni la descripción en blanco");
       }
     });
     $(".changeTitle").click(function(){
