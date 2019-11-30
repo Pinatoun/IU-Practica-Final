@@ -591,7 +591,7 @@ button[value="Borrar"]{
   display: none;
 }
 
-#commentBox {
+#commentBox, #changeTitleBox {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -605,7 +605,7 @@ button[value="Borrar"]{
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-#commentBoxContent {
+#commentBoxContent, #changeTitleBoxContent {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -614,7 +614,7 @@ button[value="Borrar"]{
   border-radius: 30px;
 }
 
-#commentBoxTitle {
+#commentBoxTitle, #changeTitleBoxTitle {
   text-align: center;
   font-weight: bold;
   font-size: 30px;
@@ -628,15 +628,31 @@ button[value="Borrar"]{
   border: 1px solid gray;
 }
 
-#commentBoxInput{
+#commentBoxInput, #changeTitleBoxInput{
   margin: 7px;
   padding: 10px;
   width: -moz-available;
   width: -webkit-fill-available;
 }
 
+#commentBoxForm, #changeTitleBoxForm{
+  display: flex;
+}
+
+input[value="Enviar"]{
+  margin: 7px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color:rgb(2,125,180);
+  border: 2px solid black;
+  font-size: large;
+  padding: 10px;
+  width: 90px;
+}
+
 /* The Close Button */
-#closeCommentBox {
+#closeCommentBox, #closeChangeTitleBox {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -644,24 +660,10 @@ button[value="Borrar"]{
 }
 
 #closeCommentBox:hover,
-#closeCommentBox:focus {
+#closeCommentBox:focus,
+#closeChangeTitleBox:hover,
+#closeChangeTitleBox:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
-}
-
-#commentBoxSocial {
-  display:flex;
-  justify-content: center;
-}
-
-#commentBoxSocial img {
-  display: inline;
-  width: 50px;
-  height: auto;
-  padding: 2px;
-  vertical-align: middle;
-  border-left-color: black;
-  border-left: thin;
-  border-left-style: solid;
 }

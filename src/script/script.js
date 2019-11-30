@@ -98,7 +98,7 @@ function clearForm() {
 
 function addComment(){
   var message = getCookie("name")+": "+$("#commentBoxInput").val();
-  $("<p class=comment>"+message+"</p>").insertBefore("#commentBoxInput");
+  $("<p class=comment>"+message+"</p>").insertBefore("#commentBoxForm");
   setCookie(getCookie("activeComment")+"-comments", getCookie(getCookie("activeComment")+"-comments")+"---"+message)
   $("#commentBoxInput").val("");
 }
@@ -516,7 +516,7 @@ $(document).ready(function(){
     $(".comment").hide();
     for (const comment of comments) {
       if (comment != "") {
-        $("<p class=comment>"+comment+"</p>").insertBefore("#commentBoxInput");  
+        $("<p class=comment>"+comment+"</p>").insertBefore("#commentBoxForm");  
       }
     }
 

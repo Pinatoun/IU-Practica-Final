@@ -327,12 +327,26 @@
           <div id="commentBoxContent">
             <span id="closeCommentBox" onclick="document.getElementById('commentBox').style.display = 'none';">&times;</span>
             <p id="commentBoxTitle"></p>
-            <form onsubmit="addComment();  return false;">
+            <form id="commentBoxForm" onsubmit="addComment();  return false;">
               <input type=text id="commentBoxInput" placeholder="Escribe tu comentario aquí..."></input>
+              <input type="submit" value="Enviar">
             </form>
           </div>
 
         </div>
+
+        <div id="changeTitleBox" class="modal">
+
+            <div id="changeTitleContent">
+              <span id="closeChangeTitleBox" onclick="document.getElementById('changeTitleBox').style.display = 'none';">&times;</span>
+              <p id="changeTitleBoxTitle"></p>
+              <form id="changeTitleBoxForm" onsubmit="changeTitle();  return false;">
+                <input type=text id="changeTitleBoxInput" placeholder="Nuevo Título"></input>
+                <input type="submit" value="Enviar">
+              </form>
+            </div>
+  
+          </div>
 
         <div class="ayuda"></div>
         <footer>
