@@ -143,7 +143,7 @@ header, footer {
 .options {
   display: flex;
   /* border: 5px solid black; */
-  padding: 10px;
+  padding: 0px;
   /* border-radius: 50px; */
 }
 
