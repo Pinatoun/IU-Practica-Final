@@ -89,7 +89,7 @@ function submitRegister(subButon) {
   if (subButon == "#regForm" ) {
     var today = new Date();
     setCookie(email+":"+username+":joined", today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear());
-    $("#startSesion").click();
+    $(".startSesion").click();
   }
   if (subButon == "#profileForm") {
     //TODO: Hacerlo con el nuevo estilo de cookies
@@ -128,6 +128,18 @@ function logIn() {
   }else{
     alert("Usuario o contraseña no válida")
   }
+}
+
+function passwordRecover(){
+  var forgot = prompt("Introduzca su nombre de usuario");
+  var users = getCookie("users").split(":");
+  for (const user of users) {
+    if (user != "" && forgot == user) {
+      alert("Se le ha enviado un email con un código de confirmación");
+      return;
+    }
+  }
+  alert("El usuario introducido no existe");
 }
 
 function validateLogIn(){
@@ -175,6 +187,13 @@ function loadLogIn(username) {
   for (let i = 1; i < categories.length; i++) {
     addCategoryLogIn(categories[i]);
     addCajasCategory(categories[i]);
+  }
+  var notifications = getCookie("notifications-"+username).split(":");
+  if (notifications.length>1) {
+    $(".bellNotification").show();
+    $(".bellNotification").text((notifications.length-1));
+  }else{
+    $(".bellNotification").hide();
   }
 }
 
@@ -430,6 +449,13 @@ function acceptInvite(invitation) {
   setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name"))+":"+$(invitation).text());
   addCategoryLogIn($(invitation).text());
   addCajasCategory($(invitation).text());
+  var notifications = getCookie("notifications-"+getCookie("name")).split(":");
+  if (notifications.length>1) {
+    $(".bellNotification").show();
+    $(".bellNotification").text((notifications.length-1));
+  }else{
+    $(".bellNotification").hide();
+  }
 }
 
 window.onclick = function(event) {
@@ -447,9 +473,9 @@ window.onclick = function(event) {
 
 
 $(document).ready(function(){
-  
+  setCookie("name", "");
   $(".caja").hide();
-  
+  $(".mobile_footer2").hide();
   
   dragDrop();
   
@@ -458,7 +484,7 @@ $(document).ready(function(){
   $(".profileSection").hide();
   $(".side1").hide();
   
-  $(".titulo").click(function (){
+  $(".inicio").click(function (){
     $(".section").hide();
     if(getCookie("name") == ""){
       $(".content").hide();
@@ -563,12 +589,12 @@ $(document).ready(function(){
     $("#homeScreen").hide();
   });
 
-  $("#startSesion").click(function() {
+  $(".startSesion").click(function() {
     $(".section").hide();
     $("#logIn").show();
   });
 
-  $("#register").click(function() {
+  $(".register").click(function() {
     $(".section").hide();
     $("#registerForm").show();
   });

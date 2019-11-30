@@ -17,7 +17,7 @@
 
     <body>
         <header class="">
-          <div class="titulo">
+          <div class="titulo inicio">
               <i class="fab fa-jedi-order" id="logo"></i>
               <h1>Apptivity</h1>
           </div>
@@ -38,6 +38,7 @@
                 <div class="dropdown-content"></div>
               </div>
               <div class="dropdown">
+                <span class="bellNotification"></span>
                 <i class="far fa-bell"></i>
                 <div class="dropdown-content"></div>
               </div>
@@ -55,16 +56,16 @@
           </div>
           <div class="side2">
             <ul class="options">
-              <li><a id="startSesion" href="#" target="_self"> Iniciar sesión </a></li>
-              <li><a id="register" href="#" target="_self"> Registrarse </a></li>
+              <li><a class="startSesion" href="#" target="_self"> Iniciar sesión </a></li>
+              <li><a class="register" href="#" target="_self"> Registrarse </a></li>
             </ul>
           </div>
         </header>
         
         <div class="nonRegisteredHomepage section">
           <h2>Una página para aquellos que quieren organizar actividades y eventos con otras personas</h2>
-          <iframe width="840" height="473" src="https://www.youtube.com/embed/PzrGGyPMfoo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+            <iframe width="840" height="473" src="https://www.youtube.com/embed/PzrGGyPMfoo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
 
         <div class="content section">
           <div class="sections">
@@ -81,8 +82,8 @@
                       <div class="dropdown-content"></div>
                     </div>
                     <a class="changeTitle">Cambiar título</a>
-                    <a class="emptyColumn">Vaciar lista</a>
-                    <a class="archivar">Archivar lista</a>
+                    <a class="emptyColumn">Vaciar categoría</a>
+                    <a class="archivar">Archivar categoría</a>
                   </div>
                 </div>
               </div>
@@ -362,11 +363,11 @@
 
         <div class="mobile_footer1">
 
-         <div class="botones1"> <a href="#"><img class="footer_logo" id="personal_logo"  src="images/iniciar.png" alt="Iniciar sesión" title="Iniciar sesión"/><p>Iniciar sesión</p></a></div>
+         <div class="botones1 startSesion"> <a><img class="footer_logo" id="personal_logo"  src="images/iniciar.png" alt="Iniciar sesión" title="Iniciar sesión"/><p>Iniciar sesión</p></a></div>
 
-         <div class="botones1"><a href="#"><img class="footer_logo" id="opinions_logo"  src="images/home.png" alt="home" title="home"/><p>Inicio</p></a></div>
+         <div class="botones1 inicio"><a><img class="footer_logo" id="opinions_logo"  src="images/home.png" alt="home" title="home"/><p>Inicio</p></a></div>
 
-         <div class="botones1"><a href="#"><img  class="footer_logo" id="preferences_logo"  src="images/registro.png" alt="registro" title="registro"/><p>Registrar</p></a></div>
+         <div class="botones1 register"><a><img  class="footer_logo" id="preferences_logo"  src="images/registro.png" alt="registro" title="registro"/><p>Registrar</p></a></div>
 
         </div>
 
