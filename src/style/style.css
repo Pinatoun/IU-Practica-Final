@@ -665,9 +665,8 @@ button[value="Borrar"]{
   border-left-style: solid;
 }
 #jv_inicio{
-  background-color: #004e8c;
-  border-radius: 10%;
-  color: antiquewhite;
+  background-color: rgb(2,125,180);
+  color: white;
   padding: 10px;
 }
 #jv_forgetpassw{
@@ -683,19 +682,42 @@ button[value="Borrar"]{
 .mobile_footer2 {
   display:none;
 }
-
-
+#startSesion{
+  display:block;
+ }
+ #register{
+  display:block;
+ }
+ #profile{
+  display:block;
+ }
+.mapa{
+  display: block;
+}
 @media screen and (max-width: 900px){
   
 footer{
   display: none;
  }
+ #startSesion{
+  display: none;
+ }
+ #register{
+  display: none;
+ }  
+ #profile{
+  display: none;
+ }
+.mapa{
+  display: none;
+}
+
 .nonRegisteredHomepage iframe{
   width:80%;
 
 }
 .mobile_footer1 {
-  display:none;
+  display:flex;
   padding: 10px;
   background-color: #555555;
   overflow: auto;
@@ -738,7 +760,7 @@ footer{
 
 
 .mobile_footer2 {
-  display:flex;
+  display:none;
   background-color: #555555;
   overflow: auto;
 }
