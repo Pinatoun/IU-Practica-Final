@@ -246,7 +246,7 @@ section, .mapa {
 .sections{
   display: flex;
   width: 75%;
-  overflow: auto;
+
 }
 
 .mapouter{
@@ -768,7 +768,9 @@ footer{
 .mapa{
   display: none;
 }
-
+.sections{
+  display: block;
+}
 .nonRegisteredHomepage iframe{
   width:80%;
 
