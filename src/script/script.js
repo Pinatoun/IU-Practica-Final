@@ -729,6 +729,9 @@ $(document).ready(function(){
       if(getCookie("categories-"+getCookie("name")).split(":").includes(title)){
         alert("La categoría " + title + " ya existe, por favor introduzca un nombre diferente");
         return;
+      }else if (title == "") {
+        alert("No puedes dejar el título de la categoría en blanco");
+        return;
       }
       var titleOld = $(this).closest("section").find("h2").text();
       if(title != ""){
@@ -743,7 +746,17 @@ $(document).ready(function(){
           deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars");
           deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments");
         }
-        setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name")).replace(":"+titleOld, ":"+title));
+        //setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name")).replace(":"+titleOld, ":"+title));
+        var splitted = getCookie("categories-"+getCookie("name")).split(":");
+        for (let i = 0; i < splitted.length; i++) {
+          if(splitted[i] == titleOld){
+            splitted[i]=title;
+            break;
+          }
+        }
+        setCookie("categories-"+getCookie("name"), splitted.join(":"));
+        setCookie("category-"+title, getCookie("category-"+titleOld));
+        deleteCookie("category-"+titleOld);
 
         $(this).closest("section").find("h2").text(title);
       }
@@ -751,9 +764,26 @@ $(document).ready(function(){
     });
     $(".changeCajaTitle").click(function(){
       var category = $(this).closest("section").find("h2").text();
+      var oldTitle = $(this).closest(".caja").find("h3").text();
       var newTitle = prompt("Introduzca el nuevo nombre de la actividad");
+      if(newTitle == ""){
+        alert("No puedes dejar el título vacío");
+        return;
+      }
+      //asdfasdf
       if(!getCajasCategory(category).includes(newTitle)){
-
+        var splitted = getCookie("category-"+title).split(":");
+        for (let i = 0; i < splitted.length; i++) {
+          if(splitted[i] == oldTitle){
+            splitted[i]=titleCaja;
+            break;
+          }
+        }
+        setCookie("category-"+title, splitted.join(":"));
+        setCookie("category-"+category+"-activity-"+newTitle+"-description", description);
+        setCookie("category-"+category+"-activity-"+newTitle+"-hashtags", "");
+        setCookie("category-"+category+"-activity-"+newTitle+"-stars", "-1");
+        setCookie("category-"+category+"-activity-"+newTitle+"-comments", "");
       }else{
         alert("La actividad "+activity+" ya existe en la categoría "+category+". Por favor, escoja otro nombre");
       }
