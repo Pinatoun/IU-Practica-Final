@@ -23,8 +23,9 @@ function deleteCookie(name){
 }
 
 function removeFromCookie(name, value){
-  var cookie = getCookie(name);
-  document.cookie = name+"="+cookie.replace(value, "");
+  var cookies = getCookie(name).split(":");
+  cookies.splice( cookies.indexOf(value), 1 );
+  setCookie(name, cookies.join(":"));
 }
 
 function getCajasCategory(category){
@@ -780,23 +781,37 @@ $(document).ready(function(){
         alert("No puedes dejar el título vacío");
         return;
       }
-      //asdfasdf
       if(!getCajasCategory(category).includes(newTitle)){
-        var splitted = getCookie("category-"+title).split(":");
+        var splitted = getCookie("category-"+category).split(":");
         for (let i = 0; i < splitted.length; i++) {
           if(splitted[i] == oldTitle){
-            splitted[i]=titleCaja;
+            splitted[i]=newTitle;
             break;
           }
         }
-        setCookie("category-"+title, splitted.join(":"));
-        setCookie("category-"+category+"-activity-"+newTitle+"-description", description);
-        setCookie("category-"+category+"-activity-"+newTitle+"-hashtags", "");
-        setCookie("category-"+category+"-activity-"+newTitle+"-stars", "-1");
-        setCookie("category-"+category+"-activity-"+newTitle+"-comments", "");
+        setCookie("category-"+category, splitted.join(":"));
+        setCookie("category-"+category+"-activity-"+newTitle+"-description", getCookie("category-"+category+"-activity-"+oldTitle+"-description"));
+        setCookie("category-"+category+"-activity-"+newTitle+"-hashtags", getCookie("category-"+category+"-activity-"+oldTitle+"-hashtags"));
+        setCookie("category-"+category+"-activity-"+newTitle+"-stars", getCookie("category-"+category+"-activity-"+oldTitle+"-stars"));
+        setCookie("category-"+category+"-activity-"+newTitle+"-comments", getCookie("category-"+category+"-activity-"+oldTitle+"-comments"));
+        deleteCookie("category-"+category+"-activity-"+oldTitle+"-description");
+        deleteCookie("category-"+category+"-activity-"+oldTitle+"-hashtags");
+        deleteCookie("category-"+category+"-activity-"+oldTitle+"-stars");
+        deleteCookie("category-"+category+"-activity-"+oldTitle+"-comments");
+        $(this).closest(".caja").find("h3").text(newTitle);
       }else{
         alert("La actividad "+activity+" ya existe en la categoría "+category+". Por favor, escoja otro nombre");
       }
+    });
+    $(".emptyCaja").click(function(){
+      var caja = $(this).closest(".caja");
+      var title = $(this).closest("section").find(".title h2").text();
+      removeFromCookie("category-"+title, caja.find("h3").text());
+      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-description");
+      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-hashtags");
+      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-stars");
+      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-comments");
+      caja.fadeOut();
     });
   }
   function dropdownContentLast() {
