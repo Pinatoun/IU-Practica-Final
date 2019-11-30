@@ -80,6 +80,7 @@ header, footer {
 }
 
 .user {
+  margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -98,8 +99,8 @@ header, footer {
   place-self: center;
 }
 
-.fa-bell{
-  margin: 0px 5px;
+.icons i{
+  margin: 0px 2px;
 }
 
 .icons i{
