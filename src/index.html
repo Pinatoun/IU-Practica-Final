@@ -335,17 +335,18 @@
 
         </div>
 
-        <div id="changeTitleBox" class="modal">
-
-            <div id="changeTitleContent">
-              <span id="closeChangeTitleBox" onclick="document.getElementById('changeTitleBox').style.display = 'none';">&times;</span>
-              <p id="changeTitleBoxTitle"></p>
-              <form id="changeTitleBoxForm" onsubmit="changeTitle();  return false;">
-                <input type=text id="changeTitleBoxInput" placeholder="Nuevo Título"></input>
-                <input type="submit" value="Enviar">
+        <div id="newActivityBox" class="modal">
+            <div id="newActivityBoxContent">
+              <span id="closenewActivityBox" onclick="document.getElementById('newActivityBox').style.display = 'none';">&times;</span>
+              <p id="newActivityBoxTitle"></p>
+              <form id="newActivityBoxForm" onsubmit="addCajaForm();  return false;">
+                <input type=text id="newActivityBoxNewTitle" class="field-full" placeholder="Nuevo Título" required></input>
+                <br/>
+                <input type=text id="newActivityBoxNewDescription" class="field-full" placeholder="Nueva Descripción" required></input>
+                <input type="submit" value="Añadir">
+                <button type="button" value="Cancelar" onclick="cancelForm()">Cancelar</button>
               </form>
             </div>
-  
           </div>
 
         <div class="ayuda"></div>

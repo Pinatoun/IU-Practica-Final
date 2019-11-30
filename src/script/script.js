@@ -96,6 +96,10 @@ function clearForm() {
 	});
 }
 
+function cancelForm() {
+  $('#newActivityBox').fadeOut('fast');
+}
+
 function addComment(){
   var message = getCookie("name")+": "+$("#commentBoxInput").val();
   $("<p class=comment>"+message+"</p>").insertBefore("#commentBoxForm");
@@ -237,6 +241,11 @@ function addCategoryLogIn(title){
   return clon;
 }
 
+function addCajaForm(){
+  var title = $("#newActivityBoxNewTitle").val();
+  var description = $("#newActivityBoxNewDescription").val();
+}
+
 function addCaja(columna, title, description){
   if (!getCajasCategory(columna.find(".title h2").text()).includes(title)) {
     addCajaCommon(columna, title, description);
@@ -257,6 +266,12 @@ function addCajaLogIn(columna, title, description){
   return caja;
 }
 
+function popUpAddToCategory(category){
+  setCookie("currentCategory", $(category).closest("section").find("h2").text());
+  $("#newActivityBoxForm")[0].reset();
+  $("#newActivityBox").fadeIn("slow");
+  $("#newActivityBoxTitle").text("Información de la actividad");
+}
 
 function addToCategory(element){
   var categoryName = $(element).text();
@@ -405,6 +420,9 @@ window.onclick = function(event) {
   }
   if (event.target.id=="commentBox") {
     $("#commentBox").fadeOut("fast");
+  }
+  if (event.target.id=="newActivityBox") {
+    $("#newActivityBox").fadeOut("fast");
   }
 }
 
@@ -694,6 +712,7 @@ $(document).ready(function(){
 
   });
 
+
   function dropdownContentElements(params) {
     $(".addCategory").click(function(){
       var title = prompt("Nombre de la categoría");
@@ -710,7 +729,7 @@ $(document).ready(function(){
       $(this).next().empty();
       for (const category of categories) {
         if(category != ""){
-          $(this).next().append("<a onclick='addToCategory(this)'>"+category+"</a>");
+          $(this).next().append("<a onclick='popUpAddToCategory(this)'>"+category+"</a>");
           added = true;
         }
       }

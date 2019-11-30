@@ -591,7 +591,7 @@ button[value="Borrar"]{
   display: none;
 }
 
-#commentBox, #changeTitleBox {
+#commentBox, #newActivityBox {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -605,7 +605,7 @@ button[value="Borrar"]{
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-#commentBoxContent, #changeTitleBoxContent {
+#commentBoxContent, #newActivityBoxContent {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -614,7 +614,7 @@ button[value="Borrar"]{
   border-radius: 30px;
 }
 
-#commentBoxTitle, #changeTitleBoxTitle {
+#commentBoxTitle, #newActivityBoxTitle {
   text-align: center;
   font-weight: bold;
   font-size: 30px;
@@ -628,18 +628,18 @@ button[value="Borrar"]{
   border: 1px solid gray;
 }
 
-#commentBoxInput, #changeTitleBoxInput{
+#commentBoxInput, #newActivityBoxInput{
   margin: 7px;
   padding: 10px;
   width: -moz-available;
   width: -webkit-fill-available;
 }
 
-#commentBoxForm, #changeTitleBoxForm{
+#commentBoxForm{
   display: flex;
 }
 
-input[value="Enviar"]{
+#newActivityBoxForm input[value="Añadir"]{
   margin: 7px;
   padding: 10px;
   border-radius: 10px;
@@ -651,8 +651,20 @@ input[value="Enviar"]{
   width: 90px;
 }
 
+#newActivityBoxForm button[value="Cancelar"]{
+  margin: 7px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color:rgb(217,0,27);
+  border: 2px solid black;
+  font-size: large;
+  padding: 10px;
+  width: 90px;
+}
+
 /* The Close Button */
-#closeCommentBox, #closeChangeTitleBox {
+#closeCommentBox, #closenewActivityBox {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -661,8 +673,8 @@ input[value="Enviar"]{
 
 #closeCommentBox:hover,
 #closeCommentBox:focus,
-#closeChangeTitleBox:hover,
-#closeChangeTitleBox:focus {
+#closenewActivityBox:hover,
+#closenewActivityBox:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
