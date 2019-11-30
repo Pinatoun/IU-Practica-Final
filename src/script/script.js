@@ -242,6 +242,8 @@ function addCategoryLogIn(title){
 }
 
 function addCajaForm(){
+  //TODO: Añadir la caja con los datos del formulario
+  var category = getCookie("currentCategory");
   var title = $("#newActivityBoxNewTitle").val();
   var description = $("#newActivityBoxNewDescription").val();
 }
@@ -267,7 +269,7 @@ function addCajaLogIn(columna, title, description){
 }
 
 function popUpAddToCategory(category){
-  setCookie("currentCategory", $(category).closest("section").find("h2").text());
+  setCookie("currentCategory", $(category).text());
   $("#newActivityBoxForm")[0].reset();
   $("#newActivityBox").fadeIn("slow");
   $("#newActivityBoxTitle").text("Información de la actividad");
