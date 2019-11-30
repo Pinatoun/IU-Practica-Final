@@ -409,12 +409,21 @@ window.onclick = function(event) {
 
 
 $(document).ready(function(){
+  
   $(".caja").hide();
+  
   $(".titulo").click(function (){
     $(".section").hide();
-    $(".content").show();
-    $("#profile").show();
-    $("#homeScreen").hide();
+    if(getCookie("name") == ""){
+      $("#homeScreen").show();
+      $("#profile").hide();
+      $(".content").hide();
+      $(".nonRegisteredHomepage").show();
+    }else{
+      $(".content").show();
+      $("#profile").show();
+      $("#homeScreen").hide();
+    }
   });
 
   dragDrop();
@@ -569,7 +578,7 @@ $(document).ready(function(){
       }
     }
     if(!added){
-      $(this).next().append("<a> No hay ningún otro usuario registrado al que puedas invitar </a>");
+      $(this).next().append("<p> No hay ningún otro usuario registrado al que puedas invitar </p>");
     }
     var button = $(this).parent().find(".dropdown-content").first();
     if (button.css("display") == "none") {
@@ -635,6 +644,7 @@ $(document).ready(function(){
 
   
   $("#closeSesion").click(function(){
+    setCookie("name", "");
     $(".content").hide();
     $("#profile").show();
     $("#homeScreen").hide();
