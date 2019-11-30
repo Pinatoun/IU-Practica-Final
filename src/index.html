@@ -16,7 +16,7 @@
     </head>
 
     <body>
-        <header>
+        <header class="">
           <div class="titulo">
               <i class="fab fa-jedi-order" id="logo"></i>
               <h1>Apptivity</h1>
@@ -132,24 +132,24 @@
         <div id="registerForm" class="form section">
           <form id="regForm" action="#" method="post" onsubmit="submitRegister('#regForm');  return false;"> <!-- Con el return false no recarga la página al hacer submit-->
             <h2>Cuenta</h2>
-            <input type="text" name="username" placeholder="Username" class="field-divided" required>
+            <input type="text" name="username" placeholder="Username(*)" class="field-divided" required>
             <br>
-            <input type="password" name="password" placeholder="Password" class="field-divided" required>
+            <input type="password" name="password" placeholder="Password(*)" class="field-divided" required>
             <br>
             <hr>
             <h2>Informacion personal</h2>
-            <input type="text" name="firstname" placeholder="Name" class="field-divided" required>
-            <input type="text" name="lastname" placeholder="Surname" class="field-divided" required>
+            <input type="text" name="firstname" placeholder="Name(*)" class="field-divided" required>
+            <input type="text" name="lastname" placeholder="Surname(*)" class="field-divided" required>
             <br>
-            <input type="email" name="email" placeholder="Email" class="field-full"   required>
+            <input type="email" name="email" placeholder="Email(*)" class="field-full"   required>
             <br>
-            <input type="text" onfocus="(this.type='date')" name="birthday" placeholder="Birthday" class="field-full" required>
+            <input type="text" onfocus="(this.type='date')" name="birthday" placeholder="Birthday(*)" class="field-full" required>
             <input type="text" name="uso" placeholder="Uso de la web (opcional)">
             <hr>
             <div class="twoFormSection">
               <div class="about_me">
                 <h2>Sobre mí</h2>
-                <textarea rows="10" cols="50" name="about_me" placeholder="Intereses personales, aficiones, películas favoritas, objetivos, etc. (Opcional)"></textarea>
+                <textarea rows="10" cols="50" name="about_me" placeholder="Intereses personales, aficiones, películas favoritas, objetivos, etc."></textarea>
               </div>
               <div class="twoForms">
                 <div class="oneForm">
@@ -200,7 +200,10 @@
             <hr>
             <br>
             <br>
-            <input type="checkbox" name="conditions" value="accepted" class="field-list" required> He leído y acepto las Condiciones de uso
+            <input type="checkbox" name="conditions" value="accepted" class="field-list" required> He leído y acepto las Condiciones de uso (*)
+            <br>
+            <br>
+            (*) Campo obligatorio
             <br>
             <br>
             <input type="submit" value="Guardar">
@@ -215,7 +218,8 @@
             <br>
             <input type="password" name="passwordLogIn" placeholder="Contraseña" class="field-full" required>
             <br>
-            <input type="submit" value="Iniciar Sesión">
+            <input id="jv_inicio" type="submit" value="Iniciar Sesión">
+            <a id="jv_forgetpassw" title="recuperar contraseña" onclick="passwordRecover()" > Olvidé mi contraseña </a>
           </form>
         </div>
 
@@ -364,10 +368,25 @@
           </div>
         </footer>
 
-        <div class="mobile_footer">
-          <a href="#"><img id="personal_logo"  src="https://icon-library.net/images/icon-person/icon-person-0.jpg" alt="Personal" title="Personal information"/><p>Personal</p></a>
-          <a href="#"><img id="opinions_logo"  src="https://static.thenounproject.com/png/92641-200.png" alt="Opinions" title="Opinions"/><p>Opinions</p></a>
-          <a href="#"><img id="preferences_logo"  src="https://cdn1.iconfinder.com/data/icons/streamline-settings/60/cell-16-0-480.png" alt="Preferences" title="Preferences"/><p>Preferences</p></a>
+        <div class="mobile_footer1">
+
+         <div class="botones1"> <a href="#"><img class="footer_logo" id="personal_logo"  src="images/iniciar.png" alt="Iniciar sesión" title="Iniciar sesión"/><p>Iniciar sesión</p></a></div>
+
+         <div class="botones1"><a href="#"><img class="footer_logo" id="opinions_logo"  src="images/home.png" alt="home" title="home"/><p>Inicio</p></a></div>
+
+         <div class="botones1"><a href="#"><img  class="footer_logo" id="preferences_logo"  src="images/registro.png" alt="registro" title="registro"/><p>Registrar</p></a></div>
+
+        </div>
+
+        <div class="mobile_footer2">
+
+          <div class="botones2"><a href="#"><img class="footer_logo" id="opinions_logo"  src="images/explorar.png" alt="explorar" title="explorar"/><p>explorar</p></a></div>
+          <div class="botones2"> <a href="#"><img class="footer_logo" id="personal_logo"  src="images/iniciar.png" alt="Perfil" title="Perfil"/><p>Perfil</p></a></div>
+
+        
+
+         
+         
         </div>
 
 
