@@ -716,6 +716,7 @@ $(document).ready(function(){
 
     $("#profileName").text(getCookie(getCookie("email")+":"+getCookie("name")+":firstname")+" "+getCookie(getCookie("email")+":"+getCookie("name")+":"+"lastname"))
     $("#profileNotifications").text("Tiene "+(getCookie("notifications-"+getCookie("name")).split(":").length-1)+" invitaciones a eventos")
+    $("#profileArchived").text("Tiene "+(getCookie("archived-"+getCookie("name")).split(":").length-1)+" eventos archivados")
     $("#profileJoined").text("Se unió el "+getCookie(getCookie("email")+":"+getCookie("name")+":joined"));
 
     /*while ( i-- ) {

@@ -122,7 +122,7 @@ header, footer {
 }
 
 .nonRegisteredHomepage iframe{
-  margin: 5vh;
+  padding: 10%;
 }
 #homeScreen{
 	display: none;
@@ -457,7 +457,7 @@ button[value="Borrar"]{
 #profileSection {
   display: flex;
   margin: 15px 15px 70px 15px;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .innerProfileSection{
@@ -495,8 +495,11 @@ button[value="Borrar"]{
 }
 
 .information {
+  text-align: center;
+  position: sticky;
+  top: 120px;
+  display: block;
   margin-top: 70px;
-  display: flex;
   margin-bottom: auto;
   color: black;
 }
@@ -519,8 +522,8 @@ button[value="Borrar"]{
 }
 
 .information img{
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid rgb(255,126,0);
