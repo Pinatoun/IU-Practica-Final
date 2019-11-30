@@ -69,22 +69,32 @@ function submitRegister(subButon) {
   for (var i = 0; i < array.length; i++) {
     if (array[i].attr("type")=="checkbox") {
         setCookie(email+":"+username+":"+array[i].attr("name"), array[i].prop("checked"));
-    }else if (array[i].attr("name") != undefined){
+      }else if (array[i].attr("name") != undefined){
         setCookie(email+":"+username+":"+array[i].attr("name"), array[i].val());
+      }
+    if(subButon == "#regForm" && (username != getCookie("name") || email != getCookie("email"))){
+      deleteCookie(getCookie("email")+":"+getCookie("name")+":"+array[i].attr("name"));
     }
   }
 
   //añade también el textarea y select
-  setCookie("users", getCookie("users")+":"+username);
+  if(subButon == "#regForm" && username != getCookie("name")){
+    setCookie("name", username);
+    removeFromCookie("users", getCookie("name"));
+    setCookie("users", getCookie("users")+":"+username);
+  }
   setCookie(email+":"+username+":"+$(subButon + " textarea").attr("name"), $(subButon + " textarea").val());
   setCookie(email+":"+username+":"+$(subButon + " select").attr("name"), $(subButon + " select").val());
 
   if (subButon == "#regForm" ) {
+    var today = new Date();
+    setCookie(email+":"+username+":joined", today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear());
     $("#startSesion").click();
   }
   if (subButon == "#profileForm") {
     //TODO: Hacerlo con el nuevo estilo de cookies
     $(".user h3").text($(subButon+" input[name='username']").val());
+    $("#profile").click();
     alert("Se han actualizado los datos del perfil");
   }
 }
@@ -243,9 +253,16 @@ function addCategoryLogIn(title){
 
 function addCajaForm(){
   //TODO: Añadir la caja con los datos del formulario
-  var category = getCookie("currentCategory");
+  var categories = $("section");
   var title = $("#newActivityBoxNewTitle").val();
   var description = $("#newActivityBoxNewDescription").val();
+  for (const cat of categories) {
+    if($(cat).find(".title h2").text() == getCookie("currentCategory")){
+      var category = $(cat);
+    }
+  }
+  addCaja(category, title, description);
+  $("#newActivityBox").hide();
 }
 
 function addCaja(columna, title, description){
@@ -433,27 +450,23 @@ $(document).ready(function(){
   
   $(".caja").hide();
   
-  $(".titulo").click(function (){
-    $(".section").hide();
-    if(getCookie("name") == ""){
-      $("#homeScreen").show();
-      $("#profile").hide();
-      $(".content").hide();
-      $(".nonRegisteredHomepage").show();
-    }else{
-      $(".content").show();
-      $("#profile").show();
-      $("#homeScreen").hide();
-    }
-  });
-
+  
   dragDrop();
   
   $(".section").hide();
   $(".nonRegisteredHomepage").show();
   $(".profileSection").hide();
   $(".side1").hide();
-
+  
+  $(".titulo").click(function (){
+    $(".section").hide();
+    if(getCookie("name") == ""){
+      $(".content").hide();
+      $(".nonRegisteredHomepage").show();
+    }else{
+      $("#homeScreen").click();
+    }
+  });
   /*$('.likeButton').tooltip({
     tooltipClass: "tooltip",
     position: { my: "top+20px", at: "top center" },
@@ -545,6 +558,7 @@ $(document).ready(function(){
   $("#homeScreen").click(function() {
     $(".section").hide();
     $(".content").show();
+    $(".icons .fa-plus-square").show();
     $("#profile").show();
     $("#homeScreen").hide();
   });
@@ -680,6 +694,7 @@ $(document).ready(function(){
     $(".section").hide();
     $(".content").hide();
     $("#profile").hide();
+    $(".icons .fa-plus-square").hide();
     $("#homeScreen").show();
     $("#profileSection").show();
     var inputs = $("#profileForm input");
@@ -698,6 +713,10 @@ $(document).ready(function(){
 
     $("#profileForm textArea").val(getCookie(getCookie("email")+":"+getCookie("name")+":"+$("#profileForm textArea").attr("name")));
     $("#profileForm select").val(getCookie(getCookie("email")+":"+getCookie("name")+":"+$("#profileForm select").attr("name")));
+
+    $("#profileName").text(getCookie(getCookie("email")+":"+getCookie("name")+":firstname")+" "+getCookie(getCookie("email")+":"+getCookie("name")+":"+"lastname"))
+    $("#profileNotifications").text("Tiene "+(getCookie("notifications-"+getCookie("name")).split(":").length-1)+" invitaciones a eventos")
+    $("#profileJoined").text("Se unió el "+getCookie(getCookie("email")+":"+getCookie("name")+":joined"));
 
     /*while ( i-- ) {
         val = $("#profileForm input[name="+keys[i]+"]")

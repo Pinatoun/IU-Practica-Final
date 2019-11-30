@@ -639,6 +639,18 @@ button[value="Borrar"]{
   display: flex;
 }
 
+#commentBoxForm input[value="Enviar"]{
+  margin: 7px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color:rgb(2,125,180);
+  border: 2px solid black;
+  font-size: large;
+  padding: 10px;
+  width: 90px;
+}
+
 #newActivityBoxForm input[value="Añadir"]{
   margin: 7px;
   padding: 10px;
