@@ -256,6 +256,23 @@ function addCajaLogIn(columna, title, description){
   return caja;
 }
 
+
+function addToCategory(element){
+  var categoryName = $(element).text();
+  var titles = $(".title h2");
+  for (const title of titles) {
+    if($(title).text() == categoryName){
+      var newTitle = prompt("Pon el título");
+      var description = prompt("Pon la descripción");
+      if (newTitle != "" && newTitle != undefined && description != "" && description != undefined) {
+        addCaja($(title).closest("section"), newTitle, description);
+      }else{
+        alert("No puedes dejar el título ni la descripción en blanco");
+      }
+    }
+  }
+}
+
 function addCajaCommon(columna, title, description){
   var caja = $(".caja:first").droppable("destroy").draggable("destroy").clone(true);
   caja.find("h3").text(title);
@@ -666,21 +683,6 @@ $(document).ready(function(){
 
   });
 
-  function addToCategory(element){
-    var categoryName = $(element).text();
-    var titles = $(".title h2");
-    for (const title of titles) {
-      if(title.text() == categoryName){
-        var newTitle = prompt("Pon el título");
-        var description = prompt("Pon la descripción");
-        if (newTitle != "" && newTitle != undefined && description != "" && description != undefined) {
-          addCaja(title.closest("section"), newTitle, description);
-        }else{
-          alert("No puedes dejar el título ni la descripción en blanco");
-        }
-      }
-    }
-  }
   function dropdownContentElements(params) {
     $(".addCategory").click(function(){
       var title = prompt("Nombre de la categoría");
