@@ -27,12 +27,22 @@
               <h3>Paco López</h3>
             </div>
             <div class="icons">
-              <i class="far fa-bell"></i>
+              <div class="dropdown">
+                <i class="fas fa-archive"></i>
+                <div class="dropdown-content"></div>
+              </div>
+              <div class="dropdown">
+                <i class="far fa-bell"></i>
+                <div class="dropdown-content"></div>
+              </div>
               <div class="dropdown">
                 <i class="fas fa-plus-square"></i>
                 <div class="dropdown-content">
                     <a class="addCategory">Añadir Categoría</a>
-                    <a class="addElement">Añadir Actividad</a>
+                    <div class="dropdown">
+                      <a class="addElement">Añadir Actividad</a>
+                      <div class="dropdown-content"></div>
+                    </div>
                 </div>
               </div>
               
@@ -57,254 +67,55 @@
         </div>
 
         <div class="content section">
-
-          <section>
-            <div class="title">
-              <h2>Restaurantes</h2>
-              <div class="dropdown">
-                <i class="far fa-caret-square-down"></i>
-                <div class="dropdown-content">
-                  <a class="addCajaElement">Añadir elemento</a>
-                  <a class="changeTitle">Cambiar título</a>
-                  <a class="emptyColumn">Vaciar lista</a>
-                  <a class="archivar">Archivar lista</a>
+          <div class="sections">
+            <section>
+              <div class="title">
+                <h2>Restaurantes</h2>
+                <div class="dropdown">
+                  <i class="far fa-caret-square-down"></i>
+                  <div class="dropdown-content">
+                    <h4> Opciones: </h4>
+                    <a class="addCajaElement">Añadir elemento</a>
+                    <div class="dropdown">
+                      <a class="shareCategory">Compartir categoría</a>
+                      <div class="dropdown-content"></div>
+                    </div>
+                    <a class="changeTitle">Cambiar título</a>
+                    <a class="emptyColumn">Vaciar lista</a>
+                    <a class="archivar">Archivar lista</a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="caja">
-                <i class="far fa-caret-square-down" aria-hidden="true"></i>
-                <div class="dropdown-content">
-                  <a class="addCajaElement">Añadir elemento</a>
-                  <a class="changeCajaTitle">Cambiar título</a>
-                  <a class="emptyCaja">Vaciar lista</a>
-                  <a class="archivarCaja">Archivar lista</a>
+              <div class="caja">
+                  <i class="far fa-caret-square-down" aria-hidden="true"></i>
+                  <div class="dropdown-content">
+                    <h4> Opciones: </h4>
+                    <a class="changeCajaTitle">Cambiar título</a>
+                    <a class="emptyCaja">Eliminar Actividad</a>
+                  </div>
+                <div class="content_caja">
+                  <div class="datos">
+                    <h3>My Fucking Restaurant</h3>
+                    <p>Descripción del evento</p>
+                  </div>
                 </div>
-              <div class="content_caja">
-                <div class="datos">
-                  <h3>My Fucking Restaurant</h3>
-                  <p>Descripción del evento</p>
-                </div>
-              </div>
-              <div class="hashtags">
-                <p>Hashtags: </p>
-                <i class="far fa-plus-square"></i>
-              </div>
-              <div class="buttons">
-                <div class="stars">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </div>
-                <i class="far fa-comment"></i>
-              </div>
-            </div>
-            <div class="caja">
-              <i class="far fa-caret-square-down" aria-hidden="true"></i>
-              <div class="dropdown-content">
-                <a class="addCajaElement">Añadir elemento</a>
-                <a class="changeCajaTitle">Cambiar título</a>
-                <a class="emptyCaja">Vaciar lista</a>
-                <a class="archivarCaja">Archivar lista</a>
-              </div>
-              <div class="content_caja">
-                <div class="datos">
-                  <h3>Oga's Cantina</h3>
-                  <p>Descripción del evento</p> 
-                </div>
-              </div>
-              <div class="hashtags">
+                <div class="hashtags">
                   <p>Hashtags: </p>
                   <i class="far fa-plus-square"></i>
                 </div>
-              <div class="buttons">
-                <div class="stars">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </div>
-                <i class="far fa-comment"></i>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <div class="title">
-              <h2>Planetas</h2>
-              <div class="dropdown">
-                <i class="far fa-caret-square-down"></i>
-                <div class="dropdown-content">
-                  <a class="addCajaElement">Añadir elemento</a>
-                  <a class="changeTitle">Cambiar título</a>
-                  <a class="emptyColumn">Vaciar lista</a>
-                  <a class="archivar">Archivar lista</a>
+                <div class="buttons">
+                  <div class="stars">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                  <i class="far fa-comment"></i>
                 </div>
               </div>
-            </div>
-            <div class="caja">
-              <i class="far fa-caret-square-down" aria-hidden="true"></i>
-              <div class="dropdown-content">
-                <a class="addCajaElement">Añadir elemento</a>
-                <a class="changeCajaTitle">Cambiar título</a>
-                <a class="emptyCaja">Vaciar lista</a>
-                <a class="archivarCaja">Archivar lista</a>
-              </div>
-              <div class="content_caja">
-                <div class="datos">
-                  <h3>Tatooine: El planeta desértico</h3>
-                  <p>Descripción del evento</p> 
-                </div>
-              </div>
-              <div class="hashtags">
-                  <p>Hashtags: </p>
-                  <i class="far fa-plus-square"></i>
-                </div>
-              <div class="buttons">
-                <div class="stars">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </div>
-                <i class="far fa-comment"></i>
-              </div>
-            </div>
-            <div class="caja">
-              <i class="far fa-caret-square-down" aria-hidden="true"></i>
-              <div class="dropdown-content">
-                <a class="addCajaElement">Añadir elemento</a>
-                <a class="changeCajaTitle">Cambiar título</a>
-                <a class="emptyCaja">Vaciar lista</a>
-                <a class="archivarCaja">Archivar lista</a>
-              </div>
-              <div class="content_caja">
-                <div class="datos">
-                  <h3>Yavin IV: La jungla</h3>
-                  <p>Descripción del evento</p>
-                </div>
-              </div>
-              <div class="hashtags">
-                <p>Hashtags: </p>
-                <i class="far fa-plus-square"></i>
-              </div>
-              <div class="buttons">
-                <div class="stars">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </div>
-                <i class="far fa-comment"></i>
-              </div>
-            </div>
-            <div class="caja">
-              <i class="far fa-caret-square-down" aria-hidden="true"></i>
-              <div class="dropdown-content">
-                <a class="addCajaElement">Añadir elemento</a>
-                <a class="changeCajaTitle">Cambiar título</a>
-                <a class="emptyCaja">Vaciar lista</a>
-                <a class="archivarCaja">Archivar lista</a>
-              </div>
-              <div class="content_caja">
-                <div class="datos">
-                  <h3>Naboo: Hogar de la especie gungan</h3>
-                  <p>Descripción del evento</p>
-                </div>
-              </div>
-              <div class="hashtags">
-                <p>Hashtags: </p>
-                <i class="far fa-plus-square"></i>
-              </div>
-              <div class="buttons">
-                <div class="stars">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </div>
-                <i class="far fa-comment"></i>
-              </div>
-            </div>
-            <div class="caja">
-              <i class="far fa-caret-square-down" aria-hidden="true"></i>
-              <div class="dropdown-content">
-                <a class="addCajaElement">Añadir elemento</a>
-                <a class="changeCajaTitle">Cambiar título</a>
-                <a class="emptyCaja">Vaciar lista</a>
-                <a class="archivarCaja">Archivar lista</a>
-              </div>
-              <div class="content_caja">
-                <div class="datos">
-                  <h3>Coruscant: Centro Imperial</h3>
-                  <p>Descripción del evento</p>
-                </div>
-              </div>
-              <div class="hashtags">
-                <p>Hashtags: </p>
-                <i class="far fa-plus-square"></i>
-              </div>
-              <div class="buttons">
-                <div class="stars">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </div>
-                <i class="far fa-comment"></i>
-              </div>
-            </div>
-          </section>
-          <section>
-            <div class="title">
-              <h2>Hoteles</h2>
-              <div class="dropdown">
-                <i class="far fa-caret-square-down"></i>
-                <div class="dropdown-content">
-                  <a class="addCajaElement">Añadir elemento</a>
-                  <a class="changeTitle">Cambiar título</a>
-                  <a class="emptyColumn">Vaciar lista</a>
-                  <a class="archivar">Archivar lista</a>
-                </div>
-              </div>
-            </div>
-            <div class="caja">
-              <i class="far fa-caret-square-down" aria-hidden="true"></i>
-              <div class="dropdown-content">
-                <a class="addCajaElement">Añadir elemento</a>
-                <a class="changeCajaTitle">Cambiar título</a>
-                <a class="emptyCaja">Vaciar lista</a>
-                <a class="archivarCaja">Archivar lista</a>
-              </div>
-              <div class="content_caja">
-                <div class="datos">
-                  <h3>Optimi Rooms: El hotel cápsula</h3>
-                  <p>Descripción del evento</p>
-                </div>
-              </div>
-              <div class="hashtags">
-                <p>Hashtags: </p>
-                <i class="far fa-plus-square"></i>
-              </div>
-              <div class="buttons">
-                <div class="stars">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </div>
-                <i class="far fa-comment"></i>
-              </div>
-            </div>
-          </section>
-
+            </section>
+          </div>
           <div class="mapa">
             <div class="title">
               <h2>Explorar con el mapa</h2>
@@ -334,33 +145,39 @@
             <input type="text" onfocus="(this.type='date')" name="birthday" placeholder="Birthday" class="field-full" required>
             <input type="text" name="uso" placeholder="Uso de la web (opcional)">
             <hr>
-            <div class="2forms">
-              <div class="1form">
-                <h2>Hobbies</h2>
-                <select>
-                      <option value="futbol">Fútbol</option>
-                      <option value="tenis">Tenis</option>
-                      <option value="tecnologia">Tecnología</option>
-                      <option value="moda">Moda</option>
-                    </select>
+            <div class="twoFormSection">
+              <div class="about_me">
+                <h2>Sobre mí</h2>
+                <textarea rows="10" cols="50" name="about_me" placeholder="Intereses personales, aficiones, películas favoritas, objetivos, etc. (Opcional)"></textarea>
               </div>
-              <div class="1form">
-                <h2>Intereses personales</h2>
-                <div class="checkboxes">
-                  <div class="checkbox">
-                    <div class="checkbox_box">
-                      <input type="checkbox" name="int_quedadas" value="Quedadas" class="field-list"> Quedadas
+              <div class="twoForms">
+                <div class="oneForm">
+                  <h2>Hobbies</h2>
+                  <select name="hobbies">
+                        <option value="futbol">Fútbol</option>
+                        <option value="tenis">Tenis</option>
+                        <option value="tecnologia">Tecnología</option>
+                        <option value="moda">Moda</option>
+                      </select>
+                </div>
+                <div class="oneForm">
+                  <h2>Intereses personales</h2>
+                  <div class="checkboxes">
+                    <div class="checkbox">
+                      <div class="checkbox_box">
+                        <input type="checkbox" name="int_quedadas" value="Quedadas" class="field-list"> Quedadas
+                      </div>
+                      <div class="checkbox_box">
+                        <input type="checkbox" name="int_viajes" value="Viajes" class="field-list"> Viajes
+                      </div>
                     </div>
-                    <div class="checkbox_box">
-                      <input type="checkbox" name="int_viajes" value="Viajes" class="field-list"> Viajes
-                    </div>
-                  </div>
-                  <div class="checkbox">
-                    <div class="checkbox_box">
-                      <input type="checkbox" name="int_deporte" value="Deportes" class="field-list"> Deportes
-                    </div>
-                    <div class="checkbox_box">
-                      <input type="checkbox" name="int_otros" value="Otros" class="field-list"> Otros
+                    <div class="checkbox">
+                      <div class="checkbox_box">
+                        <input type="checkbox" name="int_deporte" value="Deportes" class="field-list"> Deportes
+                      </div>
+                      <div class="checkbox_box">
+                        <input type="checkbox" name="int_otros" value="Otros" class="field-list"> Otros
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -386,7 +203,7 @@
             <br>
             <br>
             <input type="submit" value="Guardar">
-            <button type="button" value="Borrar" onclick="clearForm()">Borrar</button>
+            <button type="button" value="Borrar" id="Borrar" onclick="clearForm()">Borrar</button>
           </form>
         </div>
 
@@ -418,21 +235,45 @@
                 <br>
                 <input type="email" name="email" placeholder="Email" class="field-full"   required>
                 <br>
-                <input type="date" name="birthday" placeholder="Birthday" class="field-full" required>
+                <input type="text" onfocus="(this.type='date')" name="birthday" placeholder="Birthday" class="field-full" required>
+                <input type="text" name="uso" placeholder="Uso de la web (opcional)">
                 <hr>
-                <h2>Intereses personales</h2>
-                <div class="checkbox">
-                  <div class="checkbox_box">
-                    <input type="checkbox" name="int_pl" value="Planets" class="field-list"> Quedadas
+                <div class="twoFormSection">
+                  <div class="about_me">
+                    <h2>Sobre mí</h2>
+                    <textarea rows="10" cols="50" name="about_me" placeholder="Intereses personales, aficiones, películas favoritas, objetivos, etc. (Opcional)"></textarea>
                   </div>
-                  <div class="checkbox_box">
-                    <input type="checkbox" name="int_ho" value="Hotels" class="field-list"> Viajes
-                  </div>
-                  <div class="checkbox_box">
-                    <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Deportes
-                  </div>
-                  <div class="checkbox_box">
-                    <input type="checkbox" name="int_re" value="Restaurants" class="field-list"> Otros
+                  <div class="twoForms">
+                    <div class="oneForm">
+                      <h2>Hobbies</h2>
+                      <select name="hobbies">
+                            <option value="futbol">Fútbol</option>
+                            <option value="tenis">Tenis</option>
+                            <option value="tecnologia">Tecnología</option>
+                            <option value="moda">Moda</option>
+                          </select>
+                    </div>
+                    <div class="oneForm">
+                      <h2>Intereses personales</h2>
+                      <div class="checkboxes">
+                        <div class="checkbox">
+                          <div class="checkbox_box">
+                            <input type="checkbox" name="int_quedadas" value="Quedadas" class="field-list"> Quedadas
+                          </div>
+                          <div class="checkbox_box">
+                            <input type="checkbox" name="int_viajes" value="Viajes" class="field-list"> Viajes
+                          </div>
+                        </div>
+                        <div class="checkbox">
+                          <div class="checkbox_box">
+                            <input type="checkbox" name="int_deporte" value="Deportes" class="field-list"> Deportes
+                          </div>
+                          <div class="checkbox_box">
+                            <input type="checkbox" name="int_otros" value="Otros" class="field-list"> Otros
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <hr>
@@ -450,18 +291,33 @@
                 </div>
                 <hr>
                 <br>
+                <br>
+                <input type="checkbox" name="conditions" value="accepted" class="field-list" required> He leído y acepto las Condiciones de uso
+                <br>
+                <br>
                 <input type="submit" value="Guardar">
                 <button type="button" value="Borrar" onclick="clearForm()">Borrar</button>
               </form>
             </div>
           </div>
-          <div class="information">
-            <div class="informationText">
-              <p>Paco</p>
-              <p>17 eventos pendientes</p>
-              <p>Se unió el 27/07/2019</p>
+          <div class="profileSide">
+            <div class="information">
+              <div class="informationText">
+                <p>Paco</p>
+                <p>17 eventos pendientes</p>
+                <p>Se unió el 27/07/2019</p>
+              </div>
+              <img src="images/paco-lopez.jpg" alt="User Img" title="User Image"/>
             </div>
-            <img src="images/paco-lopez.jpg" alt="User Img" title="User Image"/>
+            <h3 id="alertas">
+                Alertas
+            </h3>
+            <h3 id="invitaciones">
+                Invitaciones
+            </h3>
+            <h3 id="archivados">
+                Elementos archivados
+            </h3>
           </div>
         </div>
 
@@ -469,16 +325,15 @@
 
           <div id="commentBoxContent">
             <span id="closeCommentBox" onclick="document.getElementById('commentBox').style.display = 'none';">&times;</span>
-            <p id="commentBoxText"></p>
-            <div id="commentBoxSocial">
-              <a href="https://www.twitter.com"><img src="https://shkspr.mobi/blog/wp-content/uploads/2017/10/Twitter-Logo.png" alt="Twitter logo" title="Twitter"/></a>
-              <a href="https://www.instagram.com"><img src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" alt="Instagram logo" title="Instagram"/></a>
-              <a href="https://www.linkedin.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/1200px-Linkedin.svg.png" alt="Linkedin logo" title="Linkedin"/></a>
-            </div>
+            <p id="commentBoxTitle"></p>
+            <form onsubmit="addComment();  return false;">
+              <input type=text id="commentBoxInput" placeholder="Escribe tu comentario aquí..."></input>
+            </form>
           </div>
 
         </div>
 
+        <div class="ayuda"></div>
         <footer>
           <div class="about_us">
             <h5><a href="https://www.google.es">About us</a></h5>

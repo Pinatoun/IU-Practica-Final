@@ -34,13 +34,19 @@ body {
   margin: 0px;
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
+  min-width: 100vh;
+  position: relative;
+}
+
+.ayuda{
+  display: flex;
 }
 
 footer{
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  width: 100%;
-  z-index: 99;
+  width: -moz-available;
+  width: -webkit-fill-available;
 }
 
 /*header{
@@ -92,12 +98,17 @@ header, footer {
   place-self: center;
 }
 
+.fa-bell{
+  margin: 0px 5px;
+}
+
 .icons i{
   font-size: 35px;
 }
 
 .icons .dropdown-content{
   margin-top: 0;
+  text-align: center;
 }
 
 .nonRegisteredHomepage{
@@ -177,9 +188,10 @@ a:visited, a:hover, .places a:visited, .places a:hover {
 
 .dropdown-content {
   display: none;
+  text-align: center;
   position: absolute;
-  background-color: black;
-  color: rgb(255,126,0);
+  background-color:rgb(0,180,255);
+  color:black;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -188,12 +200,16 @@ a:visited, a:hover, .places a:visited, .places a:hover {
   border-radius: 10px;
 }
 
+.dropdown-content h4{
+  margin: 10px;
+}
+
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content a, .dropdown-content p {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  border: 1px solid rgb(255,126,0);
+  border: 1px solid black;
   border-radius: 10px;
   margin: 5px;
   min-width: 160px;
@@ -201,6 +217,10 @@ a:visited, a:hover, .places a:visited, .places a:hover {
 
 .show {
   display: block;
+}
+
+section{
+  display: none;
 }
 
 section, .mapa {
@@ -212,6 +232,11 @@ section, .mapa {
 	align-self: self-start; /* Con esto hacemos que las cajas no ocupen todo el espacio */
 	background: rgba(255, 255, 255, 0.5);
 	border-radius: 30px;
+}
+
+.sections{
+  display: flex;
+  width: 75%;
 }
 
 .mapouter{
@@ -231,7 +256,27 @@ section, .mapa {
 }
 
 .section{
-  margin: 80px 10px 70px 10px;
+  margin-bottom: 70px;
+}
+
+.twoFormSection{
+  display: inline-flex;
+  /*justify-content: space-between;*/
+  width: 100%;
+}
+
+.about_me{
+  width: 50%;
+  margin: 0 10px;
+}
+
+.twoForms{
+  margin: 0 10px;
+}
+
+textarea[name="about_me"]{
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
 }
 
 .name {
@@ -320,6 +365,7 @@ section, .mapa {
 .hashtags p{
   margin: 0;
   margin-right: 5px;
+  display: inline-flex;
 }
 
 .fa-plus-square{
@@ -373,6 +419,27 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   box-sizing: border-box;
 }
 
+input[value="Guardar"]{
+  border-radius: 10px;
+  color: white;
+  background-color:rgb(2,125,180);
+  border: 2px solid black;
+  font-size: large;
+  padding: 10px;
+  width: 90px;
+}
+
+button[value="Borrar"]{
+  border-radius: 10px;
+  color: white;
+  background-color:rgb(217,0,27);
+  border: 2px solid black;
+  font-size: large;
+  padding: 10px;
+  margin-left: 10px;
+  width: 90px;
+}
+
 .checkboxes {
 	display: inline-flex;
 }
@@ -388,7 +455,7 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
 
 #profileSection {
   display: flex;
-  margin: 15px;
+  margin: 15px 15px 70px 15px;
   justify-content: space-between;
 }
 
@@ -411,11 +478,37 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   font-weight: bold;
 }
 
+#logIn{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 500px;
+}
+
+#registerForm{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .information {
   margin-top: 70px;
   display: flex;
+  margin-bottom: auto;
+  color: black;
 }
 
+.profileSide h3 {
+  text-align: center;
+  height: 70px;
+  background-color: rgb(255,126,0);
+  border-radius: 10px;
+  border: 2px solid
+  black;
+  padding: 10% 0 0% 0;
+}
 
 .information p {
   background-color: rgb(255,126,0);
@@ -520,10 +613,25 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   border-radius: 30px;
 }
 
-#commentBoxText {
+#commentBoxTitle {
   text-align: center;
   font-weight: bold;
   font-size: 30px;
+}
+
+.comment{
+  background:aliceblue;
+  padding: 10px;
+  margin: 7px;
+  border-radius: 15px;
+  border: 1px solid gray;
+}
+
+#commentBoxInput{
+  margin: 7px;
+  padding: 10px;
+  width: -moz-available;
+  width: -webkit-fill-available;
 }
 
 /* The Close Button */
