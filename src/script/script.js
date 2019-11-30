@@ -773,6 +773,7 @@ $(document).ready(function(){
       }
       
     });
+
     $(".changeCajaTitle").click(function(){
       var category = $(this).closest("section").find("h2").text();
       var oldTitle = $(this).closest(".caja").find("h3").text();
@@ -803,6 +804,19 @@ $(document).ready(function(){
         alert("La actividad "+activity+" ya existe en la categoría "+category+". Por favor, escoja otro nombre");
       }
     });
+
+    $(".changeCajaDescription").click(function(){
+      var category = $(this).closest("section").find("h2").text();
+      var title = $(this).closest(".caja").find("h3").text();
+      var newDescription = prompt("Introduzca la nueva descripción de la actividad");
+      if(newDescription == ""){
+        alert("No puedes dejar la descripción vacía");
+        return;
+      }
+      setCookie("category-"+category+"-activity-"+title+"-description", newDescription);
+      $(this).closest(".caja").find(".datos p").text(newDescription);
+    });
+
     $(".emptyCaja").click(function(){
       var caja = $(this).closest(".caja");
       var title = $(this).closest("section").find(".title h2").text();
