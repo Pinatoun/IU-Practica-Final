@@ -101,15 +101,22 @@ header, footer {
 
 .icons i{
   margin: 0px 2px;
-}
-
-.icons i{
   font-size: 35px;
 }
 
 .icons .dropdown-content{
   margin-top: 0;
   text-align: center;
+}
+
+.bellNotification {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 2px 7px;
+  border-radius: 50%;
+  background: rgb(255,126,0);
+  color: white;
 }
 
 .nonRegisteredHomepage{
@@ -121,9 +128,10 @@ header, footer {
   font-style: italic;
 }
 
-.nonRegisteredHomepage iframe{
-  margin: 5vh;
+.videoFrame{
+  padding: 10%;
 }
+
 #homeScreen{
 	display: none;
 }
@@ -238,6 +246,7 @@ section, .mapa {
 .sections{
   display: flex;
   width: 75%;
+  overflow: auto;
 }
 
 .mapouter{
@@ -420,14 +429,14 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   box-sizing: border-box;
 }
 
-input[value="Guardar"]{
+input[value="Guardar"], #jv_inicio{
   border-radius: 10px;
   color: white;
   background-color:rgb(2,125,180);
   border: 2px solid black;
   font-size: large;
   padding: 10px;
-  width: 90px;
+  min-width: 90px;
 }
 
 button[value="Borrar"]{
@@ -457,7 +466,7 @@ button[value="Borrar"]{
 #profileSection {
   display: flex;
   margin: 15px 15px 70px 15px;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .innerProfileSection{
@@ -495,8 +504,11 @@ button[value="Borrar"]{
 }
 
 .information {
+  text-align: center;
+  position: sticky;
+  top: 120px;
+  display: block;
   margin-top: 70px;
-  display: flex;
   margin-bottom: auto;
   color: black;
 }
@@ -519,8 +531,8 @@ button[value="Borrar"]{
 }
 
 .information img{
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid rgb(255,126,0);
@@ -639,6 +651,18 @@ button[value="Borrar"]{
   display: flex;
 }
 
+#commentBoxForm input[value="Enviar"]{
+  margin: 7px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color:rgb(2,125,180);
+  border: 2px solid black;
+  font-size: large;
+  padding: 10px;
+  width: 90px;
+}
+
 #newActivityBoxForm input[value="Añadir"]{
   margin: 7px;
   padding: 10px;
@@ -695,11 +719,13 @@ button[value="Borrar"]{
   border-left: thin;
   border-left-style: solid;
 }
+
 #jv_inicio{
   background-color: rgb(2,125,180);
   color: white;
   padding: 10px;
 }
+
 #jv_forgetpassw{
   text-decoration: underline;
   margin-left: 20px;
@@ -753,6 +779,10 @@ footer{
   background-color: #555555;
   overflow: auto;
   justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: -moz-available;
+  width: -webkit-fill-available;
 }
 .mobile_footer1 p {
  
@@ -794,6 +824,10 @@ footer{
   display:none;
   background-color: #555555;
   overflow: auto;
+  position: fixed;
+  bottom: 0;
+  width: -moz-available;
+  width: -webkit-fill-available;
 }
 .mobile_footer2 p {
  
