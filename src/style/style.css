@@ -441,6 +441,7 @@ input[value="Guardar"], #jv_inicio{
   font-size: large;
   padding: 10px;
   min-width: 90px;
+  cursor:pointer;
 }
 
 button[value="Borrar"]{
@@ -452,6 +453,10 @@ button[value="Borrar"]{
   padding: 10px;
   margin-left: 10px;
   width: 90px;
+  cursor:pointer;
+}
+button[value="Borrar"]:hover, input[value="Guardar"]:hover{
+  filter: invert(0.2);
 }
 
 .checkboxes {
@@ -728,12 +733,18 @@ button[value="Borrar"]{
   background-color: rgb(2,125,180);
   color: white;
   padding: 10px;
+  cursor: pointer;
+
+}
+#jv_inicio:hover{
+  background-color:rgb(2,125,300);
 }
 
 #jv_forgetpassw{
   text-decoration: underline;
   margin-left: 20px;
   font-size: 15px;
+  cursor: pointer;
 
 }
 
@@ -820,7 +831,7 @@ footer{
   float:left;
   text-align: center;
   text-decoration:none;
-
+  cursor:pointer;
  
   margin-top:10px;
   margin-bottom: 10px;
