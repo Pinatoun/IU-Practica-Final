@@ -742,6 +742,8 @@ $(document).ready(function(){
   
   $(".closeSesion").click(function(){
     setCookie("name", "");
+    $(".mobile_footer1").show();
+    $(".mobile_footer2").hide()
     $(".content").hide();
     $(".dropdown-content .profile").show();
     $(".dropdown-content .homeScreen").hide();
@@ -813,6 +815,9 @@ $(document).ready(function(){
   function dropdownContentElements(params) {
     $(".addCategory").click(function(){
       var title = prompt("Nombre de la categoría");
+      if(title == undefined){
+        return;
+      } 
       if(title != ""){
         addCategory(title);
       }else{
@@ -852,7 +857,11 @@ $(document).ready(function(){
     });
     $(".changeTitle").click(function(){
       var title = prompt("¿Qué título le quieres poner a esta sección?");
+      if(title == undefined){
+        return;
+      }
       if (title == "") {
+        alert("No puedes dejar el título en blanco");
         return;
       }
       if(getCookie("categories-"+getCookie("name")).split(":").includes(title)){
