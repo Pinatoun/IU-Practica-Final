@@ -94,7 +94,7 @@ function submitRegister(subButon) {
   if (subButon == "#profileForm") {
     //TODO: Hacerlo con el nuevo estilo de cookies
     $(".user h3").text($(subButon+" input[name='username']").val());
-    $("#profile").click();
+    $(".profile").click();
     alert("Se han actualizado los datos del perfil");
   }
 }
@@ -179,6 +179,7 @@ function validateLogIn(){
 
 function loadLogIn(username) {
   $("#logIn").hide();
+  $(".homeScreen").hide();
   $(".content").show();
   $(".side1").show();
   $(".side2").hide();
@@ -253,6 +254,7 @@ function addCategory(title){
   }else{
     setCookie("category-"+title, "");
     setCookie("categories-"+$(".user h3").text(), getCookie("categories-"+$(".user h3").text())+":"+title);
+    setCookie("addedCategory", title);
   }
   addCategoryLogIn(title);
 }
@@ -273,14 +275,19 @@ function addCategoryLogIn(title){
 }
 
 function addCajaForm(){
-  //TODO: Añadir la caja con los datos del formulario
   var categories = $("section");
   var title = $("#newActivityBoxNewTitle").val();
   var description = $("#newActivityBoxNewDescription").val();
+  var added = false;
   for (const cat of categories) {
-    if($(cat).find(".title h2").text() == getCookie("currentCategory")){
+    if($(cat).find(".title h2").text() == $("#newActivityBoxNewActivities").val()){
       var category = $(cat);
+      added = true;
     }
+  }
+  if (!added) {
+    alert("Debes incluir la caja en alguna categoría");
+    return;
   }
   addCaja(category, title, description);
   $("#newActivityBox").hide();
@@ -304,13 +311,6 @@ function addCajaLogIn(columna, title, description){
   getCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-stars");
   getCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-comments");
   return caja;
-}
-
-function popUpAddToCategory(category){
-  setCookie("currentCategory", $(category).text());
-  $("#newActivityBoxForm")[0].reset();
-  $("#newActivityBox").fadeIn("slow");
-  $("#newActivityBoxTitle").text("Información de la actividad");
 }
 
 function addToCategory(element){
@@ -461,7 +461,7 @@ function acceptInvite(invitation) {
 }
 
 window.onclick = function(event) {
-  if(!event.target.matches('.fa-caret-square-down') && !event.target.matches(".icons .fa-plus-square") && !event.target.matches(".icons .fa-bell") && !event.target.matches(".icons .fa-archive") && !event.target.matches(".shareCategory") && !event.target.matches(".addElement")) {
+  if(!event.target.matches('.fa-caret-square-down') && !event.target.matches(".icons .fa-plus-square") && !event.target.matches(".icons .fa-bell") && !event.target.matches(".icons .fa-archive") && !event.target.matches(".shareCategory") && !event.target.matches(".addElement") && !event.target.matches("#userImg")) {
     console.log(event.target);
     $(".dropdown-content").slideUp("fast");
   }
@@ -492,7 +492,7 @@ $(document).ready(function(){
       $(".content").hide();
       $(".nonRegisteredHomepage").show();
     }else{
-      $("#homeScreen").click();
+      $(".homeScreen").click();
     }
   });
   /*$('.likeButton').tooltip({
@@ -553,6 +553,10 @@ $(document).ready(function(){
     showDropDown(this);
   });
 
+  $("#userImg").click(function(){
+    showDropDown(this);
+  });
+
   $(".hashtags .fa-plus-square").click(function(){
     var text = "#" + prompt("Introduzca el hashtag que desea añadir");
     if(text != "#" && text != "#null"){
@@ -583,12 +587,12 @@ $(document).ready(function(){
 
   });
 
-  $("#homeScreen").click(function() {
+  $(".homeScreen").click(function() {
     $(".section").hide();
     $(".content").show();
     $(".icons .fa-plus-square").show();
-    $("#profile").show();
-    $("#homeScreen").hide();
+    $(".profile").show();
+    $(".homeScreen").hide();
   });
 
   $(".startSesion").click(function() {
@@ -706,11 +710,11 @@ $(document).ready(function(){
   });*/
 
   
-  $("#closeSesion").click(function(){
+  $(".closeSesion").click(function(){
     setCookie("name", "");
     $(".content").hide();
-    $("#profile").show();
-    $("#homeScreen").hide();
+    $(".profile").show();
+    $(".homeScreen").hide();
     $(".side1").hide();
     $(".side2").show();
     $(".section").hide();
@@ -718,12 +722,12 @@ $(document).ready(function(){
     $("section").hide();
   });
 
-  $("#profile").click(function() {
+  $(".profile").click(function() {
     $(".section").hide();
     $(".content").hide();
-    $("#profile").hide();
+    $(".profile").hide();
     $(".icons .fa-plus-square").hide();
-    $("#homeScreen").show();
+    $(".homeScreen").show();
     $("#profileSection").show();
     var inputs = $("#profileForm input");
 
@@ -762,6 +766,19 @@ $(document).ready(function(){
 
   });
 
+  $("#newActivityBoxNewAddActivity").click(function(){
+    $(".addCategory").click();
+    var categories = getCookie("categories-"+getCookie("name")).split(":");
+    var added = false
+    $("#newActivityBoxNewActivities").empty();
+    for (const category of categories) {
+      if (getCookie("addedCategory") == category) {
+        $("#newActivityBoxNewActivities").append("<option value="+category+" selected='selected'>"+category+"</option>");
+      }else{
+        $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
+      }
+    }
+  });
 
   function dropdownContentElements(params) {
     $(".addCategory").click(function(){
@@ -776,23 +793,20 @@ $(document).ready(function(){
     $(".addElement").click(function(){
       var categories = getCookie("categories-"+getCookie("name")).split(":");
       var added = false
-      $(this).next().empty();
+      $("#newActivityBoxNewActivities").empty();
       for (const category of categories) {
         if(category != ""){
-          $(this).next().append("<a onclick='popUpAddToCategory(this)'>"+category+"</a>");
+          console.log("hola pa mi")
+          $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
           added = true;
         }
       }
       if(!added){
-        $(this).next().append("<a> No tienes ninguna categoría añadida </a>");
+        $("#newActivityBoxNewActivities").append("<option value='none'>No tienes ninguna categoría añadida</option>");
       }
-      var button = $(this).parent().find(".dropdown-content").first();
-      if (button.css("display") == "none") {
-        button.slideDown("fast");
-      }else {
-        button.slideUp("fast");
-      }
-    
+      $("#newActivityBoxForm")[0].reset();
+      $("#newActivityBox").fadeIn("slow");
+      $("#newActivityBoxTitle").text("Información de la actividad")
     });
   
     $(".addCajaElement").click(function(){

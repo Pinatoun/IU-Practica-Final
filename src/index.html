@@ -45,14 +45,21 @@
               
             </div>
             <div class="user">
-              <img id="userImg"  src="images/paco-lopez.jpg" alt="User Img" title="User Image"/>
               <h3>Paco López</h3>
+              <div class="dropdown">
+                <img id="userImg"  src="images/paco-lopez.jpg" alt="User Img" title="User Image"/>
+                  <div class="dropdown-content">
+                    <a class="profile">Perfil</a>
+                    <a class="homeScreen">Inicio</a>
+                    <a class="closeSesion">Cerrar Sesión</a>
+                  </div>
+                </div>
             </div>
-            <ul class="options">
-              <li><a id="profile" href="#" target="_self"> Perfil </a></li>
-              <li><a id="homeScreen" href="#" target="_self"> Inicio </a></li>
-              <li><a id="closeSesion" href="#" target="_self"> Cerrar sesión </a></li>
-            </ul>
+            <!--- <ul class="options">
+              <li><a class="profile" href="#" target="_self"> Perfil </a></li>
+              <li><a class="homeScreen" href="#" target="_self"> Inicio </a></li>
+              <li><a class="closeSesion" href="#" target="_self"> Cerrar sesión </a></li>
+            </ul>--->
           </div>
           <div class="side2">
             <ul class="options">
@@ -156,11 +163,11 @@
                 <div class="oneForm">
                   <h2>Hobbies</h2>
                   <select name="hobbies">
-                        <option value="futbol">Fútbol</option>
-                        <option value="tenis">Tenis</option>
-                        <option value="tecnologia">Tecnología</option>
-                        <option value="moda">Moda</option>
-                      </select>
+                    <option value="futbol">Fútbol</option>
+                    <option value="tenis">Tenis</option>
+                    <option value="tecnologia">Tecnología</option>
+                    <option value="moda">Moda</option>
+                  </select>
                 </div>
                 <div class="oneForm">
                   <h2>Intereses personales</h2>
@@ -337,6 +344,8 @@
               <span id="closenewActivityBox" onclick="document.getElementById('newActivityBox').style.display = 'none';">&times;</span>
               <p id="newActivityBoxTitle"></p>
               <form id="newActivityBoxForm" onsubmit="addCajaForm();  return false;">
+                Categoría: <select name="activities" id="newActivityBoxNewActivities"></select>
+                <i id="newActivityBoxNewAddActivity" class="fas fa-plus-square" aria-hidden="true"></i>
                 <input type=text id="newActivityBoxNewTitle" class="field-full" placeholder="Nuevo Título" required></input>
                 <br/>
                 <input type=text id="newActivityBoxNewDescription" class="field-full" placeholder="Nueva Descripción" required></input>
@@ -361,25 +370,24 @@
           </div>
         </footer>
 
-        <div class="mobile_footer1">
+        <div class = "mobile_footer">
 
-         <div class="botones1 startSesion"> <a><img class="footer_logo" id="personal_logo"  src="images/iniciar.png" alt="Iniciar sesión" title="Iniciar sesión"/><p>Iniciar sesión</p></a></div>
-
-         <div class="botones1 inicio"><a><img class="footer_logo" id="opinions_logo"  src="images/home.png" alt="home" title="home"/><p>Inicio</p></a></div>
-
-         <div class="botones1 register"><a><img  class="footer_logo" id="preferences_logo"  src="images/registro.png" alt="registro" title="registro"/><p>Registrar</p></a></div>
-
-        </div>
-
-        <div class="mobile_footer2">
-
-          <div class="botones2"><a href="#"><img class="footer_logo" id="opinions_logo"  src="images/explorar.png" alt="explorar" title="explorar"/><p>explorar</p></a></div>
-          <div class="botones2"> <a href="#"><img class="footer_logo" id="personal_logo"  src="images/iniciar.png" alt="Perfil" title="Perfil"/><p>Perfil</p></a></div>
-
-        
-
-         
-         
+          <div class="mobile_footer1">
+  
+           <div class="botones1 startSesion"> <a><img class="footer_logo" id="personal_logo"  src="images/iniciar.png" alt="Iniciar sesión" title="Iniciar sesión"/><p>Iniciar sesión</p></a></div>
+  
+           <div class="botones1 inicio"><a><img class="footer_logo" id="opinions_logo"  src="images/home.png" alt="home" title="home"/><p>Inicio</p></a></div>
+  
+           <div class="botones1 register"><a><img  class="footer_logo" id="preferences_logo"  src="images/registro.png" alt="registro" title="registro"/><p>Registrar</p></a></div>
+  
+          </div>
+  
+          <div class="mobile_footer2">
+  
+            <div class="botones2"><a href="#"><img class="footer_logo" id="opinions_logo"  src="images/explorar.png" alt="explorar" title="explorar"/><p>explorar</p></a></div>
+            <div class="botones2"> <a href="#"><img class="footer_logo" id="personal_logo"  src="images/iniciar.png" alt="Perfil" title="Perfil"/><p>Perfil</p></a></div>
+  
+          </div>
         </div>
 
 
