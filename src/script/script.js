@@ -446,6 +446,7 @@ function restoreArchivedCategory(cat) {
   setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name"))+":"+$(cat).text());
   addCategoryLogIn($(cat).text());
   addCajasCategory($(cat).text());
+  $("#profileArchived").text("Tiene "+(getCookie("archived-"+getCookie("name")).split(":").length-1)+" eventos archivados")
 }
 
 function inviteToCategory(element){
@@ -466,6 +467,7 @@ function acceptInvite(invitation) {
   }else{
     $(".bellNotification").hide();
   }
+  $("#profileNotifications").text("Tiene "+(getCookie("notifications-"+getCookie("name")).split(":").length-1)+" invitaciones a eventos")
 }
 
 window.onclick = function(event) {
@@ -597,10 +599,10 @@ $(document).ready(function(){
 
   $(".fa-map-marked-alt").click(function(){
     var location = getCookie("category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".caja").find("h3").text()+"-location");
-    $("#gmap_canvas").attr("src", "https://maps.google.com/maps?q="+encodeURI(location)+"&iwloc=&output=embed");
+    $(".gmap_canvas iframe").attr("src", "https://maps.google.com/maps?q="+encodeURI(location)+"&iwloc=&output=embed");
       var newWindowWidth = $(window).width();
       if (newWindowWidth < 900) {
-          $(".mapa").show();
+          $(".mapaMovil").show();
       }
   });
 

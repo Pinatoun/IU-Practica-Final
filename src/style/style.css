@@ -277,6 +277,15 @@ section, .mapa {
   height: 300px;
 }
 
+#gmap_canvas_mobile{
+  width: 100%;
+  height: 300px;
+}
+
+.mapaMovil{
+  display: none;
+}
+
 .section{
   margin-bottom: 70px;
 }
