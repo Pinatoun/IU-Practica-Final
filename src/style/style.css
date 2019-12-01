@@ -743,6 +743,11 @@ footer{
   width:80%;
 
 }
+
+.mobile_footer {
+  display: block;
+}
+
 .mobile_footer1 {
   display:flex;
   padding: 10px;
