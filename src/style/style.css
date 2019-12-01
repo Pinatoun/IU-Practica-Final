@@ -776,8 +776,17 @@ button[value="Borrar"]:hover, input[value="Guardar"]:hover{
 }
 i {
   text-align: center;
+  cursor: pointer;
 }
-
+#newActivityBoxForm input[value="Añadir"]:hover,#newActivityBoxForm button[value="Cancelar"]:hover{
+  filter: invert(0.2);
+  cursor: pointer;
+}
+@media screen and (max-width: 988px){
+.twoFormSection{
+  display: block;
+}
+}
 @media screen and (max-width: 900px){
   
 footer{
@@ -877,6 +886,7 @@ footer{
   bottom: 0;
   width: -moz-available;
   width: -webkit-fill-available;
+  cursor: pointer;
 }
 .mobile_footer2 p {
  
@@ -920,6 +930,7 @@ footer{
 .twoFormSection{
   display: block;
 }
+
 }
 @media screen and (max-width: 640px){
 #Apptivity{
