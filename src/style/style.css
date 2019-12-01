@@ -67,9 +67,13 @@ header, footer {
 }
 
 .titulo {
+  margin-right: 20px;
   display: flex;
   align-items: center;
   color: rgb(255,126,0);
+}
+#Apptivity{
+  display: block;
 }
 
 #logo {
@@ -246,7 +250,7 @@ section, .mapa {
 .sections{
   display: flex;
   width: 75%;
-  overflow: auto;
+
 }
 
 .mapouter{
@@ -465,7 +469,7 @@ button[value="Borrar"]{
 
 #profileSection {
   display: flex;
-  margin: 15px 15px 70px 15px;
+  margin: 15px 15px 100px 15px;
   justify-content: space-evenly;
 }
 
@@ -719,6 +723,13 @@ button[value="Borrar"]{
   border-left: thin;
   border-left-style: solid;
 }
+
+#jv_inicio{
+  background-color: rgb(2,125,180);
+  color: white;
+  padding: 10px;
+}
+
 #jv_forgetpassw{
   text-decoration: underline;
   margin-left: 20px;
@@ -732,13 +743,57 @@ button[value="Borrar"]{
 .mobile_footer2 {
   display:none;
 }
-
+#inic{
+  display:block;
+ }
+ #reg{
+  display:block;
+ }
+ #profile{
+  display:block;
+ }
+.mapa{
+  display: block;
+}
+i {
+  text-align: center;
+}
 
 @media screen and (max-width: 900px){
   
 footer{
   display: none;
  }
+#Apptivity{
+  display: block;
+}
+#inic{
+  display: none;
+ }
+
+ #reg{
+  display: none;
+ }  
+
+ #profile{
+  display: none;
+ }
+
+.mapa{
+  display: none;
+}
+#homeScreen{
+  display: none;
+}
+.section{
+  margin-bottom: 120px;
+}
+.sections{
+  display: block;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  margin-bottom: 50px;
+}
 .nonRegisteredHomepage iframe{
   width:80%;
 
@@ -791,7 +846,7 @@ footer{
 
 
 .mobile_footer2 {
-  display:flex;
+  display:none;
   background-color: #555555;
   overflow: auto;
   position: fixed;
@@ -830,6 +885,20 @@ footer{
 .mobile_footer2 a:visited,.mobile_footer2 a:hover, .mobile_footer2 a {
   color: #E4E4E4;
   text-decoration:none; 
+}
+
+}
+@media screen and (max-width: 640px){
+#Apptivity{
+  display: none;
+}
+
+.side1 h3{
+  display: none;
+}
+
+.options a{
+  display: none;
 }
 
 }
