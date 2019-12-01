@@ -182,8 +182,6 @@ function loadLogIn(username) {
   $(".content").show();
   $(".side1").show();
   $(".side2").hide();
-  $(".mobile_footer1").hide();
-  $(".mobile_footer2").show();
   $(".user h3").text(username);
   var categories = getCookie("categories-"+username).split(":");
   for (let i = 1; i < categories.length; i++) {

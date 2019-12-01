@@ -785,8 +785,14 @@ footer{
 #homeScreen{
   display: none;
 }
+.section{
+  margin-bottom: 120px;
+}
 .sections{
   display: block;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  margin-bottom: 50px;
 }
 .nonRegisteredHomepage iframe{
   width:80%;
@@ -798,7 +804,7 @@ footer{
   background-color: #555555;
   overflow: auto;
   justify-content: space-between;
-  /*position: fixed;*/
+  position: fixed;
   bottom: 0;
   width: -moz-available;
   width: -webkit-fill-available;
@@ -882,8 +888,17 @@ footer{
 }
 
 }
-@media screen and (max-width: 60px){
+@media screen and (max-width: 640px){
 #Apptivity{
   display: none;
 }
+
+.side1 h3{
+  display: none;
+}
+
+.options a{
+  display: none;
+}
+
 }
