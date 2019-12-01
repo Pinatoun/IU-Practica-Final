@@ -667,7 +667,7 @@ $(document).ready(function(){
   $(".shareCategory").click(function(){
     var users = getCookie("users").split(":");
     var added = false
-    $(this).next().empty();
+    $(this).next().empty();                    
     for (const user of users) {
       if(user != "" && !getCookie("categories-"+user).split(":").includes($(this).closest("section").find("h2").text())){
         $(this).next().append("<a onclick='inviteToCategory(this)'>"+user+"</a>");
@@ -676,6 +676,8 @@ $(document).ready(function(){
     }
     if(!added){
       $(this).next().append("<p> No hay ningún otro usuario registrado al que puedas invitar </p>");
+    }else{
+      $(this).next().prepend("<h4> Con quién quieres compartir el evento?: </h4>")
     }
     var button = $(this).parent().find(".dropdown-content").first();
     if (button.css("display") == "none") {
@@ -830,10 +832,10 @@ $(document).ready(function(){
       var added = false
       $("#newActivityBoxNewActivities").empty();
       for (const category of categories) {
-        if(category != ""){
-          console.log("hola pa mi")
+        if (getCookie("addedCategory") == category) {
+          $("#newActivityBoxNewActivities").append("<option value="+category+" selected='selected'>"+category+"</option>");
+        }else{
           $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
-          added = true;
         }
       }
       if(!added){

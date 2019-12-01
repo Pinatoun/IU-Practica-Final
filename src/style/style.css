@@ -34,7 +34,6 @@ body {
   margin: 0px;
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
-  min-width: 100vh;
   position: relative;
 }
 
@@ -218,6 +217,16 @@ a:visited, a:hover, .places a:visited, .places a:hover {
   right: 0;
   margin-top: 25px;
   border-radius: 10px;
+}
+
+#shareCategoryDropdown{
+  margin-right: 150px;
+  margin-top: 0;
+  background-color: rgb(255, 126,0);
+}
+
+#shareCategoryDropdown a:hover{
+  color: blue;
 }
 
 .dropdown-content h4{
