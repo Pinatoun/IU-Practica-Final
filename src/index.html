@@ -385,7 +385,9 @@
             </div>
           </div>
 
-          <div class="mapaMovil">
+          <div id="mapaMovil">
+            <div class="mapaPopUp">
+              <span id="closenewActivityBox" onclick="document.getElementById('mapaMovil').style.display = 'none';">&times;</span>
               <div class="title">
                 <h2>Localización del evento</h2>
               </div>
@@ -394,6 +396,7 @@
                   <iframe id="gmap_canvas_mobile" src="https://maps.google.com/maps?q=carlos%20iii%20colmenarejo&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
               </div>
+            </div>
             </div>
 
         <div class="ayuda"></div>

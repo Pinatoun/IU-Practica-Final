@@ -624,7 +624,7 @@ button[value="Borrar"]{
   display: none;
 }
 
-#commentBox, #newActivityBox {
+#commentBox, #newActivityBox, #mapaMovil {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -638,7 +638,7 @@ button[value="Borrar"]{
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-#commentBoxContent, #newActivityBoxContent {
+#commentBoxContent, #newActivityBoxContent, .mapaPopUp{
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
