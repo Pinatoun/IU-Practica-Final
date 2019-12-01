@@ -3,28 +3,43 @@
 }
 
 .tooltip {
-	padding: 8px;
-	position: absolute;
-  z-index: 9999;
-	max-width: 300px;
-	-webkit-box-shadow: 0 0 5px #aaa;
-	box-shadow: 0 0 5px #aaa;
-  background-color: rgba(0,0,0,0.8);
-  color: white;
-  border-radius: 5px;
-  font-size: 25px;
+  position: relative;
+  display: inline-block;
 }
-.tooltip::after {
-  content: " ";
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
   position: absolute;
   bottom: 100%;
-  right: 48%;
+  left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent rgba(0,0,0,0.8) transparent;
+  border-color: transparent transparent black transparent;
 }
 
+.tooltip:hover .tooltiptext {
+  opacity: 1;
+  visibility: visible;
+}
 body {
   background-image: url("../images/wallpaper.jpg");
   background-repeat: no-repeat;
@@ -193,6 +208,10 @@ a:visited, a:hover, .places a:visited, .places a:hover {
   color: rgb(255,126,0);
   width: 25px;
   font-size: 25px;
+  float: right;
+}
+
+.caret-square-down{
   float: right;
 }
 
@@ -485,6 +504,10 @@ button[value="Borrar"]:hover, input[value="Guardar"]:hover{
   filter: invert(0.2);
 }
 
+input[type="submit"]{
+  cursor: pointer;
+}
+
 .checkboxes {
 	display: inline-flex;
 }
@@ -530,7 +553,8 @@ button[value="Borrar"]:hover, input[value="Guardar"]:hover{
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 500px;
+  max-width: 500px;
+  width: 80%;
 }
 
 #registerForm{
@@ -942,9 +966,11 @@ footer{
 #profileSection{
   flex-direction: column-reverse;
 }
-.profileSide{
-  width: 60%;
+
+.innerProfileSection, #profileSide{
+  width: auto;
 }
+
 .twoFormSection{
   display: block;
 }

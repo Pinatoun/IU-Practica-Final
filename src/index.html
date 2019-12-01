@@ -24,7 +24,10 @@
           <div class="side1">
             <div class="icons">
               <div class="dropdown">
-                <i class="fas fa-plus-square"></i>
+                  <div class="tooltip plus-square">
+                    <i class="fas fa-plus-square" aria-hidden="true"></i>
+                    <span class="tooltiptext">Añadir Elemento</span>
+                  </div>
                 <div class="dropdown-content">
                   <a class="addCategory">Añadir Categoría</a>
                   <div class="dropdown">
@@ -34,12 +37,18 @@
                 </div>
               </div>
               <div class="dropdown">
-                <i class="fas fa-archive"></i>
+                  <div class="tooltip archive">
+                    <i class="fas fa-archive"></i>
+                    <span class="tooltiptext">Categorías archivadas</span>
+                  </div>
                 <div class="dropdown-content"></div>
               </div>
               <div class="dropdown">
                 <span class="bellNotification"></span>
-                <i class="far fa-bell"></i>
+                <div class="tooltip bell">
+                  <i class="far fa-bell"></i>
+                  <span class="tooltiptext">Notificaciones</span>
+                </div>
                 <div class="dropdown-content"></div>
               </div>
               
@@ -47,7 +56,10 @@
             <div class="user">
               <h3>Paco López</h3>
               <div class="dropdown">
-                <img id="userImg"  src="images/paco-lopez.jpg" alt="User Img" title="User Image"/>
+                <div class="tooltip plus-square">
+                  <img id="userImg"  src="images/paco-lopez.jpg" alt="User Img" title=""/>
+                  <span class="tooltiptext">Acciones del usuario</span>
+                </div>
                   <div class="dropdown-content">
                     <a class="profile">Perfil</a>
                     <a class="homeScreen">Inicio</a>
@@ -80,7 +92,10 @@
               <div class="title">
                 <h2>Restaurantes</h2>
                 <div class="dropdown">
-                  <i class="far fa-caret-square-down"></i>
+                  <div class="tooltip caret-square-down">
+                    <i class="far fa-caret-square-down" aria-hidden="true"></i>
+                    <span class="tooltiptext">Opciones de la actividad</span>
+                  </div>
                   <div class="dropdown-content">
                     <h4> Opciones: </h4>
                     <a class="addCajaElement">Añadir elemento</a>
@@ -95,13 +110,18 @@
                 </div>
               </div>
               <div class="caja">
-                  <i class="far fa-caret-square-down" aria-hidden="true"></i>
-                  <div class="dropdown-content">
-                    <h4> Opciones: </h4>
-                    <a class="changeCajaTitle">Cambiar título</a>
-                    <a class="changeCajaDescription">Cambiar Descripción</a>
-                    <a class="changeCajaLocation">Cambiar Localización</a>
-                    <a class="emptyCaja">Eliminar Actividad</a>
+                  <div class="dropdown caret-square-down">
+                    <div class="tooltip">
+                      <i class="far fa-caret-square-down" aria-hidden="true"></i>
+                      <span class="tooltiptext">Opciones de la categoría</span>
+                    </div>
+                    <div class="dropdown-content">
+                      <h4> Opciones: </h4>
+                      <a class="changeCajaTitle">Cambiar título</a>
+                      <a class="changeCajaDescription">Cambiar Descripción</a>
+                      <a class="changeCajaLocation">Cambiar Localización</a>
+                      <a class="emptyCaja">Eliminar Actividad</a>
+                    </div>
                   </div>
                 <div class="content_caja">
                   <div class="datos">
@@ -111,7 +131,10 @@
                 </div>
                 <div class="hashtags">
                   <p>Hashtags: </p>
-                  <i class="far fa-plus-square"></i>
+                  <div class="tooltip plus-square">
+                      <i class="fas fa-plus-square" aria-hidden="true"></i>
+                      <span class="tooltiptext">Añadir un hashtag</span>
+                    </div>
                 </div>
                 <div class="buttons">
                   <div class="stars">
@@ -122,8 +145,14 @@
                     <i class="far fa-star"></i>
                   </div>
                   <div>
-                    <i class="fas fa-map-marked-alt"></i>
-                    <i class="far fa-comment"></i>
+                    <div class="tooltip map-marked-alt">
+                      <i class="fas fa-map-marked-alt"></i>
+                      <span class="tooltiptext">Ver evento en el mapa</span>
+                    </div>
+                    <div class="tooltip">
+                      <i class="far fa-comment"></i>
+                      <span class="tooltiptext">Ver comentarios</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -343,6 +372,7 @@
           </div>
           <div class="profileSide">
             <div class="information">
+              
               <img src="images/paco-lopez.jpg" alt="User Img" title="User Image"/>
               <div class="informationText">
                 <p id="profileName"></p>
@@ -373,7 +403,10 @@
               <p id="newActivityBoxTitle"></p>
               <form id="newActivityBoxForm" onsubmit="addCajaForm();  return false;">
                 Categoría: <select name="activities" id="newActivityBoxNewActivities"></select>
-                <i id="newActivityBoxNewAddActivity" class="fas fa-plus-square" aria-hidden="true"></i>
+                <div class="tooltip plus-square">
+                  <i id="newActivityBoxNewAddActivity" class="fas fa-plus-square" aria-hidden="true"></i>
+                  <span class="tooltiptext">Añadir Elemento</span>
+                </div>
                 <input type=text id="newActivityBoxNewTitle" class="field-full" placeholder="Nuevo Título" required></input>
                 <br/>
                 <input type=text id="newActivityBoxNewDescription" class="field-full" placeholder="Nueva Descripción" required></input>

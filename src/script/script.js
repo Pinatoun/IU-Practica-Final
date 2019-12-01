@@ -236,7 +236,7 @@ function addHashtag(object, text) {
         $(this).hide();
         removeFromCookie("category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".hashtags").prev().find("h3").text()+"-hashtags", $(this).find("p").text());
     });
-    aux.insertBefore(object); 
+    aux.insertBefore(object.closest(".plus-square")); 
   }
 }
 
@@ -530,7 +530,7 @@ $(document).ready(function(){
     position: { my: "top+20px", at: "top center" },
   });*/
   function showDropDown(dd) {
-    var button = $(dd).parent().find(".dropdown-content").first();
+    var button = $(dd).closest(".dropdown").find(".dropdown-content").first();
     $(".dropdown-content").slideUp("fast");
     if (button.css("display") == "none") {
       button.slideDown("fast");
@@ -544,14 +544,14 @@ $(document).ready(function(){
 
   $(".icons .fa-archive").click(function() {
     var archivedCategories = getCookie("archived-"+getCookie("name")).split(":");
-    $(this).next().empty();
+    $(this).closest(".dropdown").find(".dropdown-content").empty();
     if (archivedCategories == "") {
-      $(this).next().append("<p> No hay ninguna categoría archivada </p>");
+      $(this).closest(".dropdown").find(".dropdown-content").append("<p> No hay ninguna categoría archivada </p>");
     }else{
-      $(this).next().append("<h4> Elementos archivados: </h4>");
+      $(this).closest(".dropdown").find(".dropdown-content").append("<h4> Elementos archivados: </h4>");
       for (const category of archivedCategories) {
         if(category != ""){
-          $(this).next().append("<a onclick='restoreArchivedCategory(this)'>"+category+"</a>");
+          $(this).closest(".dropdown").find(".dropdown-content").append("<a onclick='restoreArchivedCategory(this)'>"+category+"</a>");
         }
       }
     }
@@ -560,13 +560,13 @@ $(document).ready(function(){
 
   $(".icons .fa-bell").click(function() {
     var notifications = getCookie("notifications-"+getCookie("name")).split(":");
-    $(this).next().empty();
+    $(this).closest(".dropdown").find(".dropdown-content").empty();
     if (notifications == "") {
-      $(this).next().append("<p> No hay ninguna notificación pendiente </p>");
+      $(this).closest(".dropdown").find(".dropdown-content").append("<p> No hay ninguna notificación pendiente </p>");
     }else{
       for (const notification of notifications) {
         if(notification != ""){
-          $(this).next().append("<a onclick='acceptInvite(this)'>"+notification+"</a>");
+          $(this).closest(".dropdown").find(".dropdown-content").append("<a onclick='acceptInvite(this)'>"+notification+"</a>");
         }
       }
     }
@@ -831,15 +831,19 @@ $(document).ready(function(){
       var categories = getCookie("categories-"+getCookie("name")).split(":");
       var added = false
       $("#newActivityBoxNewActivities").empty();
-      for (const category of categories) {
-        if (getCookie("addedCategory") == category) {
-          $("#newActivityBoxNewActivities").append("<option value="+category+" selected='selected'>"+category+"</option>");
-        }else{
-          $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
+      if (getCookie("addedCategory") != "") {
+        for (const category of categories) {
+          if (getCookie("addedCategory") == category) {
+            $("#newActivityBoxNewActivities").append("<option value="+category+" selected='selected'>"+category+"</option>");
+            added = true;
+          }else{
+            $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
+            added = true;
+          }
         }
       }
       if(!added){
-        $("#newActivityBoxNewActivities").append("<option value='none'>No tienes ninguna categoría añadida</option>");
+        $("#newActivityBoxNewActivities").append("<option value='none' selected='selected'>No tienes ninguna categoría añadida</option>");
       }
       $("#newActivityBoxForm")[0].reset();
       $("#newActivityBox").fadeIn("slow");
@@ -980,7 +984,7 @@ $(document).ready(function(){
   }
   function dropdownContentLast() {
     $(".content section:last").find(".fa-caret-square-down").click(function(){
-      var button = $(this).parent().find(".dropdown-content").first();
+      var button = $(this).closest(".dropdown").find(".dropdown-content").first();
       $(".dropdown-content").slideUp("fast");
       if (button.css("display") == "none") {
         button.slideDown("fast");
@@ -993,7 +997,7 @@ $(document).ready(function(){
   
   function dropdownContent() {
     $(".fa-caret-square-down").click(function(){
-      var button = $(this).parent().find(".dropdown-content").first();
+      var button = $(this).closest(".dropdown").find(".dropdown-content").first();
       $(".dropdown-content").slideUp("fast");
       if (button.css("display") == "none") {
         button.slideDown("fast");
