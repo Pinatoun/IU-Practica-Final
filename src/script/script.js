@@ -726,6 +726,7 @@ $(document).ready(function(){
   
   $(".closeSesion").click(function(){
     setCookie("name", "");
+    
     $(".content").hide();
     $(".dropdown-content .profile").show();
     $(".dropdown-content .homeScreen").hide();

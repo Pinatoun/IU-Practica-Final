@@ -911,6 +911,15 @@ footer{
   text-decoration:none; 
 }
 
+#profileSection{
+  flex-direction: column-reverse;
+}
+.profileSide{
+  width: 60%;
+}
+.twoFormSection{
+  display: block;
+}
 }
 @media screen and (max-width: 640px){
 #Apptivity{
