@@ -179,7 +179,7 @@ function validateLogIn(){
 
 function loadLogIn(username) {
   $("#logIn").hide();
-  $(".homeScreen").hide();
+  $(".dropdown-content .homeScreen").hide();
   $(".content").show();
   $(".side1").show();
   $(".side2").hide();
@@ -604,8 +604,8 @@ $(document).ready(function(){
     $(".section").hide();
     $(".content").show();
     $(".icons .fa-plus-square").show();
-    $(".profile").show();
-    $(".homeScreen").hide();
+    $(".dropdown-content .profile").show();
+    $(".dropdown-content .homeScreen").hide();
   });
 
   $(".startSesion").click(function() {
@@ -727,8 +727,8 @@ $(document).ready(function(){
   $(".closeSesion").click(function(){
     setCookie("name", "");
     $(".content").hide();
-    $(".profile").show();
-    $(".homeScreen").hide();
+    $(".dropdown-content .profile").show();
+    $(".dropdown-content .homeScreen").hide();
     $(".side1").hide();
     $(".side2").show();
     $(".section").hide();
@@ -739,9 +739,9 @@ $(document).ready(function(){
   $(".profile").click(function() {
     $(".section").hide();
     $(".content").hide();
-    $(".profile").hide();
+    $(".dropdown-content .profile").hide();
     $(".icons .fa-plus-square").hide();
-    $(".homeScreen").show();
+    $(".dropdown-content .homeScreen").show();
     $("#profileSection").show();
     var inputs = $("#profileForm input");
 
