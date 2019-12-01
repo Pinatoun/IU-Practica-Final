@@ -598,6 +598,10 @@ $(document).ready(function(){
   $(".fa-map-marked-alt").click(function(){
     var location = getCookie("category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".caja").find("h3").text()+"-location");
     $("#gmap_canvas").attr("src", "https://maps.google.com/maps?q="+encodeURI(location)+"&iwloc=&output=embed");
+      var newWindowWidth = $(window).width();
+      if (newWindowWidth < 900) {
+          $(".mapa").show();
+      }
   });
 
   $(".homeScreen").click(function() {
