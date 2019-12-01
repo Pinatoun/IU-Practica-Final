@@ -834,7 +834,11 @@ $(document).ready(function(){
     });
     $(".changeTitle").click(function(){
       var title = prompt("¿Qué título le quieres poner a esta sección?");
+      if(title == null){
+        return;
+      }
       if (title == "") {
+        alert("No puedes dejar el título en blanco");
         return;
       }
       if(getCookie("categories-"+getCookie("name")).split(":").includes(title)){
