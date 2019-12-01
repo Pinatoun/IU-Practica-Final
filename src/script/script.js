@@ -597,7 +597,7 @@ $(document).ready(function(){
 
   $(".fa-map-marked-alt").click(function(){
     var location = getCookie("category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".caja").find("h3").text()+"-location");
-    $("#gmap_canvas").attr("src") = "https://maps.google.com/maps?q="+location+"&iwloc=&output=embed"
+    $("#gmap_canvas").attr("src", "https://maps.google.com/maps?q="+encodeURI(location)+"&iwloc=&output=embed");
   });
 
   $(".homeScreen").click(function() {
@@ -824,13 +824,15 @@ $(document).ready(function(){
     });
   
     $(".addCajaElement").click(function(){
-      var title = prompt("Pon el título");
+      setCookie("addedCategory", $(this).closest("section").find("h2").text());
+      $(".addElement").click();
+      /*var title = prompt("Pon el título");
       var description = prompt("Pon la descripción");
       if (title != "" && title != undefined && description != "" && description != undefined) {
         addCaja($(this).closest("section"), title, description);
       }else{
         alert("No puedes dejar el título ni la descripción en blanco");
-      }
+      }*/
     });
     $(".changeTitle").click(function(){
       var title = prompt("¿Qué título le quieres poner a esta sección?");
@@ -882,6 +884,10 @@ $(document).ready(function(){
         alert("No puedes dejar el título vacío");
         return;
       }
+      if(newTitle == undefined){
+        return;
+      }
+      
       if(!getCajasCategory(category).includes(newTitle)){
         var splitted = getCookie("category-"+category).split(":");
         for (let i = 0; i < splitted.length; i++) {
@@ -913,8 +919,25 @@ $(document).ready(function(){
         alert("No puedes dejar la descripción vacía");
         return;
       }
+      if(newDescription == undefined){
+        return;
+      }
       setCookie("category-"+category+"-activity-"+title+"-description", newDescription);
       $(this).closest(".caja").find(".datos p").text(newDescription);
+    });
+
+    $(".changeCajaLocation").click(function(){
+      var category = $(this).closest("section").find("h2").text();
+      var title = $(this).closest(".caja").find("h3").text();
+      var newLocation = prompt("Introduzca la nueva localización de la actividad");
+      if(newLocation == ""){
+        alert("No puedes dejar la localización vacía");
+        return;
+      }
+      if(newLocation == undefined){
+        return;
+      }
+      setCookie("category-"+category+"-activity-"+title+"-location", newLocation);
     });
 
     $(".emptyCaja").click(function(){
