@@ -117,9 +117,10 @@ function addComment(){
   if ($("#commentBoxInput").val()==undefined || $("#commentBoxInput").val()=="") {
     return;
   }
-  $("<p class=comment>"+message+"</p>").insertBefore("#commentBoxForm");
+  $("<p class=comment>"+message+"</p>").appendTo(".comments");
   setCookie(getCookie("activeComment")+"-comments", getCookie(getCookie("activeComment")+"-comments")+"---"+message)
   $("#commentBoxInput").val("");
+  $(".comments").scrollTop($('.comments')[0].scrollHeight)
 }
 
 function logIn() {
@@ -604,10 +605,10 @@ $(document).ready(function(){
     $(".comment").hide();
     for (const comment of comments) {
       if (comment != "") {
-        $("<p class=comment>"+comment+"</p>").insertBefore("#commentBoxForm");  
+        $("<p class=comment>"+comment+"</p>").appendTo(".comments");  
       }
     }
-
+    $(".comments").scrollTop($('.comments')[0].scrollHeight)
   });
 
   $(".fa-map-marked-alt").click(function(){
@@ -809,9 +810,10 @@ $(document).ready(function(){
     var added = false
     $("#newActivityBoxNewActivities").empty();
     for (const category of categories) {
+      console.log("categoria: "+category)
       if (getCookie("addedCategory") == category) {
         $("#newActivityBoxNewActivities").append("<option value="+category+" selected='selected'>"+category+"</option>");
-      }else{
+      }else if(category != ""){
         $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
       }
     }
@@ -839,7 +841,7 @@ $(document).ready(function(){
           if (getCookie("addedCategory") == category) {
             $("#newActivityBoxNewActivities").append("<option value="+category+" selected='selected'>"+category+"</option>");
             added = true;
-          }else{
+          }else if(category != ""){
             $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
             added = true;
           }
