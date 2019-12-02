@@ -324,7 +324,7 @@ section, .mapa {
 .sections{
   display: grid;
   grid-template-columns: auto auto auto;
-  width: 75%;
+  width: 80%;
 }
 
 .mapouter{
@@ -873,6 +873,8 @@ button[value="Cancelar"]{
  }
 .mapa{
   display: block;
+  position: sticky;
+  top: 90px;
 }
 i {
   text-align: center;

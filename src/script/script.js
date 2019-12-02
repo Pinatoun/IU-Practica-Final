@@ -987,7 +987,7 @@ $(document).ready(function(){
     });
     $(".changeTitle").click(function(){
       setCookie("changeTitleCategory", $(this).closest("section").find("h2").text());
-      $("#changeTitleBoxForm").onSubmit("changeTitleForm();  return false;")
+      $("#changeTitleBoxForm").attr("onSubmit", "changeTitleForm();  return false;")
       $("#changeTitleBoxForm")[0].reset();
       $("#changeTitleBox").fadeIn("slow");
       $("#changeTitleBoxTitle").text("Nuevo título de la categoría");
