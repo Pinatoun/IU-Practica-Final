@@ -322,9 +322,9 @@ section, .mapa {
 }
 
 .sections{
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto auto;
   width: 75%;
-
 }
 
 .mapouter{
@@ -700,7 +700,7 @@ input[type="submit"]{
   display: none;
 }
 
-#commentBox, #newActivityBox, #mapaMovil {
+#commentBox, #changeTitleBox, #newActivityBox, #newCategoryBox, #mapaMovil {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 99; /* Sit on top */
@@ -724,7 +724,7 @@ input[type="submit"]{
   overflow: auto;
 }
 
-#commentBoxContent, #newActivityBoxContent, .mapaPopUp{
+#commentBoxContent, #changeTitleBoxContent, #newActivityBoxContent, #newCategoryBoxContent, .mapaPopUp{
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
@@ -739,7 +739,7 @@ input[type="submit"]{
   width: 80%;
 }
 
-#commentBoxTitle, #newActivityBoxTitle {
+#commentBoxTitle, #changeTitleBoxTitle, #newActivityBoxTitle, #newCategoryBoxTitle {
   text-align: center;
   font-weight: bold;
   font-size: 30px;
@@ -753,7 +753,7 @@ input[type="submit"]{
   border: 1px solid gray;
 }
 
-#commentBoxInput, #newActivityBoxInput{
+#commentBoxInput, #changeTitleBoxInput, #newActivityBoxInput, #newCategoryBoxInput{
   margin: 7px;
   padding: 10px;
   width: -moz-available;
@@ -764,7 +764,7 @@ input[type="submit"]{
   display: flex;
 }
 
-#commentBoxForm input[value="Enviar"]{
+input[value="Enviar"]{
   margin: 7px;
   padding: 10px;
   border-radius: 10px;
@@ -776,7 +776,7 @@ input[type="submit"]{
   width: 90px;
 }
 
-#newActivityBoxForm input[value="Añadir"]{
+input[value="Añadir"]{
   margin: 7px;
   padding: 10px;
   border-radius: 10px;
@@ -788,7 +788,7 @@ input[type="submit"]{
   width: 90px;
 }
 
-#newActivityBoxForm button[value="Cancelar"]{
+button[value="Cancelar"]{
   margin: 7px;
   padding: 10px;
   border-radius: 10px;
@@ -801,7 +801,7 @@ input[type="submit"]{
 }
 
 /* The Close Button */
-#closeCommentBox, #closenewActivityBox {
+#closeCommentBox, #closechangeTitleBox, #closenewActivityBox , #closenewCategoryBox {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
@@ -811,7 +811,11 @@ input[type="submit"]{
 #closeCommentBox:hover,
 #closeCommentBox:focus,
 #closenewActivityBox:hover,
-#closenewActivityBox:focus {
+#closenewActivityBox:focus,
+#closenewCategoryBox:hover,
+#closenewCategoryBox:focus,
+#closechangeTitleBox:hover,
+#closechangeTitleBox:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -874,7 +878,7 @@ i {
   text-align: center;
   cursor: pointer;
 }
-#newActivityBoxForm input[value="Añadir"]:hover,#newActivityBoxForm button[value="Cancelar"]:hover{
+input[value="Añadir"]:hover,button[value="Cancelar"]:hover{
   filter: invert(0.2);
   cursor: pointer;
 }

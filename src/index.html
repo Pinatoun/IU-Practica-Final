@@ -419,6 +419,30 @@
             </div>
           </div>
 
+          <div id="newCategoryBox" class="modal">
+            <div id="newCategoryBoxContent">
+              <span id="closenewCategoryBox" onclick="document.getElementById('newCategoryBox').style.display = 'none';">&times;</span>
+              <p id="newCategoryBoxTitle"></p>
+              <form id="newCategoryBoxForm" onsubmit="addCategoryForm();  return false;">
+                <input type=text id="newCategoryBoxNewTitle" class="field-full" placeholder="Título" required></input>
+                <input type="submit" value="Añadir">
+                <button type="button" value="Cancelar" onclick="cancelForm()">Cancelar</button>
+              </form>
+            </div>
+          </div>
+
+          <div id="changeTitleBox" class="modal">
+            <div id="changeTitleBoxContent">
+              <span id="closechangeTitleBox" onclick="document.getElementById('changeTitleBox').style.display = 'none';">&times;</span>
+              <p id="changeTitleBoxTitle"></p>
+              <form id="changeTitleBoxForm" onsubmit="changeTitleForm();  return false;">
+                <input type=text id="changeTitleBoxNewTitle" class="field-full" placeholder="Título" required></input>
+                <input type="submit" value="Añadir">
+                <button type="button" value="Cancelar" onclick="cancelForm()">Cancelar</button>
+              </form>
+            </div>
+          </div>
+
           <div id="mapaMovil">
             <div class="mapaPopUp">
               <span id="closenewActivityBox" onclick="document.getElementById('mapaMovil').style.display = 'none';">&times;</span>

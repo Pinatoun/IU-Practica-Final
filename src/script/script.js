@@ -110,6 +110,8 @@ function clearForm() {
 
 function cancelForm() {
   $('#newActivityBox').fadeOut('fast');
+  $('#newCategoryBox').fadeOut('fast');
+  $('#changeTitleBox').fadeOut('fast');
 }
 
 function addComment(){
@@ -259,13 +261,14 @@ function addCategory(title){
   for (const user of users) {
     if(getCookie("categories-"+user).split(":").includes(title)){
       alert("La categoría " + title + " ya existe, por favor introduzca un nombre diferente");
-      return;
+      return false;
     }
   }
   setCookie("category-"+title, "");
   setCookie("categories-"+$(".user h3").text(), getCookie("categories-"+$(".user h3").text())+":"+title);
   setCookie("addedCategory", title);
   addCategoryLogIn(title);
+  return true;
 }
 
 function addCategoryLogIn(title){
@@ -300,8 +303,137 @@ function addCajaForm(){
     return;
   }
   
-  addCaja(category, title, description, location);
-  $("#newActivityBox").hide();
+  if(addCaja(category, title, description, location))
+    $("#newActivityBox").hide();
+}
+
+function addCategoryForm(){
+  var title = $("#newCategoryBoxNewTitle").val();
+  if(addCategory(title)){
+    $("#newCategoryBox").hide();
+    var categories = getCookie("categories-"+getCookie("name")).split(":");
+    $("#newActivityBoxNewActivities").empty();
+    for (const category of categories) {
+      console.log("categoria: "+category)
+      if (getCookie("addedCategory") == category) {
+        $("#newActivityBoxNewActivities").append("<option value="+category+" selected='selected'>"+category+"</option>");
+      }else if(category != ""){
+        $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
+      }
+    }
+  }
+}
+
+function changeTitleForm(){
+  var users = getCookie("users").split(":");
+  var title = $("#changeTitleBoxNewTitle").val();
+  if(title == undefined){
+    return;
+  }else if (title == "") {
+    alert("No puedes dejar el título de la categoría en blanco");
+    return;
+  }
+  for (const user of users) {
+    if(getCookie("categories-"+user).split(":").includes(title)){
+      alert("La categoría " + title + " ya existe, por favor introduzca un nombre diferente");
+      return ;
+    }
+  }
+  var titleOld = getCookie("changeTitleCategory");
+  if(title != ""){
+    var titleCajas= getCajasCategory(titleOld);
+    for (let i = 0; i < titleCajas.length; i++) {
+      setCookie("category-"+title+"-activity-"+titleCajas[i]+"-description", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description"));
+      setCookie("category-"+title+"-activity-"+titleCajas[i]+"-hashtags", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags"));
+      setCookie("category-"+title+"-activity-"+titleCajas[i]+"-stars", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars"));
+      setCookie("category-"+title+"-activity-"+titleCajas[i]+"-comments", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments"));
+      deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description");
+      deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags");
+      deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars");
+      deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments");
+    }
+    //setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name")).replace(":"+titleOld, ":"+title));
+    var splitted = getCookie("categories-"+getCookie("name")).split(":");
+    for (let i = 0; i < splitted.length; i++) {
+      if(splitted[i] == titleOld){
+        splitted[i]=title;
+        break;
+      }
+    }
+    setCookie("categories-"+getCookie("name"), splitted.join(":"));
+    setCookie("category-"+title, getCookie("category-"+titleOld));
+    deleteCookie("category-"+titleOld);
+    $(".title h2").filter(function(){return $(this).text()==titleOld}).text(title);
+    $("#changeTitleBox").fadeOut("fast");
+  }
+}
+
+function changeCajaTitleForm(){
+  var category = getCookie("changeTitleCategory");
+  var oldTitle = getCookie("changeTitleActivity");
+  var newTitle = $("#changeTitleBoxNewTitle").val();
+  if(newTitle == ""){
+    alert("No puedes dejar el título vacío");
+    return;
+  }
+  if(newTitle == undefined){
+    return;
+  }
+  
+  if(!getCajasCategory(category).includes(newTitle)){
+    var splitted = getCookie("category-"+category).split(":");
+    for (let i = 0; i < splitted.length; i++) {
+      if(splitted[i] == oldTitle){
+        splitted[i]=newTitle;
+        break;
+      }
+    }
+    setCookie("category-"+category, splitted.join(":"));
+    setCookie("category-"+category+"-activity-"+newTitle+"-description", getCookie("category-"+category+"-activity-"+oldTitle+"-description"));
+    setCookie("category-"+category+"-activity-"+newTitle+"-hashtags", getCookie("category-"+category+"-activity-"+oldTitle+"-hashtags"));
+    setCookie("category-"+category+"-activity-"+newTitle+"-stars", getCookie("category-"+category+"-activity-"+oldTitle+"-stars"));
+    setCookie("category-"+category+"-activity-"+newTitle+"-comments", getCookie("category-"+category+"-activity-"+oldTitle+"-comments"));
+    deleteCookie("category-"+category+"-activity-"+oldTitle+"-description");
+    deleteCookie("category-"+category+"-activity-"+oldTitle+"-hashtags");
+    deleteCookie("category-"+category+"-activity-"+oldTitle+"-stars");
+    deleteCookie("category-"+category+"-activity-"+oldTitle+"-comments");
+    $(".title h2").filter(function(){return $(this).text()==category}).closest("section").find("h3").filter(function(){return $(this).text()==oldTitle}).text(newTitle);
+    $("#changeTitleBox").fadeOut("fast");
+  }else{
+    alert("La actividad "+activity+" ya existe en la categoría "+category+". Por favor, escoja otro nombre");
+    return;
+  }
+}
+
+function changeCajaDescriptionForm(){
+  var category = getCookie("changeTitleCategory");
+  var title = getCookie("changeTitleActivity");
+  var newDescription = $("#changeTitleBoxNewTitle").val();
+  if(newDescription == ""){
+    alert("No puedes dejar la descripción vacía");
+    return;
+  }
+  if(newDescription == undefined){
+    return;
+  }
+  setCookie("category-"+category+"-activity-"+title+"-description", newDescription);
+  $(".title h2").filter(function(){return $(this).text()==category}).closest("section").find("h3").filter(function(){return $(this).text()==title}).next().text(newDescription);
+  $("#changeTitleBox").fadeOut("fast");
+}
+
+function changeCajaLocationForm(){
+  var category = getCookie("changeTitleCategory");
+  var title = getCookie("changeTitleActivity");
+  var newLocation = $("#changeTitleBoxNewTitle").val();
+  if(newLocation == ""){
+    alert("No puedes dejar la localización vacía");
+    return;
+  }
+  if(newLocation == undefined){
+    return;
+  }
+  setCookie("category-"+category+"-activity-"+title+"-location", newLocation);
+  $("#changeTitleBox").fadeOut("fast");
 }
 
 function addCaja(columna, title, description, location){
@@ -315,7 +447,9 @@ function addCaja(columna, title, description, location){
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-location", location);
   }else{
     alert("La categoría "+columna.find(".title h2").text()+" ya tiene la actividad "+title);
+    return false;
   }
+  return true;
 }
 
 function addCajaLogIn(columna, title, description, location){
@@ -451,11 +585,13 @@ function dragDrop() {
 }
 
 function restoreArchivedCategory(cat) {
-  removeFromCookie("archived-"+getCookie("name"), ":"+$(cat).text());
-  setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name"))+":"+$(cat).text());
-  addCategoryLogIn($(cat).text());
-  addCajasCategory($(cat).text());
-  $("#profileArchived").text("Tiene "+(getCookie("archived-"+getCookie("name")).split(":").length-1)+" eventos archivados")
+  if (confirm("¿Quiere restaurar esta categoría archivada?")) {
+    removeFromCookie("archived-"+getCookie("name"), ":"+$(cat).text());
+    setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name"))+":"+$(cat).text());
+    addCategoryLogIn($(cat).text());
+    addCajasCategory($(cat).text());
+    $("#profileArchived").text("Tiene "+(getCookie("archived-"+getCookie("name")).split(":").length-1)+" eventos archivados")
+  }
 }
 
 function inviteToCategory(element){
@@ -469,16 +605,16 @@ function acceptInvite(invitation) {
     setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name"))+":"+$(invitation).text());
     addCategoryLogIn($(invitation).text());
     addCajasCategory($(invitation).text());
+    removeFromCookie("notifications-"+getCookie("name"), ":"+$(invitation).text());
+    var notifications = getCookie("notifications-"+getCookie("name")).split(":");
+    if (notifications.length>1) {
+      $(".bellNotification").show();
+      $(".bellNotification").text((notifications.length-1));
+    }else{
+      $(".bellNotification").hide();
+    }
+    $("#profileNotifications").text("Tiene "+(getCookie("notifications-"+getCookie("name")).split(":").length-1)+" invitaciones a eventos")
   }
-  removeFromCookie("notifications-"+getCookie("name"), ":"+$(invitation).text());
-  var notifications = getCookie("notifications-"+getCookie("name")).split(":");
-  if (notifications.length>1) {
-    $(".bellNotification").show();
-    $(".bellNotification").text((notifications.length-1));
-  }else{
-    $(".bellNotification").hide();
-  }
-  $("#profileNotifications").text("Tiene "+(getCookie("notifications-"+getCookie("name")).split(":").length-1)+" invitaciones a eventos")
 }
 
 window.onclick = function(event) {
@@ -806,30 +942,13 @@ $(document).ready(function(){
 
   $("#newActivityBoxNewAddActivity").click(function(){
     $(".addCategory").click();
-    var categories = getCookie("categories-"+getCookie("name")).split(":");
-    var added = false
-    $("#newActivityBoxNewActivities").empty();
-    for (const category of categories) {
-      console.log("categoria: "+category)
-      if (getCookie("addedCategory") == category) {
-        $("#newActivityBoxNewActivities").append("<option value="+category+" selected='selected'>"+category+"</option>");
-      }else if(category != ""){
-        $("#newActivityBoxNewActivities").append("<option value="+category+">"+category+"</option>");
-      }
-    }
   });
 
   function dropdownContentElements(params) {
     $(".addCategory").click(function(){
-      var title = prompt("Nombre de la categoría");
-      if(title == undefined){
-        return;
-      } 
-      if(title != ""){
-        addCategory(title);
-      }else{
-        alert("No puedes dejar el título en blanco");
-      }
+      $("#newCategoryBoxForm")[0].reset();
+      $("#newCategoryBox").fadeIn("slow");
+      $("#newCategoryBoxTitle").text("Información de la categoría");
     });
 
     $(".addElement").click(function(){
@@ -852,7 +971,7 @@ $(document).ready(function(){
       }
       $("#newActivityBoxForm")[0].reset();
       $("#newActivityBox").fadeIn("slow");
-      $("#newActivityBoxTitle").text("Información de la actividad")
+      $("#newActivityBoxTitle").text("Información de la actividad");
     });
   
     $(".addCajaElement").click(function(){
@@ -867,113 +986,40 @@ $(document).ready(function(){
       }*/
     });
     $(".changeTitle").click(function(){
-      var title = prompt("¿Qué título le quieres poner a esta sección?");
-      if(title == undefined){
-        return;
-      }
-      if (title == "") {
-        alert("No puedes dejar el título en blanco");
-        return;
-      }
-      if(!getCajasCategory(category).includes(newTitle)){
-        alert("La categoría " + title + " ya existe, por favor introduzca un nombre diferente");
-        return;
-      }else if (title == "") {
-        alert("No puedes dejar el título de la categoría en blanco");
-        return;
-      }
-      var titleOld = $(this).closest("section").find("h2").text();
-      if(title != ""){
-        var titleCajas= getCajasCategory(titleOld);
-        for (let i = 0; i < titleCajas.length; i++) {
-          setCookie("category-"+title+"-activity-"+titleCajas[i]+"-description", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description"));
-          setCookie("category-"+title+"-activity-"+titleCajas[i]+"-hashtags", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags"));
-          setCookie("category-"+title+"-activity-"+titleCajas[i]+"-stars", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars"));
-          setCookie("category-"+title+"-activity-"+titleCajas[i]+"-comments", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments"));
-          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description");
-          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags");
-          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars");
-          deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments");
-        }
-        //setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name")).replace(":"+titleOld, ":"+title));
-        var splitted = getCookie("categories-"+getCookie("name")).split(":");
-        for (let i = 0; i < splitted.length; i++) {
-          if(splitted[i] == titleOld){
-            splitted[i]=title;
-            break;
-          }
-        }
-        setCookie("categories-"+getCookie("name"), splitted.join(":"));
-        setCookie("category-"+title, getCookie("category-"+titleOld));
-        deleteCookie("category-"+titleOld);
-
-        $(this).closest("section").find("h2").text(title);
-      }
-      
+      setCookie("changeTitleCategory", $(this).closest("section").find("h2").text());
+      $("#changeTitleBoxForm").onSubmit("changeTitleForm();  return false;")
+      $("#changeTitleBoxForm")[0].reset();
+      $("#changeTitleBox").fadeIn("slow");
+      $("#changeTitleBoxTitle").text("Nuevo título de la categoría");
     });
 
     $(".changeCajaTitle").click(function(){
-      var category = $(this).closest("section").find("h2").text();
-      var oldTitle = $(this).closest(".caja").find("h3").text();
-      var newTitle = prompt("Introduzca el nuevo nombre de la actividad");
-      if(newTitle == ""){
-        alert("No puedes dejar el título vacío");
-        return;
-      }
-      if(newTitle == undefined){
-        return;
-      }
-      
-      if(!getCajasCategory(category).includes(newTitle)){
-        var splitted = getCookie("category-"+category).split(":");
-        for (let i = 0; i < splitted.length; i++) {
-          if(splitted[i] == oldTitle){
-            splitted[i]=newTitle;
-            break;
-          }
-        }
-        setCookie("category-"+category, splitted.join(":"));
-        setCookie("category-"+category+"-activity-"+newTitle+"-description", getCookie("category-"+category+"-activity-"+oldTitle+"-description"));
-        setCookie("category-"+category+"-activity-"+newTitle+"-hashtags", getCookie("category-"+category+"-activity-"+oldTitle+"-hashtags"));
-        setCookie("category-"+category+"-activity-"+newTitle+"-stars", getCookie("category-"+category+"-activity-"+oldTitle+"-stars"));
-        setCookie("category-"+category+"-activity-"+newTitle+"-comments", getCookie("category-"+category+"-activity-"+oldTitle+"-comments"));
-        deleteCookie("category-"+category+"-activity-"+oldTitle+"-description");
-        deleteCookie("category-"+category+"-activity-"+oldTitle+"-hashtags");
-        deleteCookie("category-"+category+"-activity-"+oldTitle+"-stars");
-        deleteCookie("category-"+category+"-activity-"+oldTitle+"-comments");
-        $(this).closest(".caja").find("h3").text(newTitle);
-      }else{
-        alert("La actividad "+activity+" ya existe en la categoría "+category+". Por favor, escoja otro nombre");
-      }
+      setCookie("changeTitleCategory", $(this).closest("section").find("h2").text());
+      setCookie("changeTitleActivity", $(this).closest(".caja").find("h3").text());
+      $("#changeTitleBoxForm").attr("onSubmit", "changeCajaTitleForm();  return false;")
+      $("#changeTitleBoxForm")[0].reset();
+      $("#changeTitleBox").fadeIn("slow");
+      $("#changeTitleBoxTitle").text("Nuevo título de la actividad");
     });
 
     $(".changeCajaDescription").click(function(){
-      var category = $(this).closest("section").find("h2").text();
-      var title = $(this).closest(".caja").find("h3").text();
-      var newDescription = prompt("Introduzca la nueva descripción de la actividad");
-      if(newDescription == ""){
-        alert("No puedes dejar la descripción vacía");
-        return;
-      }
-      if(newDescription == undefined){
-        return;
-      }
-      setCookie("category-"+category+"-activity-"+title+"-description", newDescription);
-      $(this).closest(".caja").find(".datos p").text(newDescription);
+      setCookie("changeTitleCategory", $(this).closest("section").find("h2").text());
+      setCookie("changeTitleActivity", $(this).closest(".caja").find("h3").text());
+      $("#changeTitleBoxForm").attr("onSubmit", "changeCajaDescriptionForm();  return false;")
+      $("#changeTitleBoxForm")[0].reset();
+      $("#changeTitleBox").fadeIn("slow");
+      $("#changeTitleBoxTitle").text("Nueva descripción de la actividad");
+      $("#changeTitleBoxNewTitle").attr("placeholder", "Descripción");
     });
-
+    
     $(".changeCajaLocation").click(function(){
-      var category = $(this).closest("section").find("h2").text();
-      var title = $(this).closest(".caja").find("h3").text();
-      var newLocation = prompt("Introduzca la nueva localización de la actividad");
-      if(newLocation == ""){
-        alert("No puedes dejar la localización vacía");
-        return;
-      }
-      if(newLocation == undefined){
-        return;
-      }
-      setCookie("category-"+category+"-activity-"+title+"-location", newLocation);
+      setCookie("changeTitleCategory", $(this).closest("section").find("h2").text());
+      setCookie("changeTitleActivity", $(this).closest(".caja").find("h3").text());
+      $("#changeTitleBoxForm").attr("onSubmit", "changeCajaLocationForm();  return false;")
+      $("#changeTitleBoxForm")[0].reset();
+      $("#changeTitleBox").fadeIn("slow");
+      $("#changeTitleBoxTitle").text("Nueva localización de la actividad");
+      $("#changeTitleBoxNewTitle").attr("placeholder", "Localización");
     });
 
     $(".emptyCaja").click(function(){
