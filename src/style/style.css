@@ -40,6 +40,44 @@
   opacity: 1;
   visibility: visible;
 }
+
+.tooltipLeft {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipLeft .tooltiptextLeft {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 110%;
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltipLeft .tooltiptextLeft::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}
+.tooltipLeft:hover .tooltiptextLeft {
+  opacity: 1;
+  visibility: visible;
+}
+
 body {
   background-image: url("../images/wallpaper.jpg");
   background-repeat: no-repeat;
@@ -676,9 +714,15 @@ input[type="submit"]{
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+#commentBox{
+  padding-top: 0;
+  overflow: scroll;
+}
+
+
 #commentBoxContent, #newActivityBoxContent, .mapaPopUp{
   background-color: #fefefe;
-  margin: auto;
+  margin: 100px auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -828,9 +872,27 @@ i {
 .twoFormSection{
   display: block;
 }
+
+.titulo{
+  font-size: small;
+}
+
 }
 @media screen and (max-width: 900px){
   
+#logo, .icons i{
+  font-size: 25px;
+}
+
+#logo{
+  padding: 0;
+}
+
+#userImg{
+  width: 25px;
+  height: 25px;
+}
+
 footer{
   display: none;
  }

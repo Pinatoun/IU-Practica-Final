@@ -114,6 +114,9 @@ function cancelForm() {
 
 function addComment(){
   var message = getCookie("name")+": "+$("#commentBoxInput").val();
+  if ($("#commentBoxInput").val()==undefined || $("#commentBoxInput").val()=="") {
+    return;
+  }
   $("<p class=comment>"+message+"</p>").insertBefore("#commentBoxForm");
   setCookie(getCookie("activeComment")+"-comments", getCookie(getCookie("activeComment")+"-comments")+"---"+message)
   $("#commentBoxInput").val("");
@@ -870,7 +873,7 @@ $(document).ready(function(){
         alert("No puedes dejar el título en blanco");
         return;
       }
-      if(getCookie("categories-"+getCookie("name")).split(":").includes(title)){
+      if(!getCajasCategory(category).includes(newTitle)){
         alert("La categoría " + title + " ya existe, por favor introduzca un nombre diferente");
         return;
       }else if (title == "") {
