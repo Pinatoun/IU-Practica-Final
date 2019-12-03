@@ -136,6 +136,31 @@ header, footer {
   vertical-align: middle;
 }
 
+#searchBar input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+#searchBar button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0px 5px 5px 0px;
+}
+
+#searchBar button:hover {
+  background: #ccc;
+}
+
 .user {
   margin-left: 10px;
   display: flex;
@@ -885,6 +910,7 @@ input[value="Añadir"]:hover,button[value="Cancelar"]:hover{
   cursor: pointer;
 }
 @media screen and (max-width: 988px){
+
 .twoFormSection{
   display: block;
 }
@@ -938,7 +964,7 @@ footer{
   margin-bottom: 120px;
 }
 .sections{
-  display: block;
+  grid-template-columns: auto auto;
   width: -moz-available;
   width: -webkit-fill-available;
   margin-bottom: 50px;
@@ -1052,6 +1078,11 @@ footer{
 
 }
 @media screen and (max-width: 640px){
+
+.sections{
+  display: block;
+}
+
 #Apptivity{
   display: none;
 }

@@ -28,6 +28,13 @@ function removeFromCookie(name, value){
   setCookie(name, cookies.join(":"));
 }
 
+function searchBar(){
+  //TODO: Mostrar solo los elementos que coincidan
+  var textToSearch = $("#searchBar input[type=text]").val();
+  $("section h2").not(":first").not(":contains("+textToSearch+")").parents("section").hide();
+  $("section h2:not(:first):contains("+textToSearch+")").parents("section").show();
+}
+
 function getCajasCategory(category){
   return getCookie("category-"+category).split(":");
 }
@@ -194,6 +201,7 @@ function loadLogIn(username) {
   $(".side2").hide();
   $(".mobile_footer1").hide();
   $(".mobile_footer2").show();
+  $("#searchBar").show();
   $(".user h3").text(username);
   var categories = getCookie("categories-"+username).split(":");
   for (let i = 1; i < categories.length; i++) {
@@ -638,13 +646,13 @@ $(document).ready(function(){
   setCookie("name", "");
   $(".caja").hide();
   $(".mobile_footer2").hide();
-  
-  dragDrop();
-  
   $(".section").hide();
   $(".nonRegisteredHomepage").show();
   $(".profileSection").hide();
   $(".side1").hide();
+  $("#searchBar form")[0].reset();
+  $("#searchBar").hide();
+  dragDrop();
   
   $(".inicio").click(function (){
     $(".section").hide();
@@ -655,6 +663,11 @@ $(document).ready(function(){
       $(".homeScreen").click();
     }
   });
+
+  $("#searchBar input").change(function(){
+    searchBar();
+  });
+
   /*$('.likeButton').tooltip({
     tooltipClass: "tooltip",
     position: { my: "top+20px", at: "top center" },
@@ -831,7 +844,7 @@ $(document).ready(function(){
 
   $(".archivar").click(function(){
     if (confirm("¿De verdad quieres archivar esta columna?")) {
-      $(this).parents("section").fadeOut();
+      $(this).parents("section").remove();
       removeFromCookie("categories-"+getCookie("name"), ":"+$(this).parents("section").find("h2").text())
       setCookie("archived-"+getCookie("name"), getCookie("archived-"+getCookie("name"))+":"+$(this).parents("section").find("h2").text());
     }
@@ -893,7 +906,7 @@ $(document).ready(function(){
     $(".side2").show();
     $(".section").hide();
     $(".nonRegisteredHomepage").show();
-    $("section").hide();
+    $("section").not(":first").remove();
   });
 
   $(".profile").click(function() {
