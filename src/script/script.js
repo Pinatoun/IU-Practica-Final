@@ -923,6 +923,7 @@ $(document).ready(function(){
     setCookie("name", "");
     $(".mobile_footer1").show();
     $(".mobile_footer2").hide()
+    $("#searchBar").hide();
     $(".content").hide();
     $(".dropdown-content .profile").show();
     $(".dropdown-content .homeScreen").hide();

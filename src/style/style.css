@@ -556,6 +556,11 @@ input[value="Guardar"], #jv_inicio{
   cursor:pointer;
 }
 
+input:invalid {
+  border: 3px solid red;
+color: red;
+}
+
 button[value="Borrar"]{
   border-radius: 10px;
   color: white;
