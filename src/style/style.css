@@ -484,6 +484,10 @@ textarea[name="about_me"]{
   margin-bottom: 5px;
 }
 
+.hashtag{
+  cursor: pointers;
+}
+
 .hashtags p{
   margin: 0;
   margin-right: 5px;
@@ -928,6 +932,10 @@ input[value="Añadir"]:hover,button[value="Cancelar"]:hover{
 
 #logo{
   padding: 0;
+}
+
+#searchBar input[type="text"]{
+  width: 100px;
 }
 
 #userImg{

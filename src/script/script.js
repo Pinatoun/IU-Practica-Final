@@ -246,10 +246,16 @@ function addHashtag(object, text) {
   if(text){
     var aux = $("<div class=hashtag><p>"+text+"</p></div>");
     aux.click(function() {
-      if(confirm("Seguro que quiere eliminar el hashtag "+$(this).find("p").text()+"?"))
-        $(this).hide();
-        removeFromCookie("category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".hashtags").prev().find("h3").text()+"-hashtags", $(this).find("p").text());
-    });
+        if(confirm("Seguro que quiere eliminar el hashtag "+$(this).find("p").text()+"?")){
+          var name = "category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".caja").find("h3").text()+"-hashtags";
+          var value = $(this).find("p").text();
+          var cookies = getCookie(name).split("#");
+          cookies.splice( cookies.indexOf(value), 1 );
+          cookies.splice( 0, 1 );
+          setCookie(name, cookies.join("#"));
+          $(this).remove();
+        }
+      });
     aux.insertBefore(object.closest(".plus-square")); 
   }
 }
@@ -331,6 +337,22 @@ function addCategoryForm(){
     }
   }
 }
+
+function addHashtagForm() {
+  var text = "#" + $("#changeTitleBoxNewTitle").val();
+  var category = getCookie("addHashtagCategory");
+  var activity = getCookie("addHashtagActivity");
+  var object = $(".datos h3").filter(function() {
+    return $(this).text() === activity;
+    }).closest(".caja").find(".fa-plus-square")
+  if(text != "#" && text != "#null"){
+    var cookie = "category-"+category+"-activity-"+activity+"-hashtags";
+    addHashtag($(object), text);
+    setCookie(cookie, getCookie(cookie) + text);
+  }
+  $("#changeTitleBox").hide();
+}
+
 
 function changeTitleForm(){
   var users = getCookie("users").split(":");
@@ -731,12 +753,14 @@ $(document).ready(function(){
   });
 
   $(".hashtags .fa-plus-square").click(function(){
-    var text = "#" + prompt("Introduzca el hashtag que desea añadir");
-    if(text != "#" && text != "#null"){
-      var cookie = "category-"+$(this).closest("section").find(".title h2").text()+"-activity-"+$(this).closest(".hashtags").prev().find("h3").text()+"-hashtags";
-      addHashtag($(this), text);
-      setCookie(cookie, getCookie(cookie) + text);
-    }
+
+    setCookie("addHashtagCategory", $(this).closest("section").find("h2").text());
+    setCookie("addHashtagActivity", $(this).closest(".caja").find("h3").text());
+    $("#changeTitleBoxForm").attr("onSubmit", "addHashtagForm();  return false;")
+    $("#changeTitleBoxForm")[0].reset();
+    $("#changeTitleBoxTitle").text("Nuevo hashtag para la activiad");
+    $("#changeTitleBoxNewTitle").attr("placeholder", "Hashtag");
+    $("#changeTitleBox").fadeIn("slow");
   });
 
   $(".hashtag").click(function() {
@@ -844,9 +868,9 @@ $(document).ready(function(){
 
   $(".archivar").click(function(){
     if (confirm("¿De verdad quieres archivar esta columna?")) {
-      $(this).parents("section").remove();
       removeFromCookie("categories-"+getCookie("name"), ":"+$(this).parents("section").find("h2").text())
       setCookie("archived-"+getCookie("name"), getCookie("archived-"+getCookie("name"))+":"+$(this).parents("section").find("h2").text());
+      $(this).parents("section").remove();
     }
   });
 
@@ -1002,8 +1026,9 @@ $(document).ready(function(){
       setCookie("changeTitleCategory", $(this).closest("section").find("h2").text());
       $("#changeTitleBoxForm").attr("onSubmit", "changeTitleForm();  return false;")
       $("#changeTitleBoxForm")[0].reset();
-      $("#changeTitleBox").fadeIn("slow");
       $("#changeTitleBoxTitle").text("Nuevo título de la categoría");
+      $("#changeTitleBoxNewTitle").attr("placeholder", "Título");
+      $("#changeTitleBox").fadeIn("slow");
     });
 
     $(".changeCajaTitle").click(function(){
@@ -1011,8 +1036,9 @@ $(document).ready(function(){
       setCookie("changeTitleActivity", $(this).closest(".caja").find("h3").text());
       $("#changeTitleBoxForm").attr("onSubmit", "changeCajaTitleForm();  return false;")
       $("#changeTitleBoxForm")[0].reset();
-      $("#changeTitleBox").fadeIn("slow");
       $("#changeTitleBoxTitle").text("Nuevo título de la actividad");
+      $("#changeTitleBoxNewTitle").attr("placeholder", "Título");
+      $("#changeTitleBox").fadeIn("slow");
     });
 
     $(".changeCajaDescription").click(function(){
@@ -1020,9 +1046,9 @@ $(document).ready(function(){
       setCookie("changeTitleActivity", $(this).closest(".caja").find("h3").text());
       $("#changeTitleBoxForm").attr("onSubmit", "changeCajaDescriptionForm();  return false;")
       $("#changeTitleBoxForm")[0].reset();
-      $("#changeTitleBox").fadeIn("slow");
       $("#changeTitleBoxTitle").text("Nueva descripción de la actividad");
       $("#changeTitleBoxNewTitle").attr("placeholder", "Descripción");
+      $("#changeTitleBox").fadeIn("slow");
     });
     
     $(".changeCajaLocation").click(function(){
