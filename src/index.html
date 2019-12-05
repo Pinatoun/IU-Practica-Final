@@ -21,7 +21,7 @@
               <i class="fab fa-jedi-order" id="logo"></i>
               <h1 id="Apptivity">Apptivity</h1>
               <div id="searchBar">
-                <form action="#" method="post" oninput="searchBar(); return false;">
+                <form action="#" method="post" oninput="searchBar(); return false;" onsubmit="searchBar();  return false;">
                   <input type="text" placeholder="Search.." name="search">
                   <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
@@ -126,6 +126,7 @@
                       <a class="changeCajaTitle">Cambiar título</a>
                       <a class="changeCajaDescription">Cambiar Descripción</a>
                       <a class="changeCajaLocation">Cambiar Localización</a>
+                      <a class="changeCajaDate">Cambiar Fecha</a>
                       <a class="emptyCaja">Eliminar Actividad</a>
                     </div>
                   </div>
@@ -151,6 +152,7 @@
                     <i class="far fa-star"></i>
                   </div>
                   <div id="cajaIcons">
+                    <p class="fecha"></p>
                     <div class="tooltip map-marked-alt">
                       <i class="fas fa-map-marked-alt"></i>
                       <span class="tooltiptext">Ver evento en el mapa</span>
@@ -277,7 +279,9 @@
             <br>
             <input type="password" name="passwordLogIn" placeholder="Contraseña" class="field-full" required>
             <br>
-            <input id="jv_inicio" type="submit" value="Iniciar Sesión">
+            <div id="div_inicio">
+              <input id="jv_inicio" type="submit" value="Iniciar Sesión">
+            </div>
             <a id="jv_forgetpassw" title="recuperar contraseña" onclick="passwordRecover()" > Olvidé mi contraseña </a>
           </form>
         </div>
@@ -419,6 +423,8 @@
                 <input type=text id="newActivityBoxNewDescription" class="field-full" placeholder="Nueva Descripción" required></input>
                 <br/>
                 <input type=text id="newActivityBoxNewLocation" class="field-full" placeholder="Localización" required></input>
+                <br/>
+                <input type="text" onfocus="(this.type='date')" id="newActivityBoxNewDate" class="field-full" placeholder="Fecha del evento" required></input>
                 <input type="submit" value="Añadir">
                 <button type="button" value="Cancelar" onclick="cancelForm()">Cancelar</button>
               </form>
@@ -469,7 +475,7 @@
             <h5><a href="https://www.google.es">About us</a></h5>
           </div>
           <div class="copyright">
-            <h5 id="copyright"><a href="https://www.google.es">Copyright</a></h5>
+            <h5 id="copyright"><a href="https://www.google.es">Política de Privacidad</a></h5>
           </div>
           <div class="social">
             <a href="https://www.twitter.com"><img id="twitter_logo"  src="https://shkspr.mobi/blog/wp-content/uploads/2017/10/Twitter-Logo.png" alt="Twitter logo" title="Twitter"/></a>

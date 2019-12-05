@@ -219,11 +219,13 @@ function loadLogIn(username) {
 
 function addCajasCategory(category){
   var cajas = getCajasCategory(category);
-  var columna = $(".title:contains("+ category+")").closest("section");
+  var columna = $(".title h2").filter(function() {
+    return $(this).text() === category;
+    }).closest("section");
   var result = "";
   for (const caja of cajas) {
     if(caja != ""){
-      result = addCajaLogIn(columna, caja, getCookie("category-"+category+"-activity-"+caja+"-description"));
+      result = addCajaLogIn(columna, caja, getCookie("category-"+category+"-activity-"+caja+"-description"), getCookie("category-"+category+"-activity-"+caja+"-location"), getCookie("category-"+category+"-activity-"+caja+"-date"));
       addHashtags(result.find(".fa-plus-square"));
       addStars(result);
     }
@@ -277,6 +279,10 @@ function addCategory(title){
       alert("La categoría " + title + " ya existe, por favor introduzca un nombre diferente");
       return false;
     }
+    if(!title.trim().length){
+      alert("La categoría no puede estar vacía");
+      return false;
+    }
   }
   setCookie("category-"+title, "");
   setCookie("categories-"+$(".user h3").text(), getCookie("categories-"+$(".user h3").text())+":"+title);
@@ -305,7 +311,9 @@ function addCajaForm(){
   var title = $("#newActivityBoxNewTitle").val();
   var description = $("#newActivityBoxNewDescription").val();
   var location = $("#newActivityBoxNewLocation").val();
+  var date = new Date($("#newActivityBoxNewDate").val());
   var added = false;
+  date = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
   for (const cat of categories) {
     if($(cat).find(".title h2").text() == $("#newActivityBoxNewActivities").val()){
       var category = $(cat);
@@ -317,7 +325,7 @@ function addCajaForm(){
     return;
   }
   
-  if(addCaja(category, title, description, location))
+  if(addCaja(category, title, description, location, date))
     $("#newActivityBox").hide();
 }
 
@@ -377,10 +385,14 @@ function changeTitleForm(){
       setCookie("category-"+title+"-activity-"+titleCajas[i]+"-hashtags", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags"));
       setCookie("category-"+title+"-activity-"+titleCajas[i]+"-stars", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars"));
       setCookie("category-"+title+"-activity-"+titleCajas[i]+"-comments", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments"));
+      setCookie("category-"+title+"-activity-"+titleCajas[i]+"-location", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-location"));
+      setCookie("category-"+title+"-activity-"+titleCajas[i]+"-date", getCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-date"));
       deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-description");
       deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-hashtags");
       deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-stars");
       deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-comments");
+      deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-location");
+      deleteCookie("category-"+titleOld+"-activity-"+titleCajas[i]+"-date");
     }
     //setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name")).replace(":"+titleOld, ":"+title));
     var splitted = getCookie("categories-"+getCookie("name")).split(":");
@@ -423,10 +435,14 @@ function changeCajaTitleForm(){
     setCookie("category-"+category+"-activity-"+newTitle+"-hashtags", getCookie("category-"+category+"-activity-"+oldTitle+"-hashtags"));
     setCookie("category-"+category+"-activity-"+newTitle+"-stars", getCookie("category-"+category+"-activity-"+oldTitle+"-stars"));
     setCookie("category-"+category+"-activity-"+newTitle+"-comments", getCookie("category-"+category+"-activity-"+oldTitle+"-comments"));
+    setCookie("category-"+category+"-activity-"+newTitle+"-location", getCookie("category-"+category+"-activity-"+oldTitle+"-location"));
+    setCookie("category-"+category+"-activity-"+newTitle+"-date", getCookie("category-"+category+"-activity-"+oldTitle+"-date"));
     deleteCookie("category-"+category+"-activity-"+oldTitle+"-description");
     deleteCookie("category-"+category+"-activity-"+oldTitle+"-hashtags");
     deleteCookie("category-"+category+"-activity-"+oldTitle+"-stars");
     deleteCookie("category-"+category+"-activity-"+oldTitle+"-comments");
+    deleteCookie("category-"+category+"-activity-"+oldTitle+"-location");
+    deleteCookie("category-"+category+"-activity-"+oldTitle+"-date");
     $(".title h2").filter(function(){return $(this).text()==category}).closest("section").find("h3").filter(function(){return $(this).text()==oldTitle}).text(newTitle);
     $("#changeTitleBox").fadeOut("fast");
   }else{
@@ -466,15 +482,16 @@ function changeCajaLocationForm(){
   $("#changeTitleBox").fadeOut("fast");
 }
 
-function addCaja(columna, title, description, location){
+function addCaja(columna, title, description, location, date){
   if (!getCajasCategory(columna.find(".title h2").text()).includes(title)) {
-    addCajaCommon(columna, title, description, location);
+    addCajaCommon(columna, title, description, location, date);
     setCookie("category-"+columna.find(".title h2").text(), getCookie("category-"+columna.find(".title h2").text())+":"+title);
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-description", description);
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-hashtags", "");
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-stars", "-1");
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-comments", "");
     setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-location", location);
+    setCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-date", date);
   }else{
     alert("La categoría "+columna.find(".title h2").text()+" ya tiene la actividad "+title);
     return false;
@@ -482,8 +499,8 @@ function addCaja(columna, title, description, location){
   return true;
 }
 
-function addCajaLogIn(columna, title, description, location){
-  var caja = addCajaCommon(columna, title, description, location);
+function addCajaLogIn(columna, title, description, location, date){
+  var caja = addCajaCommon(columna, title, description, location, date);
   getCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-stars");
   getCookie("category-"+columna.find(".title h2").text()+"-activity-"+title+"-comments");
   return caja;
@@ -507,10 +524,12 @@ function addToCategory(element){
   }
 }
 
-function addCajaCommon(columna, title, description){
+function addCajaCommon(columna, title, description, location, date){
   var caja = $(".caja:first").droppable("destroy").draggable("destroy").clone(true);
   caja.find("h3").text(title);
   caja.find("p").first().text(description);
+  console.log(date);
+  caja.find(".fecha").text(date);
   /* Hacemos que aunque le haya dado a like al primero, el que creemos no esté dado */
   caja.find(".fa").addClass("far").removeClass("fa");
   console.log(columna);
@@ -557,12 +576,14 @@ function dragDrop() {
             setCookie("category-"+title+"-activity-"+titleCaja+"-stars", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-stars"));
             setCookie("category-"+title+"-activity-"+titleCaja+"-comments", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-comments"));
             setCookie("category-"+title+"-activity-"+titleCaja+"-location", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-location"));
-            removeFromCookie("category-"+titleOld, ":"+titleCaja)
+            setCookie("category-"+title+"-activity-"+titleCaja+"-date", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-date"));
+            removeFromCookie("category-"+titleOld, titleCaja)
             deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-description");
             deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-hashtags");
             deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-stars");
             deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-comments");
             deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-location");
+            deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-date");
           }
         }
       }
@@ -585,7 +606,7 @@ function dragDrop() {
           var title = $(this).parent("section").find("h2").text();
           var titleDroppedCaja = $(this).find("h3").text();
           $(ui.draggable).detach().insertAfter($(this));
-          removeFromCookie("category-"+titleOld, ":"+titleCaja)
+          removeFromCookie("category-"+titleOld, titleCaja)
           var splitted = getCookie("category-"+title).split(":");
           for (let i = 0; i < splitted.length; i++) {
             if(splitted[i] == titleDroppedCaja){
@@ -605,6 +626,8 @@ function dragDrop() {
             deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-comments");
             setCookie("category-"+title+"-activity-"+titleCaja+"-location", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-location"));
             deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-location");
+            setCookie("category-"+title+"-activity-"+titleCaja+"-date", getCookie("category-"+titleOld+"-activity-"+titleCaja+"-date"));
+            deleteCookie("category-"+titleOld+"-activity-"+titleCaja+"-date");
           }
         }
         else  
@@ -616,10 +639,11 @@ function dragDrop() {
 
 function restoreArchivedCategory(cat) {
   if (confirm("¿Quiere restaurar esta categoría archivada?")) {
-    removeFromCookie("archived-"+getCookie("name"), ":"+$(cat).text());
+    removeFromCookie("archived-"+getCookie("name"), $(cat).text());
     setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name"))+":"+$(cat).text());
     addCategoryLogIn($(cat).text());
     addCajasCategory($(cat).text());
+    //addCajasCategory($(cat).text());
     $("#profileArchived").text("Tiene "+(getCookie("archived-"+getCookie("name")).split(":").length-1)+" eventos archivados")
   }
 }
@@ -635,7 +659,7 @@ function acceptInvite(invitation) {
     setCookie("categories-"+getCookie("name"), getCookie("categories-"+getCookie("name"))+":"+$(invitation).text());
     addCategoryLogIn($(invitation).text());
     addCajasCategory($(invitation).text());
-    removeFromCookie("notifications-"+getCookie("name"), ":"+$(invitation).text());
+    removeFromCookie("notifications-"+getCookie("name"), $(invitation).text());
     var notifications = getCookie("notifications-"+getCookie("name")).split(":");
     if (notifications.length>1) {
       $(".bellNotification").show();
@@ -677,6 +701,7 @@ $(document).ready(function(){
   dragDrop();
   
   $(".inicio").click(function (){
+    $("title").text("Apptivity");
     $(".section").hide();
     if(getCookie("name") == ""){
       $(".content").hide();
@@ -794,6 +819,7 @@ $(document).ready(function(){
   });
 
   $(".homeScreen").click(function() {
+    $("title").text("Apptivity");
     $(".section").hide();
     $(".content").show();
     $(".icons .fa-plus-square").show();
@@ -802,11 +828,13 @@ $(document).ready(function(){
   });
 
   $(".startSesion").click(function() {
+    $("title").text("Iniciar Sesión");
     $(".section").hide();
     $("#logIn").show();
   });
 
   $(".register").click(function() {
+    $("title").text("Registrarse");
     $(".section").hide();
     $("#registerForm").show();
   });
@@ -836,6 +864,7 @@ $(document).ready(function(){
         deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-stars");
         deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-comments");
         deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-location");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-date");
       }
       cajas.fadeOut();
     }
@@ -868,7 +897,7 @@ $(document).ready(function(){
 
   $(".archivar").click(function(){
     if (confirm("¿De verdad quieres archivar esta columna?")) {
-      removeFromCookie("categories-"+getCookie("name"), ":"+$(this).parents("section").find("h2").text())
+      removeFromCookie("categories-"+getCookie("name"), $(this).parents("section").find("h2").text())
       setCookie("archived-"+getCookie("name"), getCookie("archived-"+getCookie("name"))+":"+$(this).parents("section").find("h2").text());
       $(this).parents("section").remove();
     }
@@ -935,6 +964,7 @@ $(document).ready(function(){
   });
 
   $(".profile").click(function() {
+    $("title").text("Perfil");
     $(".section").hide();
     $(".content").hide();
     $(".dropdown-content .profile").hide();
@@ -1070,6 +1100,8 @@ $(document).ready(function(){
       deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-hashtags");
       deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-stars");
       deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-comments");
+      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-location");
+      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-date");
       caja.fadeOut();
     });
   }

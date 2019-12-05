@@ -503,6 +503,10 @@ textarea[name="about_me"]{
   justify-content: space-between;
 }
 
+.fecha {
+  margin: 0px 5px;
+}
+
 #cajaIcons{
   display: inline-flex;
 }
@@ -964,9 +968,10 @@ footer{
  #reg{
   display: none;
  }  
-
- #profile{
-  display: none;
+ #jv_forgetpassw {
+  margin-left: 5px;
+  display: block;
+  text-align: center;
  }
 
 .mapa{
