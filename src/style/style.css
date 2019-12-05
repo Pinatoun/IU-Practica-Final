@@ -485,7 +485,7 @@ textarea[name="about_me"]{
 }
 
 .hashtag{
-  cursor: pointers;
+  cursor: pointer;
 }
 
 .hashtags p{
@@ -501,6 +501,14 @@ textarea[name="about_me"]{
 .buttons {
   display: flex;
   justify-content: space-between;
+}
+
+#cajaIcons{
+  display: inline-flex;
+}
+
+#cajaIcons div{
+  margin-left: 5px;
 }
 
 .commentButton, .likeButton, .shareButton{
@@ -554,11 +562,6 @@ input[value="Guardar"], #jv_inicio{
   padding: 10px;
   min-width: 90px;
   cursor:pointer;
-}
-
-input:invalid {
-  border: 3px solid red;
-color: red;
 }
 
 button[value="Borrar"]{
