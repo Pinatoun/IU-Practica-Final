@@ -968,6 +968,16 @@ footer{
  #reg{
   display: none;
  }  
+
+ #logIn form {
+  text-align: center;
+ }
+
+ #logIn form h2{
+   text-align: left;
+ }
+
+
  #jv_forgetpassw {
   margin-left: 5px;
   display: block;
