@@ -557,7 +557,7 @@ input[type=text], input[type=password], input[type=date], input[type=email], sel
   box-sizing: border-box;
 }
 
-input[value="Guardar"], #jv_inicio{
+input[value="Guardar"], input[value="Registrar"], #jv_inicio{
   border-radius: 10px;
   color: white;
   background-color:rgb(2,125,180);
