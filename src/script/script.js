@@ -1093,16 +1093,18 @@ $(document).ready(function(){
     });
 
     $(".emptyCaja").click(function(){
-      var caja = $(this).closest(".caja");
-      var title = $(this).closest("section").find(".title h2").text();
-      removeFromCookie("category-"+title, caja.find("h3").text());
-      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-description");
-      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-hashtags");
-      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-stars");
-      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-comments");
-      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-location");
-      deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-date");
-      caja.fadeOut();
+      if(confirm("¿De verdad desea eliminar esta actividad?")){
+        var caja = $(this).closest(".caja");
+        var title = $(this).closest("section").find(".title h2").text();
+        removeFromCookie("category-"+title, caja.find("h3").text());
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-description");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-hashtags");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-stars");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-comments");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-location");
+        deleteCookie("category-"+title+"-activity-"+$(caja).find("h3").text()+"-date");
+        caja.fadeOut();
+      }
     });
   }
   function dropdownContentLast() {
